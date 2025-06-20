@@ -9,6 +9,13 @@ progettato per essere **piccolo, elegante, e autosufficiente**.
 
 ---
 
+## 🌐 Traduzioni disponibili
+
+- 🇬🇧 Inglese – [README.md](./README.md)  
+- 🇮🇹 Italiano – [README.it.md](./README.it.md)
+
+---
+
 ## 🌬️ Cos’è KIMU?
 
 **KIMU** – *Keep It Minimal UI* – è un framework front-end per chi vuole creare interfacce  
@@ -135,13 +142,6 @@ per conto del collettivo creativo **[UnicòVerso](https://unicoverso.com)**
 - 🌍 Sito: [https://unicoverso.com/kimu](https://unicoverso.com/kimu)  
 - 🐙 GitHub: [https://github.com/unicoverso/kimu-core](https://github.com/unicoverso/kimu-core)  
 - 📩 Email: [info@unicoverso.com](mailto:info@unicoverso.com)
-
----
-
-## 🌐 Traduzioni disponibili
-
-- 🇬🇧 Inglese – [README.md](./README.md)  
-- 🇮🇹 Italiano – [README.it.md](./README.it.md)
 
 ---
 
