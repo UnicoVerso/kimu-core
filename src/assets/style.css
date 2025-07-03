@@ -1,0 +1,82 @@
+/* Base styles */
+:root {
+  /* Palette base */
+  --kimu-bg: #f4f1ea;
+  --kimu-text: #ffffff;
+  --kimu-primary: #2b7cff;
+  --kimu-accent: #ffcc00;
+  --kimu-danger: #e63946;
+
+  /* Font e dimensioni */
+  --kimu-font: 'Segoe UI', sans-serif;
+  --kimu-radius: 6px;
+}
+
+/* Base styles */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: var(--kimu-bg);
+  color: var(--kimu-text);
+  font-family: var(--kimu-font);
+
+
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+/* Reset styles */
+:host {
+  all: initial;
+  display: block;
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--kimu-text, #ffffff);
+  background-color: transparent;
+}
+
+* {
+  box-sizing: border-box;
+  background-color: #b1a4a4;
+}
+
+/* Layout base */
+.container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Tipografia */
+h1,
+h2,
+h3,
+h4 {
+  color: var(--kimu-text, #ffffff);
+  margin: 0;
+}
+
+p {
+  margin: 0.5rem 0;
+  color: var(--kimu-text, #cccccc);
+}
+
+/* headings */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0.5em 0;
+}
+
+/* links */
+a {
+  color: var(--kimu-primary);
+  text-decoration: none;
+}

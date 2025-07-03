@@ -1,0 +1,13 @@
+[
+  {
+    "tag": "kimu-app",
+    "path": "kimu-app",
+    "internal": true,
+    "name": "KIMU Main App",
+    "description": "Main interface container",
+    "version": "1.0.0",
+    "author": "UnicòVerso",
+    "icon": "🏠",
+    "kimuVersion": "1.0.0"
+  }
+]

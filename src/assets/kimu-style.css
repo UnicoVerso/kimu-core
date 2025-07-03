@@ -1,0 +1,88 @@
+/* Base styles */
+:root {
+  /* Base KIMU Palette */
+  --kimu-bg: #f4f1ea;
+  --kimu-text: #ffffff;
+  --kimu-primary: #2b7cff;
+  --kimu-accent: #ffcc00;
+  --kimu-danger: #e63946;
+
+  /* Font and dimensions */
+  --kimu-font: 'Segoe UI', sans-serif;
+  --kimu-radius: 6px;
+}
+
+/* Base component style */
+.kimu-component {
+  display: block;
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--kimu-text, #ffffff);
+  background-color: transparent;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  text-align: center;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  /* margin: .5rem; */
+  border-radius: 12px;
+  background: #535353;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Buttons */
+button {
+  /* width: 100%; */
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: center;
+  text-wrap: auto;
+  text-wrap-mode: nowrap;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #c8d5b9;
+  color: #2f4f4f;
+  /* border: none; */
+  border: 1px solid #cccccc;
+  border-radius: var(--kimu-radius, 6px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  /* transition: background-color 0.2s ease, transform 0.1s ease; */
+  /* transition: background-color 0.2s ease-in-out; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+button:hover {
+  background-color: #b3c7a4;
+  /* background-color: #f0f0f0; */
+  /* transform: scale(1.02); */
+  transform: translateY(-3px) scale(1.2);
+  /* background: linear-gradient(145deg, #ffffff, #f3f3f3); */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+button:active {
+  transform: scale(0.98);
+}

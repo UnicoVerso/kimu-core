@@ -1,0 +1,20 @@
+# Ignore dev and test files in npm package
+*.log
+*.md~
+*.zip
+/tests/
+.vscode/
+.idea/
+src/
+scripts/
+docs/
+LICENSE.it.txt
+NOTICE
+CHANGELOG.md
+.gitignore
+.editorconfig
+.gitattributes
+.git/
+
+# Build output is needed
+!dist/
