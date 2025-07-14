@@ -1,7 +1,4 @@
-/* 
- * Automatically generated file. 
- * Do not modify! 
-*/
+/** Automatically generated file. Do not modify. */
 export const KimuBuildConfig = {
   "version": "0.1.0",
   "environment": "dev",
