@@ -25,6 +25,8 @@ Per scoprire la filosofia, docementazioni, esempi, gli altre estensioni,  moduli
 
 > 🔗 **KIMU framework** : **[https://github.com/unicoverso/kimu](https://github.com/unicoverso/kimu)**
 
+> 🤔 **Vuoi una risposta diretta?** Leggi: [Cosa tratta KIMU e KIMU-CORE?](docs/cosa-tratta-kimu.md)
+
 
 Creato da [UnicòVerso](https://unicoVerso.org) (Marco Di Pasquale, alias *Hocram*), per realizzare interfacce web leggere, eleganti e reattive.
 
@@ -71,6 +73,64 @@ Basato sugli **standard del web**, privo di dipendenze esterne,
 `KIMU` promuove un design **dichiarativo** e **modulare**.
 
 > _“Ogni estensione è un pensiero. Ogni interfaccia è un gesto.”_
+
+
+---
+
+
+## ⚙️ KIMU - Caratteristiche principali
+
+- 🌿 **Architettura ultra-leggera** - Codice minimale e prestazioni ottimizzate dal primo byte  
+- 📦 **Componenti modulari** - senza overhead e dipendenze forzate  
+- ✅ **Zero dipendenze** - costruito in JavaScript puro, pronto all'uso, senza librerie esterne  
+- 🔌 **Sistema di estensioni dinamiche** - moduli HTML+JS+CSS indipendenti e auto-caricanti  
+- 🧩 **Modularità radicale** - ogni parte può essere sostituita o disabilitata  
+- ⚡ **Avvio istantaneo** - nessun processo di inizializzazione pesante  
+- 🌐 **Web-nativo** - costruito interamente sugli standard del browser (Web Components, Custom Elements)  
+- 🧱 **Componenti dichiarativi** - le app sono costruite come somma di estensioni, senza framework di terze parti  
+- 🎯 **Composition-first** - le app sono costruite da moduli isolati e flessibili  
+- 🚀 **UI pulite, minimali e esperienze web focalizzate** - progettato per applicazioni web focalizzate, chioschi digitali, dashboard e interfacce web pulite  
+
+
+---
+
+
+## ❓ Perché scegliere KIMU
+
+KIMU è progettato per creatori che vogliono costruire **interfacce web pulite, minimali e adattive** — senza complessità non necessaria.  
+Che tu stia creando un frontend leggero, un chiosco, una dashboard o un'applicazione modulare, `KIMU-CORE` ti offre una base focalizzata su cui costruire.
+
+- 🚀 Un **framework frontend** che non ti ostacola e supporta il tuo flusso creativo  
+- 🖥️ Crea **dashboard ultra-leggere**, **interfacce per chioschi** o **UI incorporate**  
+- 🧩 Costruisci **applicazioni auto-contenute** con estensioni caricate dinamicamente  
+- 🎛️ Prototipa **esperienze modulari e interattive** — ideali per mostre, musei o strumenti educativi  
+- 🧠 Orchestra **estensioni auto-configuranti** tramite file manifest e metadati  
+- 🧬 Costruisci **ambienti digitali personalizzabili** con ambienti digitali tematici  
+- 🌿 Abbraccia una filosofia dove **prestazioni e semplicità** contano più delle funzionalità eccessive  
+- 🎨 Costruisci spazi digitali che si sentono **personalizzati, poetici e significativi**
+
+> Una base solida per strumenti creativi, app a basso impatto e ecosistemi modulari.
+
+
+---
+
+
+## 🌿 Filosofia
+
+> "Minimale non significa carente.  
+> Significa concentrarsi su ciò che conta davvero."
+
+KIMU incoraggia un approccio di design e sviluppo dove ogni elemento ha una ragione per esistere.  
+Nessun eccesso, nessuna complessità non necessaria — solo funzionalità pura, elegantemente presentata.
+
+KIMU segue il principio dell'essenzialismo:  
+- Ogni elemento esiste perché ha significato.  
+- Ogni interazione è progettata per la chiarezza.  
+- La complessità è abbracciata solo quando serve l'utente.
+
+> "Nessun eccesso.  
+> Nessuna distrazione.  
+> Interfacce pure e significative."
 
 
 ---

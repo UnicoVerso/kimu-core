@@ -24,7 +24,8 @@ Created by [UnicòVerso](https://unicoverso.com)
 
 ## 📖 Available Documentation
 
-- [🌱 Get Started (EN)](get-started.md) – Learn how to install and run the core framework
+- [🤔 Cosa tratta KIMU? (IT)](cosa-tratta-kimu.md) – Risposta diretta su cosa fanno KIMU e KIMU-CORE
+- [🌱 Get Started (EN)](get-started-en.md) – Learn how to install and run the core framework
 
 ---
 
