@@ -127,7 +127,7 @@ Le tue contribuzioni saranno sempre riconosciute e rispettate.
 
 ## 💌 Contribuisci con un pensiero
 
-`KIMU` framework è un progetto nato dalla passione, cresciuto con la cura, e portato avanti con il desiderio di costruire qualcosa di leggero, umano e utile.
+`KIMU` framework è un progetto nato dalla passione, cresciuto con la cura e portato avanti con il desiderio di costruire qualcosa di leggero, umano e utile.
 
 Se hai scaricato, esplorato o solo sfiorato questa interfaccia, lascia un segno.  
 Un pensiero, un'idea, un incoraggiamento, anche solo un saluto.
