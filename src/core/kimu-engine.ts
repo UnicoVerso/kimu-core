@@ -1,6 +1,6 @@
 import { TemplateResult } from 'lit';
 import { KimuRender } from './kimu-render';
-import { KimuAssetManager } from './kimu-asset-manage';
+import { KimuAssetManager } from './kimu-asset-manager';
 
 /**
  * The `KimuEngine` class provides core functionalities for rendering, template management,

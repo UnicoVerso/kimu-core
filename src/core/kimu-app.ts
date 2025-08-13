@@ -1,4 +1,5 @@
 import { KimuBuildConfig } from "../config/kimu-build-config";
+import { KimuModuleManager } from "./kimu-module-manager";
 
 /**
  * The `KimuApp` class represents the core application logic for the Kimu framework.
@@ -9,14 +10,18 @@ import { KimuBuildConfig } from "../config/kimu-build-config";
  * - Provides utility methods to check the current environment (local, dev, prod).
  * - Initializes the application by loading the configuration from the default configuration file.
  * - Ensures the application is properly initialized before usage.
+ * - Provides access to the global KimuModuleManager for dynamic module management.
  */
 export class KimuApp {
 
     private static _instance: KimuApp;
     private _config: any = null; // KIMU system configuration
+    public readonly moduleManager: KimuModuleManager;
 
     /** Private constructor for singleton design pattern */
-    private constructor() { }
+    private constructor() {
+        this.moduleManager = new KimuModuleManager();
+    }
 
     /** Retrieves the global instance, initializing it if necessary */
     static async getInstance(): Promise<KimuApp> {

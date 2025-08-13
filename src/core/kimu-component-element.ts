@@ -17,6 +17,8 @@ import { KimuExtensionMeta } from "./kimu-types";
  */
 export abstract class KimuComponentElement extends HTMLElement {
 
+  /** Private reference to the KimuApp singleton (lazy loaded) */
+  private _app: any = null;
   /** Each component must provide data for rendering */
   getData(): Record<string, any> {
     return {};
@@ -33,6 +35,20 @@ export abstract class KimuComponentElement extends HTMLElement {
 
   /** Hook for loading the template */
   private _renderFn?: (html: any, data: Record<string, any>) => any;
+
+  /**
+   * Returns the KimuApp singleton, importing it dynamically only once.
+   * Usage: await this.getApp() in your extension/component.
+   */
+  protected async getApp(): Promise<any> {
+    if (this._app) {
+      return this._app;
+    }
+    // Dynamically import KimuApp to avoid circular dependencies
+    const { KimuApp } = await import('./kimu-app');
+    this._app = KimuApp.getInstance();
+    return this._app;
+  }
 
   /**
    * Constructor for the Kimu component.

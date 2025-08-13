@@ -1,6 +1,6 @@
 {
   "name": "kimu-core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "type": "module",
   "license": "MPL-2.0",
@@ -34,17 +34,18 @@
     "dev": "vite",
     "vite": "vite",
     "preview": "vite preview",
-    "build": "tsc && npm run generate-config:dev && vite build && npm run build:all-ext",
-    "build:dev": "tsc && npm run generate-config:dev && vite build && npm run build:all-ext",
-    "build:local": "tsc && npm run generate-config:local && vite build && npm run build:all-ext",
-    "build:prod": "tsc && npm run generate-config:prod && vite build && npm run build:all-ext",
+    "build": "tsc && npm run generate-config:dev && vite build && npm run build:all-modules && npm run build:all-ext",
+    "build:dev": "tsc && npm run generate-config:dev && vite build && npm run build:all-modules && npm run build:all-ext",
+    "build:local": "tsc && npm run generate-config:local && vite build && npm run build:all-modules && npm run build:all-ext",
+    "build:prod": "tsc && npm run generate-config:prod && vite build && npm run build:all-modules && npm run build:all-ext",
     "generate-config": "node scripts/generate-kimu-build-config.js dev",
     "generate-config:dev": "node scripts/generate-kimu-build-config.js dev",
     "generate-config:local": "node scripts/generate-kimu-build-config.js local",
     "generate-config:prod": "node scripts/generate-kimu-build-config.js prod",
     "clear:build": "node scripts/clear-kimu-build.js",
     "build:ext": "node scripts/build-extension.js",
-    "build:all-ext": "node scripts/build-all-extensions.js"
+    "build:all-ext": "node scripts/build-all-extensions.js",
+    "build:all-modules": "node scripts/build-all-modules.js"
   },
   "engines": {
     "node": ">=18.0.0",

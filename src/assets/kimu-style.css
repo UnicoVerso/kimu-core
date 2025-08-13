@@ -1,24 +1,28 @@
+/*
+This file can be freely modified by developers.
+Changes made to this page are not subject to the publication requirement of the MPL framework license.
+*/
+
 /* Base styles */
 :root {
   /* Base KIMU Palette */
   --kimu-bg: #f4f1ea;
-  --kimu-text: #ffffff;
+  --kimu-text: #3c3c3c;
   --kimu-primary: #2b7cff;
   --kimu-accent: #ffcc00;
   --kimu-danger: #e63946;
 
   /* Font and dimensions */
-  --kimu-font: 'Segoe UI', sans-serif;
+  --kimu-font: sans-serif;
   --kimu-radius: 6px;
 }
 
 /* Base component style */
 .kimu-component {
   display: block;
-  font-family: 'Segoe UI', sans-serif;
-  color: var(--kimu-text, #ffffff);
+  color: var(--kimu-text, #3c3c3c);
   background-color: transparent;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--kimu-font, sans-serif);
   font-optical-sizing: auto;
   font-weight: 100;
   font-style: normal;

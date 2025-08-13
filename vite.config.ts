@@ -15,9 +15,10 @@ export default defineConfig({
           targets: [
             // ✅ Copy LICENSE file to the final build
             { src: 'LICENSE', dest: 'dist', },
-            { src: 'LICENSE', dest: 'dist', },
             // ✅ Copy all asset files to the final build
             { src: 'src/assets/*.*', dest: 'dist', },
+            // ✅ Copy all JS and JSON files of modules to the final build
+            { src: 'src/modules/**/*.{js,json}', dest: 'dist' },
             // ✅ Copy HTML, CSS, and JS files of extensions to the final build
             { src: 'src/extensions/**/*.{html,css,js}', dest: 'dist', },
             // ✅ Static assets of extensions (icons, images, media, etc.)

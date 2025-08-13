@@ -303,3 +303,10 @@ A: Run `npm run lint` and `npm run build` to check for issues. Fix according to 
 - **UI Rendering**: Process of displaying components in the browser.
 - **Event Management**: Handling user interactions and system events in components.
 
+## Modules in KIMU-Core
+
+- **Definition**: Modules are containers for reusable and shared functionalities (services, helpers, APIs, resources, etc.) that can be imported by extensions, components, or other modules.
+- **Location**: All modules are located in `/src/modules/`.
+- **Usage**: Use modules to organize code for specific features (e.g., i18n, storage, authentication) and export everything needed for integration.
+- **Best Practice**: Keep modules modular, well-documented, and easy to import.
+

@@ -1,14 +1,19 @@
+/*
+This file can be freely modified by developers.
+Changes made to this page are not subject to the publication requirement of the MPL framework license.
+*/
+
 /* Base styles */
 :root {
   /* Palette base */
   --kimu-bg: #f4f1ea;
-  --kimu-text: #ffffff;
+  --kimu-text: #3c3c3c;
   --kimu-primary: #2b7cff;
   --kimu-accent: #ffcc00;
   --kimu-danger: #e63946;
 
   /* Font e dimensioni */
-  --kimu-font: 'Segoe UI', sans-serif;
+  --kimu-font: sans-serif;
   --kimu-radius: 6px;
 }
 
@@ -21,9 +26,7 @@ body {
   background-color: var(--kimu-bg);
   color: var(--kimu-text);
   font-family: var(--kimu-font);
-
-
-  font-family: "Roboto", sans-serif;
+  font-family: var(--kimu-font, sans-serif);
   font-optical-sizing: auto;
   font-weight: 100;
   font-style: normal;
@@ -34,14 +37,14 @@ body {
 :host {
   all: initial;
   display: block;
-  font-family: 'Segoe UI', sans-serif;
-  color: var(--kimu-text, #ffffff);
+  font-family: var(--kimu-font, sans-serif);
+  color: var(--kimu-text, #3c3c3c);
   background-color: transparent;
 }
 
 * {
   box-sizing: border-box;
-  background-color: #b1a4a4;
+  background-color: var(--kimu-bg);
 }
 
 /* Layout base */
@@ -57,7 +60,7 @@ h1,
 h2,
 h3,
 h4 {
-  color: var(--kimu-text, #ffffff);
+  color: var(--kimu-text, #3c3c3c);
   margin: 0;
 }
 

@@ -56,3 +56,10 @@ export interface KimuExtensionMeta {
   dependencies?: string[];  // List of dependent extensions
   languages?: KimuExtensionLanguages; // Object defining supported languages for the extension
 }
+
+// Interface to define options for Kimu modules
+export interface KimuModuleOptions {
+  [key: string]: any;
+  // Proprietà opzionali per configurare i moduli
+  // Esempio: lang?: string; debug?: boolean; resources?: string[];
+}

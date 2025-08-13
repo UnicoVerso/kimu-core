@@ -1,3 +1,23 @@
+<!--
+This file can be freely modified by developers.
+Changes made to this page are not subject to the publication requirement of the MPL framework license.
+-->
 <div class="container">
-    Hello KIMU App!
+    <div class="logo" >
+        <img src="/logo_kimu.png" alt="KIMU logo" style="width: 200px;" />
+    </div>
+   
+    <h1>Kimu App</h1>
+    <h2 class="slogan">${slogan}</h2>
+
+    <p class="welcome">${translate('welcome') || 'Hello World!'}</p>
+
+    <p class="lang">
+        <span>${translate('selectedLanguage')}</span> <strong>${selectedLang}</strong>
+    </p>
+
+    <div class="btn-lang">
+        <button @click=${onLangIt}>🇮🇹 Italiano</button>
+        <button @click=${onLangEn}>🇬🇧 English</button>
+    </div>
 </div>
