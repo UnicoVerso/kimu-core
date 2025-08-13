@@ -9,11 +9,11 @@ import { KimuGlobalLang } from '../../modules/i18n/kimu-global-lang';
 import { KimuI18nService } from '../../modules/i18n/kimu-i18n-service';
 
 @KimuComponent({
-    tag: 'kimu-app',
-    path: 'kimu-app',
-    name: 'Kimu App',
+    tag: 'kimu-home',
+    path: 'kimu-home',
+    name: 'KIMU Home',
     version: '1.0.0',
-    description: 'Demo of internationalization with i18n',
+    description: 'Main interface container',
     icon: '🏠',
     author: 'UnicòVerso',
     kimuVersion: '1.0.0',
@@ -25,15 +25,17 @@ import { KimuI18nService } from '../../modules/i18n/kimu-i18n-service';
         }
     }
 })
-export class KimuAppComponent extends KimuComponentElement {
-    /** I18n service instance for translations */
-    private i18n = new KimuI18nService(
+export class KimuHomeComponent extends KimuComponentElement {
+  /** I18n service instance for translations */ 
+  private i18n = new KimuI18nService(
         this.getMeta().languages?.default,
         'extensions/' + this.getMeta().path + '/lang',
         this.getMeta().languages
     );
     /** Currently selected language code */
     private selectedLang = KimuGlobalLang.get();
+    /** Versione del framework KIMU */
+    private kimuVersion = '';
 
     /**
      * Initializes the component, loads the current language, and sets up reactivity.
@@ -41,11 +43,12 @@ export class KimuAppComponent extends KimuComponentElement {
     async onInit() {
         this.selectedLang = await KimuGlobalLang.get();
         await this.i18n.setLang(this.selectedLang);
-        console.log(`[KimuAppComponent] INIT KimuGlobalLang language:`, this.selectedLang);
+        // Recupera la versione del framework
+        const app = await this.getApp();
+        this.kimuVersion = app.version;
         this.refresh();
         // React to global language changes
         KimuGlobalLang.onChange(async (lang) => {
-            console.log(`[KimuAppComponent] Language changed to: ${lang}`);
             await this.i18n.setLang(lang);
             this.selectedLang = KimuGlobalLang.get();
             this.refresh();
@@ -62,6 +65,7 @@ export class KimuAppComponent extends KimuComponentElement {
             translate: this.i18n.translate.bind(this.i18n),
             selectedLang: this.selectedLang,
             languages: this.getMeta().languages?.supported,
+            version: this.kimuVersion,
             onLangIt: async () => {
                 await KimuGlobalLang.set('it');
                 this.refresh();

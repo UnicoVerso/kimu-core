@@ -38,8 +38,8 @@ export class KimuApp {
         try {
              // Initializes the configuration with the default configuration file
             this._config = KimuBuildConfig;
-            console.log("[KIMU] version: ", this.version); 
-            console.log("[KIMU] environment: ", this.environment);  
+            //console.log("[KIMU] version: ", this.version); 
+            //console.log("[KIMU] environment: ", this.environment);  
           
         } catch (err) {
             console.warn('[KimuApp] ❌ Error: Configuration not found or invalid. Using fallback.', err);

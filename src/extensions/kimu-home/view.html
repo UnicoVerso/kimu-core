@@ -2,12 +2,13 @@
 This file can be freely modified by developers.
 Changes made to this page are not subject to the publication requirement of the MPL framework license.
 -->
+
 <div class="container">
     <div class="logo" >
         <img src="/logo_kimu.png" alt="KIMU logo" style="width: 200px;" />
     </div>
    
-    <h1>Kimu App</h1>
+    <h1>KIMU Home</h1>
     <h2 class="slogan">${slogan}</h2>
 
     <p class="welcome">${translate('welcome') || 'Hello World!'}</p>
@@ -20,4 +21,9 @@ Changes made to this page are not subject to the publication requirement of the 
         <button @click=${onLangIt}>🇮🇹 Italiano</button>
         <button @click=${onLangEn}>🇬🇧 English</button>
     </div>
+    <footer class="kimu-footer">
+        <small>
+            Made with <a href="https://github.com/UnicoVerso/kimu-core" target="_blank" rel="noopener">KIMU Framework</a> v${version} &middot; by <a href="https://unicoverso.com" target="_blank" rel="noopener">UnicòVerso</a> &middot; Marco Di Pasquale
+        </small>
+    </footer>
 </div>

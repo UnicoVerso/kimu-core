@@ -5,7 +5,7 @@ export class KimuGlobalLang {
   private static listeners: LangChangeCallback[] = [];
 
   static set(lang: string) {
-    console.log(`[KimuGlobalLang] set language: ${lang}`);
+    //console.log(`[KimuGlobalLang] set language: ${lang}`);
     if (lang !== this.currentLang) {
       this.currentLang = lang;
       this.listeners.forEach(fn => fn(lang));

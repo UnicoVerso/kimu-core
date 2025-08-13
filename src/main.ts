@@ -32,8 +32,8 @@ async function main() {
 
   // Mount the extensions
   // Load the main component of the Kimu application
-  // The main component is the one that has the tag name 'kimu-app'
-  let mainAppExtensions = 'kimu-app';
+  // The main component is the one that has the tag name 'kimu-home'
+  let mainAppExtensions = 'kimu-home';
   await kimuExtensionManager.load(mainAppExtensions);
   const app = document.createElement(mainAppExtensions);
   root.appendChild(app);
