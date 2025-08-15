@@ -1,6 +1,27 @@
 # KIMU-Core Copilot & AI Agent Integration Guide
 
+> **Agent Training Note:**
+> To generate correct, robust, and maintainable code, you MUST read and follow not only the main guidelines below, but also all subchapters such as **Practical Examples**, **FAQ & Troubleshooting**, **Testing & Quality Assurance**, **Advanced Usage**, **Glossary**, and **Modules in KIMU-Core**. These sections contain essential rules, conventions, edge cases, and best practices. Always consult them when generating or modifying code.
+
 This document provides direct, actionable instructions for Copilot and AI agents to support development and extension of the kimu-core framework. All content is specific to kimu-core.
+
+## How Copilot & AI Agents Should Use This File
+> **Agent Training Note:** This file is your primary reference for generating code, understanding conventions, and following best practices in kimu-core. It contains essential guidelines, examples, and patterns that you must follow to ensure consistency, maintainability, and correctness in all generated code.
+
+- **Use English** for all code comments, documentation, and metadata.
+- **Read the entire document** to understand the project structure, conventions, and best practices for kimu-core.
+- **Use the provided examples** as templates for creating new components and extensions.
+- **Follow the coding conventions** outlined in `CODE_GUIDELINES.md` and `CONTRIBUTING.md` and  and best practices described here.
+- **Refer to the Practical Examples** section for implementation patterns, data binding, and best practices.
+- **Follow the guidelines** for component creation, extension development, and API usage.
+- **Refer to the Practical Examples** section for implementation patterns and data binding.
+- **Use the FAQ & Troubleshooting** section for common issues and edge cases.
+- **Propose changes** to this file if you identify missing patterns, conventions or best practices.
+- **Use the Glossary** for precise definitions of key concepts and terminology.
+- **Use the Modules in KIMU-Core** section to understand how to structure, document, and import reusable modules in the framework.
+- **Use the Extension Creation Guide** to ensure correct extension structure and registration.
+- **Use concise, readable code** and clear documentation in all generated code.
+- **Prefer modularity and reusability** in all components and extensions.
 
 ## Project Structure
 
@@ -134,86 +155,75 @@ For details and advanced usage of component methods and APIs, refer to the Pract
 - Review and follow `SECURITY.md`.
 
 ## Extension Creation Guide
-1. Create a new folder in `/src/extensions/`.
-2. Extend `KimuComponentElement`.
-3. Use the `@KimuComponent` decorator:
+To train the agent to always create extensions correctly, follow these steps:
+1. Always create a new folder in `/src/extensions/` for each extension.
+2. Always create these three files with exactly these names in every new extension:
+   - `component.ts` (main logic)
+   - `style.css` (styles)
+   - `view.html` (UI template)
+3. Always extend `KimuComponentElement` for the main class.
+4. Always use the `@KimuComponent` decorator and provide all required metadata fields:
+   - `tag`, `name`, `version`, `description`, `author`, `icon`, `internal`, `path`, `dependencies`
+   Example:
    ```typescript
-   import { KimuComponent } from '../core/kimu-component';
-   import { KimuComponentElement } from '../core/kimu-component-element';
-
    @KimuComponent({
-     tag: 'your-extension-tag',
-     name: 'Your Extension Name',
+     tag: 'my-extension-tag',
+     name: 'My Extensio Name',
      version: '1.0.0',
-     description: 'Description',
+     description: 'Short description',
      author: 'YourName',
-     icon: '🔧',
+     icon: '🧩',
      internal: false,
-     path: 'your-extension-path',
+     path: 'my-extension-path',
      dependencies: []
    })
-   export class YourExtensionComponent extends KimuComponentElement {
-     // ...
-   }
    ```
-4. Register new UI elements and logic as needed.
-5. Document all public methods and extension-specific APIs.
+5. After creating the extension, always register it in the `extension-manifest.json` file at the project root (or designated folder). Example entry:
+   ```json
+   [
+     {
+       "tag": "my-extension-tag",
+       "name": "My Extension Name",
+       "version": "1.0.0",
+       "description": "Short description",
+       "author": "YourName",
+       "icon": "🧩",
+       "internal": false,
+       "path": "my-extension-path",
+       "dependencies": []
+     }
+   ]
+   ```
+6. Registration in the manifest can be done manually or using provided automation scripts (e.g., npm scripts). The agent should suggest or run the script if requested by the user.
+7. Document all public APIs and extension-specific logic in English.
 
 ## Usable Functions in Extensions
 - All public APIs from `KimuComponentElement` and `KimuComponent`.
 - Utility functions from `/src/core/`.
-- Event management, rendering, and tracking functions.
-- Three.js and MediaPipe integration utilities (if available).
 
-## Extension UI Design & Data Binding
-- Use the provided base classes for UI rendering.
-- Bind data using reactive properties and methods.
-- Separate UI logic from business logic.
-- Document custom UI elements and their data bindings.
 
-## Additional Tips
-- Always check for existing patterns and reuse them.
-- Keep code and documentation in English.
-- Update this file and documentation with new features and conventions.
-
-## How Copilot & AI Agents Should Use This File
-- Read this file and all rule files (`CODE_GUIDELINES.md`, `CONTRIBUTING.md`, `SECURITY.md`) before generating code.
-- Follow all conventions and best practices described here.
-- Propose changes, new extensions, and code samples that match the framework style.
-- Use concise, readable code and clear documentation.
-- Prefer modularity and reusability.
-
-## Example Prompts
-- "Create a new extension for gesture tracking using KimuComponentElement."
-- "Add a function to display real-time hand coordinates in the UI."
-- "Show how to bind data between UI and logic in a Kimu extension."
-- "Integrate Three.js for a custom 3D scenario."
-
-## Useful Resources
-- [Code Guidelines](../kimu-core/CODE_GUIDELINES.md)
-- [Contribution Guide](../kimu-core/CONTRIBUTING.md)
-- [Security Guide](../kimu-core/SECURITY.md)
-- [Extension Examples](../src/extensions/)
-- [Documentation](../docs/)
-
----
-
-Update this file regularly to reflect new features, rules, and best practices.
 
 ## Extension Checklist
-Follow these steps to create a new extension:
+For agent training, always follow this checklist when creating a new extension:
 1. Create a new folder in `/src/extensions/`.
-2. Add your main component file (e.g., `my-extension.component.ts`).
-3. Extend `KimuComponentElement` and use the `@KimuComponent` decorator.
-4. Implement required logic, UI, and data binding.
-5. Add documentation and comments for public APIs.
-6. Add tests in `/tests/` if needed.
-7. Update `/docs/` with usage instructions and examples.
-8. Check code style with `npm run lint`.
-9. Run tests with `npm test`.
-10. Update this guide if you introduce new patterns or conventions.
+2. Create these files with these exact names:
+   - `component.ts`
+   - `style.css`
+   - `view.html`
+3. Extend `KimuComponentElement` in your main class.
+4. Use the `@KimuComponent` decorator with all required metadata (see guide above).
+5. Register the extension in `extension-manifest.json` (manually or via automation script).
+6. Implement required logic, UI, and data binding.
+7. Document all public APIs in English.
+8. Add tests in `/tests/` if needed.
+9. Update `/docs/` with usage instructions and examples.
+10. Check code style with `npm run lint`.
+11. Run tests with `npm test`.
+12. Update this guide if you introduce new patterns or conventions.
 
 ## Practical Examples
+> **Agent Reminder:** Use these examples as reference for implementation patterns, data binding, and extension structure.
+
 ### Example: Minimal Extension
 ```typescript
 import { KimuComponent } from '../core/kimu-component';
@@ -252,6 +262,8 @@ export class MyExtensionComponent extends KimuComponentElement {
 ```
 
 ## FAQ & Troubleshooting
+> **Agent Reminder:** Consult this section for common issues, edge cases, and best practices for error handling and project conventions.
+
 **Q: Where do I put shared utilities?**
 A: Use `/src/utils/` for reusable functions.
 
@@ -275,12 +287,16 @@ A: Run `npm run lint` and `npm run build` to check for issues. Fix according to 
 - For large data models, consider performance and memory usage.
 
 ## Advanced Usage
+> **Agent Reminder:** Review this section for advanced integration, optimization, and modularization patterns.
+
 - Integrate external libraries (e.g., Three.js, MediaPipe) by following modular patterns in `/src/core/`.
 - For performance optimization, use lazy loading and minimize re-renders.
 - Use environment variables in `.env` for custom configuration.
 - For complex UI, split logic into multiple components and use data binding.
 
 ## Testing & Quality Assurance
+> **Agent Reminder:** Follow these instructions to ensure high code quality, test coverage, and compliance with project standards.
+
 - Write unit and integration tests in `/tests/` using the recommended framework (see README.md).
 - Aim for high test coverage, especially for core logic and extensions.
 - Use `npm run lint` and `npm test` before every commit.
@@ -293,6 +309,8 @@ A: Run `npm run lint` and `npm run build` to check for issues. Fix according to 
 - For major changes, notify contributors and update this guide.
 
 ## Glossary
+> **Agent Reminder:** Refer to the glossary for precise definitions of key concepts and terminology used throughout the project.
+
 - **Component**: A modular unit extending `KimuComponentElement`.
 - **Extension**: A custom scenario or feature added in `/src/extensions/`.
 - **Data Binding**: Linking UI elements to logic using reactive properties/methods.
@@ -304,9 +322,97 @@ A: Run `npm run lint` and `npm run build` to check for issues. Fix according to 
 - **Event Management**: Handling user interactions and system events in components.
 
 ## Modules in KIMU-Core
+> **Agent Reminder:** Use this section to understand how to structure, document, and import reusable modules in the framework.
 
 - **Definition**: Modules are containers for reusable and shared functionalities (services, helpers, APIs, resources, etc.) that can be imported by extensions, components, or other modules.
 - **Location**: All modules are located in `/src/modules/`.
 - **Usage**: Use modules to organize code for specific features (e.g., i18n, storage, authentication) and export everything needed for integration.
 - **Best Practice**: Keep modules modular, well-documented, and easy to import.
+
+## Internationalization (i18n)
+> **Agent Reminder:** Always consider internationalization (i18n) when developing extensions or modules. This section explains how to support multiple languages and localization in kimu-core.
+
+### Overview
+KIMU-Core supports internationalization to enable multi-language user interfaces and content. All public UI, messages, and user-facing strings should be localizable.
+
+### Where to Place Language Files
+- Place language resource files (e.g., JSON, JS, or TS files with translations) in `/src/modules/i18n/` or a dedicated `i18n` folder within your extension.
+- Use a clear naming convention, e.g., `en.json`, `it.json`, `fr.json`.
+
+### How to Structure Language Files
+Example `en.json`:
+```json
+{
+  "hello": "Hello",
+  "welcome": "Welcome to KIMU-Core!",
+  "button.save": "Save",
+  "error.network": "Network error, please try again."
+}
+```
+
+### Accessing Translations in Code
+If the framework provides an i18n API (e.g., `this.$t` or an imported function), use it to retrieve localized strings:
+```typescript
+// Example using a translation function
+const welcomeMsg = this.$t('welcome');
+this.$('#welcome').textContent = welcomeMsg;
+```
+
+If no built-in API exists, import your language file and use it as a dictionary:
+```typescript
+import en from './i18n/en.json';
+const msg = en['button.save'];
+```
+
+### Switching Languages
+- Provide a way for the user to select their preferred language (e.g., dropdown, settings panel).
+- Load the appropriate language file dynamically based on user choice or browser settings.
+
+Example:
+```typescript
+import en from './i18n/en.json';
+import it from './i18n/it.json';
+
+const languages = { en, it };
+const userLang = getUserLanguage(); // e.g., 'en' or 'it'
+const t = (key: string) => languages[userLang][key] || key;
+
+this.$('#saveBtn').textContent = t('button.save');
+```
+
+### Best Practices
+- Always use keys for all user-facing strings; never hardcode visible text.
+- Default to English if a translation is missing.
+- Keep language files organized and up to date.
+- Document any new keys and their usage.
+- UI and documentation must always be in English by default, but support for other languages is encouraged.
+- For extensions, document how to add new languages or customize translations.
+
+### Advanced Usage
+- For dynamic content, use interpolation (e.g., `"greeting": "Hello, {name}!"`).
+- Consider pluralization and gender where relevant.
+- If the framework supports it, use reactive updates when the language changes.
+
+### Example: Dynamic Interpolation
+```typescript
+const greeting = t('greeting').replace('{name}', userName);
+```
+
+### Example: Language Switcher UI
+```typescript
+// HTML
+<select id="langSelect">
+  <option value="en">English</option>
+  <option value="it">Italiano</option>
+</select>
+
+// TypeScript
+this.$('#langSelect').addEventListener('change', (e) => {
+  const lang = (e.target as HTMLSelectElement).value;
+  setUserLanguage(lang);
+  this.onRender(); // re-render UI with new language
+});
+```
+
+> **Agent Reminder:** Always document i18n usage in your extension's README and code comments. Ensure all new features are localizable and provide English as the default language.
 
