@@ -26,14 +26,16 @@ import { KimuI18nService } from '../../modules/i18n/kimu-i18n-service';
     }
 })
 export class KimuHomeComponent extends KimuComponentElement {
-  /** I18n service instance for translations */ 
-  private i18n = new KimuI18nService(
+
+    /** I18n service instance for translations */
+    private i18n = new KimuI18nService(
         this.getMeta().languages?.default,
         'extensions/' + this.getMeta().path + '/lang',
         this.getMeta().languages
     );
     /** Currently selected language code */
     private selectedLang = KimuGlobalLang.get();
+
     /** Versione del framework KIMU */
     private kimuVersion = '';
 
@@ -62,7 +64,7 @@ export class KimuHomeComponent extends KimuComponentElement {
     getData() {
         return {
             slogan: 'Keep It Minimal UI',
-            translate: this.i18n.translate.bind(this.i18n),
+            translate: this.i18n.translate,
             selectedLang: this.selectedLang,
             languages: this.getMeta().languages?.supported,
             version: this.kimuVersion,

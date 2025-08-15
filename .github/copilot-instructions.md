@@ -351,11 +351,15 @@ Example `en.json`:
 ```
 
 ### Accessing Translations in Code
-If the framework provides an i18n API (e.g., `this.$t` or an imported function), use it to retrieve localized strings:
+If the framework provides an i18n API (e.g., `KimuI18nService`), you can now pass the translate function directly in your data object, without manual binding:
 ```typescript
-// Example using a translation function
-const welcomeMsg = this.$t('welcome');
-this.$('#welcome').textContent = welcomeMsg;
+// Example using KimuI18nService in a component
+getData() {
+  return {
+    // ...other data...
+    translate: this.i18n.translate, // No need for .bind(this.i18n)
+  };
+}
 ```
 
 If no built-in API exists, import your language file and use it as a dictionary:

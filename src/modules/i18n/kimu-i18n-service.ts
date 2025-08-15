@@ -28,6 +28,8 @@ export class KimuI18nService {
     };
     // Use requested language only if supported, otherwise fallback to default
     this.lang = this.resolveLang(defaultLang);
+    // Always bind translate to this instance
+    this.translate = this.translate.bind(this);
   }
 
   /**
