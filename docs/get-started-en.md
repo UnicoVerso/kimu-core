@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://unicoverso.org/kimu" target="_blank">
+  <a href="https://unicoverso.com/kimu" target="_blank">
     <img src="images/logo_kimu.png" alt="KIMU Logo" width="180" />
   </a>
 </p>

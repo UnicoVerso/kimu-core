@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://unicoverso.org/kimu" target="_blank">
+  <a href="https://unicoverso.com/kimu" target="_blank">
     <img src="logo_kimu.png" alt="KIMU Logo" width="180" />
   </a>
 </p>
@@ -26,7 +26,7 @@ Per scoprire la filosofia, docementazioni, esempi, gli altre estensioni,  moduli
 > 🔗 **KIMU framework** : **[https://github.com/unicoverso/kimu](https://github.com/unicoverso/kimu)**
 
 
-Creato da [UnicòVerso](https://unicoVerso.org) (Marco Di Pasquale, alias *Hocram*), per realizzare interfacce web leggere, eleganti e reattive.
+Creato da [UnicòVerso](https://unicoverso.com) (Marco Di Pasquale, alias *Hocram*), per realizzare interfacce web leggere, eleganti e reattive.
 
 
 ---
@@ -158,7 +158,7 @@ per conto del collettivo creativo **[UnicòVerso](https://unicoverso.com)**
 
 
 <p align="center">
-  <a href="https://unicoverso.org/kimu" target="_blank">
+  <a href="https://unicoverso.com/kimu" target="_blank">
     <img src="icon.svg" alt="KIMU Logo" width="120" />
   </a>
 </p>
