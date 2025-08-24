@@ -1,6 +1,6 @@
 /** Automatically generated file. Do not modify. */
 export const KimuBuildConfig = {
-  "version": "0.2.1",
+  "version": "0.3.0",
   "environment": "dev",
   "build": {
     "environment": "dev",

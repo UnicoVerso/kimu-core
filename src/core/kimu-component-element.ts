@@ -8,7 +8,7 @@ import { KimuExtensionMeta } from "./kimu-types";
  * for rendering and managing resources.
  * 
  * Key functionalities:
- * - Provides lifecycle hooks (`onInit`, `onRender`, `onDispose`) for component management.
+ * - Provides lifecycle hooks (`onInit`, `onRender`, `onDestroy`) for component management.
  * - Manages metadata associated with the component.
  * - Handles template rendering and resource loading.
  * - Supports dependency injection and external asset management.
@@ -31,10 +31,15 @@ export abstract class KimuComponentElement extends HTMLElement {
   onRender(): void { }
 
   /** Lifecycle: destruction */
-  onDispose(): void { }
+  onDestroy(): void { }
 
   /** Hook for loading the template */
   private _renderFn?: (html: any, data: Record<string, any>) => any;
+
+  /** Lifecycle: destruction (override for custom cleanup, calls onDestroy by default) */
+  _onDestroyInternal(): void {
+    this.onDestroy();
+  }
 
   /**
    * Returns the KimuApp singleton, importing it dynamically only once.
@@ -125,7 +130,7 @@ export abstract class KimuComponentElement extends HTMLElement {
    * Method automatically called on logout.
   */
   disconnectedCallback(): void {
-    this.onDispose();
+    this._onDestroyInternal();
   }
 
   /** Loads a resource from an external file */
