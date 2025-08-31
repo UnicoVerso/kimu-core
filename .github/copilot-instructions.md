@@ -201,8 +201,6 @@ To train the agent to always create extensions correctly, follow these steps:
 - All public APIs from `KimuComponentElement` and `KimuComponent`.
 - Utility functions from `/src/core/`.
 
-
-
 ## Extension Checklist
 For agent training, always follow this checklist when creating a new extension:
 1. Create a new folder in `/src/extensions/`.
@@ -329,6 +327,74 @@ A: Run `npm run lint` and `npm run build` to check for issues. Fix according to 
 - **Usage**: Use modules to organize code for specific features (e.g., i18n, storage, authentication) and export everything needed for integration.
 - **Best Practice**: Keep modules modular, well-documented, and easy to import.
 
+---
+
+### Kimu Module Creation Guide
+
+> **Agent Training Note:** Always follow these steps and conventions when creating a new Kimu module. This ensures consistency, discoverability, and maintainability across the codebase.
+
+#### 1. Structure and Required Files
+Each module must reside in its own folder under `/src/modules/<module-name>/` and include at least:
+
+- `module.ts`: Exports a class `<ModuleName>Module` (default export) that extends `KimuModule` and fornisce il servizio tramite `getService()`.
+- `<module-name>-service.ts`: Implements the main service class and exports it with a recommended name (see below).
+- (Optional) `interfaces.ts`, `utils.ts`, or other helpers as needed.
+
+**Example structure:**
+```
+src/modules/event-bus/
+  ├── event-bus-service.ts
+  └── module.ts
+```
+
+#### 2. Naming Conventions
+- The service class should be named `<ModuleName>Service` (e.g., `EventBusService`).
+- The main export of the service file should be `<moduleName>Service` (camelCase, e.g., `eventBusService`).
+- The module class should be named `<ModuleName>Module` and exported as default from `module.ts`.
+
+#### 3. Reference Classes
+- All modules must extend `KimuModule` (from `/src/core/kimu-module.ts`).
+- Services should be implemented as classes and exported as singletons or via factory, as appropriate.
+
+#### 4. Example: Minimal Event Bus Module
+```typescript
+// event-bus-service.ts
+export class EventBusService {
+  on(event: string, cb: (...args: any[]) => void) { /* ... */ }
+  emit(event: string, data: any) { /* ... */ }
+}
+export const eventBusService = new EventBusService();
+
+// module.ts
+import { KimuModule } from '../../core/kimu-module';
+import { eventBusService } from './event-bus-service';
+export default class EventBusModule extends KimuModule {
+  constructor(name = 'event-bus', version = '1.0.0', options?: any) {
+    super(name, version, options);
+  }
+  getService() {
+    return eventBusService;
+  }
+}
+```
+
+#### 5. Difference Between Module and Extension
+- **Module**: Provides reusable logic/services (e.g., i18n, event-bus, storage) for use by extensions or other modules. No UI.
+- **Extension**: Implements a user-facing scenario/component, always in `/src/extensions/`, with UI and registration in the manifest.
+
+#### 6. Module Checklist
+For agent training, always follow this checklist when creating a new module:
+1. Create a new folder in `/src/modules/<module-name>/`.
+2. Add at least `module.ts` and `<module-name>-service.ts`.
+3. Extend `KimuModule` in your module class.
+4. Use the recommended naming for classes and exports.
+5. Document all public APIs in English.
+6. Add tests in `/tests/` if needed.
+7. Update `/docs/` with usage instructions and examples.
+8. Check code style with `npm run lint`.
+9. Run tests with `npm test`.
+10. Update this guide if you introduce new patterns or conventions for modules.
+
 ## Internationalization (i18n)
 > **Agent Reminder:** Always consider internationalization (i18n) when developing extensions or modules. This section explains how to support multiple languages and localization in kimu-core.
 
@@ -420,3 +486,71 @@ this.$('#langSelect').addEventListener('change', (e) => {
 
 > **Agent Reminder:** Always document i18n usage in your extension's README and code comments. Ensure all new features are localizable and provide English as the default language.
 
+
+---
+
+## Router Module (Routing System)
+
+The `router` module provides a simple and extensible routing system for kimu-core. It allows you to map URL paths to extensions/components and handle navigation in a SPA-like fashion.
+
+### Features
+- Centralized route configuration (static paths)
+- Navigation via history API
+- Route change events (callback system)
+- API for dynamic route registration
+- Designed for integration with extension loading and dynamic UI
+
+### API Overview
+
+**KimuRouterService** (singleton):
+- `configure(routes: RouteConfig[])`: Set the list of available routes
+- `registerRoute(route: RouteConfig)`: Add a new route at runtime
+- `navigate(path: string)`: Change the current route (and URL)
+- `onRouteChange(cb: (route: RouteConfig) => void)`: Listen for route changes
+- `getCurrentRoute()`: Get the current route object
+
+**KimuRouterModule**:
+- Extends `KimuModule`, provides the router service via `getService()`
+- Accepts options with a `routes` array for initial configuration
+
+### Example: Route Configuration and Usage
+
+```typescript
+import KimuRouterModule from 'src/modules/router/module';
+import { HomeComponent } from 'src/extensions/home/component';
+import { ChatComponent } from 'src/extensions/chat/component';
+
+// Instantiate the router module and configure routes
+const routerModule = new KimuRouterModule('router', '1.0.0', {
+  routes: [
+    { path: '/', component: HomeComponent },
+    { path: '/chat', component: ChatComponent }
+  ]
+});
+const router = routerModule.getService();
+
+// Listen for route changes and mount the correct extension/component
+router.onRouteChange((route) => {
+  if (route && route.component) {
+    mountKimuComponent(route.component, '#main');
+  } else {
+    showNotFound();
+  }
+});
+
+// Navigate programmatically (e.g. from a menu)
+router.navigate('/chat');
+
+// Example mount function
+function mountKimuComponent(ComponentClass, selector) {
+  const container = document.querySelector(selector);
+  container.innerHTML = '';
+  const instance = new ComponentClass();
+  container.appendChild(instance);
+}
+```
+
+### Best Practices
+- Register all main extensions/components as routes at startup.
+- Use the router to decouple navigation logic from UI rendering.
+- Extend the router for dynamic params, fallback, or nested routes as needed.
