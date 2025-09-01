@@ -41,7 +41,12 @@ for (const ext of extensions) {
       minify: true,
       format: 'esm',
       outfile: outFile,
-      platform: 'browser'
+      platform: 'browser',
+      external: [
+        '../../core/*',
+        '../../modules/*',
+        '../../utils/*'
+      ]
     });
 
     console.log(`✅ Extension compiled "${ext}" to ${outFile}`);
