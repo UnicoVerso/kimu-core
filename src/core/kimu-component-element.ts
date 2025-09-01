@@ -17,6 +17,65 @@ import { KimuExtensionMeta } from "./kimu-types";
  */
 export abstract class KimuComponentElement extends HTMLElement {
 
+  /** Global optimization settings - simplified */
+  private static _optimizationSettings = {
+    enableTemplateCache: true,
+    enableFileCache: true,
+    enableRenderDebouncing: true,
+    enableErrorBoundaries: true,  // New: Safe error isolation
+    cacheMaxSize: 50,             // New: Cache size limiting  
+    enableAssetPreloading: false  // New: Asset preloading (opt-in)
+  };
+
+  /**
+   * Configure global optimization settings for all components
+   */
+  static configureOptimizations(settings: Partial<typeof KimuComponentElement._optimizationSettings>) {
+    Object.assign(this._optimizationSettings, settings);
+    
+    // Apply cache size settings to KimuEngine
+    if (settings.cacheMaxSize !== undefined) {
+      KimuEngine.configureCaching(settings.cacheMaxSize);
+    }
+  }
+
+  /**
+   * Get current optimization settings (for debugging)
+   */
+  static getOptimizationSettings() {
+    return { ...this._optimizationSettings };
+  }
+
+  /**
+   * Preload critical assets for better performance
+   */
+  static async preloadAssets(assetPaths: string[]): Promise<void> {
+    if (!this._optimizationSettings.enableAssetPreloading) {
+      console.warn('[KimuComponentElement] Asset preloading is disabled');
+      return;
+    }
+    
+    return KimuEngine.preloadAssets(assetPaths);
+  }
+
+  /**
+   * Force refresh without optimizations (for debugging)
+   */
+  async forceRefresh(): Promise<void> {
+    if (!this._renderFn) {
+      console.warn('[KimuComponentElement] ⚠️ Template render function (_renderFn) not initialized for component:', this.tagName);
+      return;
+    }
+    
+    // Reset debouncing state
+    this._renderScheduled = false;
+    
+    // Force render immediately
+    const currentData = this.getData();
+    await KimuEngine.render(this, currentData, this._renderFn!);
+    this.onRender();
+  }
+
   /** Private reference to the KimuApp singleton (lazy loaded) */
   private _app: any = null;
   /** Each component must provide data for rendering */
@@ -30,8 +89,14 @@ export abstract class KimuComponentElement extends HTMLElement {
   /** Called every time after a render or refresh */
   onRender(): void { }
 
+  /** Debounce re-renders using requestAnimationFrame */
+  private _renderScheduled = false;
+
   /** Lifecycle: destruction */
   onDestroy(): void { }
+
+  /** Optional error handling hook - override in components that need custom error handling */
+  onError?(error: Error): void;
 
   /** Hook for loading the template */
   private _renderFn?: (html: any, data: Record<string, any>) => any;
@@ -87,11 +152,13 @@ export abstract class KimuComponentElement extends HTMLElement {
       return;
     }
 
-    // Load dependencies
+    // Reset debouncing state on connect
+    this._renderScheduled = false;
+
+    // Load dependencies - use Promise.all for parallel loading
     if (meta.dependencies?.length) {
-      for (const dep of meta.dependencies) {
-        await KimuExtensionManager.getInstance().load(dep);
-      }
+      const manager = KimuExtensionManager.getInstance();
+      await Promise.all(meta.dependencies.map(dep => manager.load(dep)));
     }
 
     // Inject default CSS for the component
@@ -103,11 +170,15 @@ export abstract class KimuComponentElement extends HTMLElement {
       const cssPath = `/extensions/${meta.basePath}/${meta.style}`;
       await KimuEngine.injectStyle(this, cssPath, styleId);
     }
+    
     // Compile the template on the first connection
     if (meta.template) {
       const templatePath = `/extensions/${meta.basePath}/${meta.template}`
-      this._renderFn = await KimuEngine.loadTemplate(templatePath);
+      // Use template caching based on global settings
+      const useCache = KimuComponentElement._optimizationSettings.enableTemplateCache;
+      this._renderFn = await KimuEngine.loadTemplate(templatePath, useCache);
     }
+    
     // Initial render
     this.refresh(); // Render the template with data
     // Call the initialization hook
@@ -120,9 +191,78 @@ export abstract class KimuComponentElement extends HTMLElement {
       console.warn('[KimuComponentElement] ⚠️ Template render function (_renderFn) not initialized for component:', this.tagName);
       return;
     }
-    // Start rendering the template with data
-    await KimuEngine.render(this, this.getData(), this._renderFn);
-    this.onRender();
+
+    // Skip debouncing if disabled
+    if (!KimuComponentElement._optimizationSettings.enableRenderDebouncing) {
+      await this._doRender();
+      return;
+    }
+
+    // Debounce renders using requestAnimationFrame
+    if (this._renderScheduled) {
+      return;
+    }
+
+    this._renderScheduled = true;
+    
+    requestAnimationFrame(async () => {
+      try {
+        await this._doRender();
+      } finally {
+        this._renderScheduled = false;
+      }
+    });
+  }
+
+  /**
+   * Internal render method - simplified without snapshot optimization
+   */
+  private async _doRender(): Promise<void> {
+    if (!KimuComponentElement._optimizationSettings.enableErrorBoundaries) {
+      // Original behavior without error boundaries
+      const currentData = this.getData();
+      await KimuEngine.render(this, currentData, this._renderFn!);
+      this.onRender();
+      return;
+    }
+
+    // Safe rendering with error boundaries
+    try {
+      const currentData = this.getData();
+      await KimuEngine.render(this, currentData, this._renderFn!);
+      this.onRender();
+    } catch (error) {
+      console.error(`[${this.tagName}] Render error:`, error);
+      console.error('Component data:', this.getData());
+      
+      // Fallback UI - safe and informative
+      if (this.shadowRoot) {
+        this.shadowRoot.innerHTML = `
+          <div style="
+            color: #721c24; 
+            background-color: #f8d7da; 
+            border: 1px solid #f5c6cb; 
+            padding: 10px; 
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+          ">
+            <strong>⚠️ Component Error</strong><br>
+            <em>${this.tagName}</em><br>
+            ${error instanceof Error ? error.message : 'Unknown error'}
+          </div>
+        `;
+      }
+      
+      // Call error hook if available
+      if (typeof this.onError === 'function') {
+        try {
+          this.onError(error instanceof Error ? error : new Error(String(error)));
+        } catch (hookError) {
+          console.error(`[${this.tagName}] Error in onError hook:`, hookError);
+        }
+      }
+    }
   }
 
   /** 
@@ -130,6 +270,10 @@ export abstract class KimuComponentElement extends HTMLElement {
    * Method automatically called on logout.
   */
   disconnectedCallback(): void {
+    // Clean up debouncing state
+    this._renderScheduled = false;
+    
+    // Call the destruction hook
     this._onDestroyInternal();
   }
 

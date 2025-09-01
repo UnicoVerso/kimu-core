@@ -19,8 +19,27 @@ export class KimuRender {
      * @param renderFn - The Lit rendering function that generates the template.
      */
     static render(component: HTMLElement, data: Record<string, any>, renderFn: (html: any, data: Record<string, any>) => TemplateResult): void {
-        const template = renderFn(html, data);
-        litRender(template, component.shadowRoot!);
+        if (!component.shadowRoot) {
+            console.warn('[KimuRender] Shadow DOM not found for component:', component.tagName);
+            return;
+        }
+        
+        try {
+            const template = renderFn(html, data);
+            
+            // Ensure we're working with a valid Lit TemplateResult
+            if (!template || !template.strings) {
+                console.warn('[KimuRender] Invalid template result from renderFn');
+                return;
+            }
+            
+            // Use Lit's native render function which handles efficient updates
+            litRender(template, component.shadowRoot);
+        } catch (error) {
+            console.error('[KimuRender] Error during Lit rendering:', error);
+            console.error('Component:', component.tagName);
+            console.error('Data:', data);
+        }
     }
 
     /**
@@ -40,10 +59,33 @@ export class KimuRender {
      * @returns A Lit rendering function that can be used for reactive rendering.
      */
     static compileTemplate(template: string): (html: typeof import('lit').html, data: Record<string, any>) => TemplateResult {
-        return new Function('html', 'data', `
-        with(data) {
-            return html\`${template}\`;
-        }`) as (html: typeof import('lit').html, data: Record<string, any>) => TemplateResult;
+        // Simple and safe template compilation without 'with' statement
+        return (html: typeof import('lit').html, data: Record<string, any>) => {
+            try {
+                // Create a function that has access to data properties as parameters
+                const keys = Object.keys(data || {});
+                const values = Object.values(data || {});
+                
+                // Create template function with destructured parameters
+                const templateFunction = new Function(
+                    ...keys, 
+                    'html', 
+                    `return html\`${template}\`;`
+                );
+                
+                // Execute with data values
+                return templateFunction(...values, html);
+            } catch (error) {
+                console.error('[KimuRender] Template compilation error:', error);
+                console.error('Template:', template.slice(0, 200));
+                console.error('Data:', data);
+                
+                // Return safe fallback template
+                return html`<div class="kimu-template-error">
+                    <strong>Template Error:</strong> ${error instanceof Error ? error.message : 'Unknown error'}
+                </div>`;
+            }
+        };
     }
 
 }

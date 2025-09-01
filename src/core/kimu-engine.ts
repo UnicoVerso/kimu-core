@@ -15,6 +15,93 @@ import { KimuAssetManager } from './kimu-asset-manager';
  */
 export class KimuEngine {
 
+  /** Cache for compiled templates to avoid recompilation */
+  private static _templateCache = new Map<string, any>();
+  
+  /** Cache access tracking for LRU eviction */
+  private static _cacheAccessTime = new Map<string, number>();
+  
+  /** Maximum cache size to prevent memory issues */
+  private static _maxCacheSize = 50;
+
+  /**
+   * Safely evict oldest cache entries when limit is reached
+   */
+  private static _evictOldestEntries(): void {
+    if (this._templateCache.size < this._maxCacheSize) return;
+    
+    // Get entries sorted by access time (oldest first)
+    const entriesToEvict = Array.from(this._cacheAccessTime.entries())
+      .sort(([, a], [, b]) => a - b)
+      .slice(0, Math.floor(this._templateCache.size * 0.2)) // Evict 20%
+      .map(([path]) => path);
+    
+    // Remove from both caches
+    entriesToEvict.forEach(path => {
+      this._templateCache.delete(path);
+      this._cacheAccessTime.delete(path);
+    });
+    
+    if (entriesToEvict.length > 0) {
+      console.log(`[KimuEngine] Evicted ${entriesToEvict.length} old template cache entries`);
+    }
+  }
+
+  /**
+   * Configure cache settings
+   */
+  static configureCaching(maxSize: number = 50): void {
+    this._maxCacheSize = maxSize;
+  }
+
+  /**
+   * Clear all caches (for debugging/testing)
+   */
+  static clearCaches(): void {
+    this._templateCache.clear();
+    this._cacheAccessTime.clear();
+  }
+
+  /**
+   * Preload critical assets to improve performance
+   */
+  static async preloadAssets(paths: string[]): Promise<void> {
+    if (paths.length === 0) return;
+    
+    console.log(`[KimuEngine] Preloading ${paths.length} assets...`);
+    
+    // Preload in parallel but with limited concurrency to avoid overwhelming the browser
+    const BATCH_SIZE = 5;
+    const batches = [];
+    
+    for (let i = 0; i < paths.length; i += BATCH_SIZE) {
+      batches.push(paths.slice(i, i + BATCH_SIZE));
+    }
+    
+    for (const batch of batches) {
+      const promises = batch.map(async (path) => {
+        try {
+          if (path.endsWith('.html')) {
+            // Preload template
+            await this.loadTemplate(path, true);
+          } else if (path.endsWith('.css')) {
+            // Preload style (just fetch to cache)
+            await KimuAssetManager.fetchFile(path);
+          } else {
+            // Generic asset preload
+            await KimuAssetManager.fetchFile(path);
+          }
+        } catch (error) {
+          console.warn(`[KimuEngine] Failed to preload asset: ${path}`, error);
+        }
+      });
+      
+      await Promise.all(promises);
+    }
+    
+    console.log(`[KimuEngine] Preloading completed`);
+  }
+
   /**
    * Injects an inline style from a file into the Shadow DOM of a component.
    * 
@@ -30,16 +117,36 @@ export class KimuEngine {
    * Loads and compiles an HTML template from a file into a Lit rendering function.
    * 
    * @param path - Path to the template file.
+   * @param useCache - Whether to use template cache (default: true)
    * @returns A compiled Lit rendering function.
    * @throws Error if the template file is not found.
    */
-  static async loadTemplate(path: string) {
+  static async loadTemplate(path: string, useCache: boolean = true) {
+    // Check cache first (if caching is enabled)
+    if (useCache && this._templateCache.has(path)) {
+      // Update access time for LRU
+      this._cacheAccessTime.set(path, Date.now());
+      return this._templateCache.get(path);
+    }
+
     //console.log(`[KimuEngine] 🔄 Loading template: ${path}`);
     const template: string | null = await KimuAssetManager.fetchFile(path);
     if (!template) {
       throw new Error(`[KimuEngine] ⚠️ Template not found: ${template}`);
     }
-    return KimuRender.loadTemplate(template);
+    
+    const compiledTemplate = KimuRender.loadTemplate(template);
+    
+    // Cache the compiled template (if caching is enabled)
+    if (useCache) {
+      // Check if we need to evict old entries first
+      this._evictOldestEntries();
+      
+      this._templateCache.set(path, compiledTemplate);
+      this._cacheAccessTime.set(path, Date.now());
+    }
+    
+    return compiledTemplate;
   }
 
   /**

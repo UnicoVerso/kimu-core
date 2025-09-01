@@ -6,10 +6,34 @@ export default defineConfig({
   base: '/', // build base URL
   publicDir: '../public', // public folder for static files
   build: {
-    minify: true, // enforce code minification
+    minify: true, // enforce code minification (ESBuild - fast)
+    // For maximum compression (minimal gain ~30 bytes):
+    // 1. Install: npm install --save-dev terser
+    // 2. Change to: minify: 'terser'
+    // Trade-off: slower build time for marginal size reduction
     outDir: '../dist',
     emptyOutDir: true, // clear the destination folder before the build
+    target: 'es2020', // modern JS for smaller bundles
+    cssMinify: true, // minify CSS
+    sourcemap: false, // remove sourcemap for prod
+    reportCompressedSize: false, // speed up build
     rollupOptions: {  // rollup configuration options
+      output: {
+        manualChunks: {
+          // Separate vendor from app code
+          vendor: ['lit', 'idb']
+        },
+        chunkFileNames: 'chunks/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash][extname]'
+      },
+      external: [
+        // Mark external dependencies if possible
+      ],
+      treeshake: {
+        moduleSideEffects: false, // enable aggressive tree shaking
+        propertyReadSideEffects: false,
+        unknownGlobalSideEffects: false
+      },
       plugins: [
         copy({
           targets: [

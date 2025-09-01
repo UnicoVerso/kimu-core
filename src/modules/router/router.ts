@@ -1,4 +1,9 @@
-// Opzioni per il modulo router (estendibile in futuro)
+// Kimu Router Module
+// Provides routing service and configuration for kimu-core extensions and core
+// Author: UnicoVerso
+//
+// Usage: Import KimuRouterService and configure routes in your app or extension.
+
 import { KimuModuleOptions } from '../../core/kimu-types';
 
 export interface KimuRouterModuleOptions extends KimuModuleOptions {
@@ -10,11 +15,6 @@ export interface KimuRouterModuleOptions extends KimuModuleOptions {
     meta?: Record<string, any>;
   }>;
 }
-// Kimu Router Module
-// Provides routing service and configuration for kimu-core extensions and core
-// Author: UnicoVerso
-//
-// Usage: Import KimuRouterService and configure routes in your app or extension.
 
 export interface RouteConfig {
   path: string;
@@ -73,7 +73,7 @@ export class KimuRouterService {
     this.listeners.forEach(cb => cb(this.currentRoute!, this.extractParams(path)));
   }
 
-  private extractParams(path: string): Record<string, string> {
+  private extractParams(_path: string): Record<string, string> {
     // Basic implementation, extend for dynamic params
     return {};
   }

@@ -14,8 +14,16 @@ import type { KimuGroupAsset, KimuExtensionMeta } from './kimu-types';
  */
 export class KimuAssetManager {
 
+    /** Cache for fetched files to avoid repeated requests */
+    private static _fileCache = new Map<string, string | null>();
+
     /** Loads a text file from the server root */
-    static async fetchFile(path: string): Promise<string | null> {
+    static async fetchFile(path: string, useCache: boolean = true): Promise<string | null> {
+        // Check cache first (if caching is enabled)
+        if (useCache && this._fileCache.has(path)) {
+            return this._fileCache.get(path)!;
+        }
+
         // console.log(`[KimuAssetManager::fetchFile] 🧾 Fetching file: ${path}`);
         const rawPath = path.includes('?raw') ? path : `${path}?raw`;
         const finalPath = rawPath.startsWith('/') ? rawPath : `/${rawPath}`;
@@ -24,11 +32,15 @@ export class KimuAssetManager {
             const response = await fetch(finalPath);
             if (!response.ok) {
                 console.warn(`[KimuAssetManager::fetchFile] ⚠️ File not found: ${path} (status: ${response.status})`);
+                if (useCache) this._fileCache.set(path, null);
                 return null;
             }
-            return await response.text();
+            const content = await response.text();
+            if (useCache) this._fileCache.set(path, content);
+            return content;
         } catch (err) {
             console.warn(`[KimuAssetManager::fetchFile] ⚠️ Fetch File Error: ${path}`, err);
+            if (useCache) this._fileCache.set(path, null);
             return null;
         }
     }

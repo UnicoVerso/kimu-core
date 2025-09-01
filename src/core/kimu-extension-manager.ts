@@ -25,6 +25,9 @@ export class KimuExtensionManager {
   /** Map to track whether an extension has been loaded */
   private _loaded: Map<string, boolean> = new Map();
 
+  /** Map to track loading promises to avoid duplicate loading */
+  private _loadingPromises: Map<string, Promise<void>> = new Map();
+
   /**
    * Retrieves the singleton instance of the extension manager.
    * If the instance does not exist, it initializes a new one.
@@ -175,31 +178,57 @@ export class KimuExtensionManager {
    */
   async load(tag: string): Promise<void> {
     //console.log(`[KimuExtensionManager] Load extension: ${tag}`);
+    
     // Check if the extension is already loaded
     if (!this._extensions.has(tag)) {
       console.log(`[KimuExtensionManager] ⚠️ Extension not present: ${tag}`);
       return;
     }
-    // Controlla se l'estensione è già registrata
+    
+    // Check if already loaded
+    if (this.isLoaded(tag)) {
+      //console.log(`[KimuExtensionManager] ⚠️ Extension already loaded: ${tag}`);
+      return;
+    }
+    
+    // Check if already loading
+    if (this._loadingPromises.has(tag)) {
+      return this._loadingPromises.get(tag);
+    }
+    
     const ext = this._extensions.get(tag);
     if (!ext) {
       console.warn(`[KimuExtensionManager] ⚠️ Extension not found: ${tag}`);
       return;
     }
-    if (this.isLoaded(tag)) {
-      //console.log(`[KimuExtensionManager] ⚠️ Extension already loaded: ${tag}`);
-      return;
-    }
+    
     if (!ext.path) {
       console.warn(`[KimuExtensionManager] ⚠️ Path not defined for extension: ${tag}`);
       return;
     }
+    
+    // Create loading promise
+    const loadingPromise = this._loadExtension(tag, ext);
+    this._loadingPromises.set(tag, loadingPromise);
+    
+    try {
+      await loadingPromise;
+    } finally {
+      this._loadingPromises.delete(tag);
+    }
+  }
+
+  /**
+   * Internal method to load an extension
+   */
+  private async _loadExtension(tag: string, ext: KimuExtensionMeta): Promise<void> {
     try {
       await import(/* @vite-ignore */ `/extensions/${ext.path}/component.js`);
       this._loaded.set(tag, true);
       // console.log(`[KimuExtensionManager] ✅ Extension loaded: ${tag}`);
     } catch (err) {
       console.error(`[KimuExtensionManager] ❌ Error loading Extension tag "${tag}":`, err);
+      throw err;
     }
   }
 
