@@ -164,18 +164,69 @@ To train the agent to always create extensions correctly, follow these steps:
 3. Always extend `KimuComponentElement` for the main class.
 4. Always use the `@KimuComponent` decorator and provide all required metadata fields:
    - `tag`, `name`, `version`, `description`, `author`, `icon`, `internal`, `path`, `dependencies`
-   Example:
+   
+   ### Understanding the `dependencies` Metadata
+   The `dependencies` field is crucial for building composite extensions. It contains an array of HTML tag strings representing child extensions that will be automatically loaded and made available in the parent extension's template.
+   
+   **How it works:**
+   - If your extension is a "parent" that contains other extensions as components, specify their tags in the `dependencies` field
+   - Child extensions will be automatically loaded by the KIMU Extension Manager
+   - You can use child extensions as regular HTML tags in your `view.html` template
+   - The framework handles the loading lifecycle and dependency resolution automatically
+   
+   **Example with child extensions:**
    ```typescript
    @KimuComponent({
-     tag: 'my-extension-tag',
-     name: 'My Extensio Name',
+     tag: 'dashboard-parent',
+     name: 'Complete Dashboard',
      version: '1.0.0',
-     description: 'Short description',
+     description: 'A comprehensive dashboard with charts and tables',
      author: 'YourName',
-     icon: '🧩',
+     icon: '📊',
      internal: false,
-     path: 'my-extension-path',
-     dependencies: []
+     path: 'dashboard-parent',
+     dependencies: ['chart-widget', 'data-table', 'filter-panel'] // Child extensions
+   })
+   export class DashboardParent extends KimuComponentElement {
+     // Parent component logic
+   }
+   ```
+   
+   **In the `view.html` template:**
+   ```html
+   <div class="dashboard">
+     <h2>Interactive Dashboard</h2>
+     <!-- Use child extensions as HTML tags -->
+     <chart-widget data="${chartData}"></chart-widget>
+     <data-table items="${tableItems}"></data-table>
+     <filter-panel @filter="${onFilter}"></filter-panel>
+   </div>
+   ```
+   
+   **Benefits of using dependencies:**
+   - ✅ **Modularity**: Each component is independent and reusable
+   - ✅ **Automatic loading**: No need to manually manage extension loading
+   - ✅ **Maintainability**: Separate updates for each child extension
+   - ✅ **Composition**: Build complex UIs from simple, focused components
+   
+   **Best practices for dependencies:**
+   - Include only the dependencies you actually use in your template
+   - Use descriptive tag names for child extensions
+   - Document the role of each child extension in your code
+   - Keep child extensions focused on single responsibilities
+   
+   **Example for simple extension (no dependencies):**
+   ```typescript
+   @KimuComponent({
+     tag: 'simple-button',
+     name: 'Simple Button',
+     version: '1.0.0',
+     description: 'A simple button component',
+     author: 'YourName',
+     icon: '🔘',
+     internal: false,
+     path: 'simple-button',
+     dependencies: [] // No child extensions
    })
    ```
 5. After creating the extension, always register it in the `extension-manifest.json` file at the project root (or designated folder). Example entry:
@@ -245,6 +296,43 @@ export class HelloWorldComponent extends KimuComponentElement {
 }
 ```
 
+### Example: Composite Extension with Child Dependencies
+```typescript
+import { KimuComponent } from '../core/kimu-component';
+import { KimuComponentElement } from '../core/kimu-component-element';
+
+@KimuComponent({
+  tag: 'user-dashboard',
+  name: 'User Dashboard',
+  version: '1.0.0',
+  description: 'Complete user dashboard with profile and statistics',
+  author: 'YourName',
+  icon: '📊',
+  internal: false,
+  path: 'user-dashboard',
+  dependencies: ['user-profile', 'stats-widget', 'activity-feed'] // Child extensions
+})
+export class UserDashboardComponent extends KimuComponentElement {
+  private userData: any;
+
+  onInit() {
+    console.log('User Dashboard extension loaded with dependencies!');
+    this.loadUserData();
+  }
+
+  private async loadUserData() {
+    // Load user data for child components
+    this.userData = await this.fetchUserData();
+    this.onRender();
+  }
+
+  // The view.html template can use:
+  // <user-profile user="${userData}"></user-profile>
+  // <stats-widget stats="${userData.stats}"></stats-widget>
+  // <activity-feed activities="${userData.activities}"></activity-feed>
+}
+```
+
 ### Example: Data Binding
 ```typescript
 export class MyExtensionComponent extends KimuComponentElement {
@@ -261,6 +349,12 @@ export class MyExtensionComponent extends KimuComponentElement {
 
 ## FAQ & Troubleshooting
 > **Agent Reminder:** Consult this section for common issues, edge cases, and best practices for error handling and project conventions.
+
+**Q: How do I create composite extensions with child dependencies?**
+A: Use the `dependencies` metadata in `@KimuComponent` to specify child extension tags. These will be automatically loaded and available as HTML tags in your template. See the Extension Creation Guide section for detailed examples.
+
+**Q: What's the difference between dependencies and regular imports?**
+A: The `dependencies` field is for KIMU child extensions that become available as HTML tags in your template. Regular imports are for utility functions, types, or external libraries.
 
 **Q: Where do I put shared utilities?**
 A: Use `/src/utils/` for reusable functions.

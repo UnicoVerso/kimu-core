@@ -1,6 +1,6 @@
 // KimuRouterModule
-// Fornisce il servizio di routing come modulo KimuModule
-// Ispirato alla struttura del modulo i18n
+// Provides the routing service as a KimuModule
+// Inspired by the structure of the i18n module
 
 import { KimuModule } from '../../core/kimu-module';
 import { KimuRouterService } from './router';
