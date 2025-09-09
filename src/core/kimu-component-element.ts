@@ -180,10 +180,10 @@ export abstract class KimuComponentElement extends HTMLElement {
       this._renderFn = await KimuEngine.loadTemplate(templatePath, useCache);
     }
     
-    // Initial render
-    this.refresh(); // Render the template with data
-    // Call the initialization hook
-    this.onInit();   // Call once
+    // Initial render - wait for completion before calling onInit
+    await this.refresh(); // Render the template with data and wait for completion
+    // Call the initialization hook - DOM is now guaranteed to be ready
+    this.onInit();   // Call once, after DOM is fully rendered
   }
 
   /** Forces a refresh of the interface component */
@@ -199,19 +199,25 @@ export abstract class KimuComponentElement extends HTMLElement {
       return;
     }
 
-    // Debounce renders using requestAnimationFrame
+    // Debounce renders using requestAnimationFrame - return Promise for proper awaiting
     if (this._renderScheduled) {
       return;
     }
 
     this._renderScheduled = true;
     
-    requestAnimationFrame(async () => {
-      try {
-        await this._doRender();
-      } finally {
-        this._renderScheduled = false;
-      }
+    return new Promise<void>((resolve) => {
+      requestAnimationFrame(async () => {
+        try {
+          await this._doRender();
+          resolve();
+        } catch (error) {
+          console.error('[KimuComponentElement] Render error:', error);
+          resolve(); // Resolve anyway to prevent hanging
+        } finally {
+          this._renderScheduled = false;
+        }
+      });
     });
   }
 

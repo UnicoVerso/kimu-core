@@ -1,6 +1,6 @@
 {
     "environment": "prod",
-    "api-url": "https://api.kimu.com",
-    "web-url": "https://kimu.com",
+    "api-url": "https://unicoverso.com/kimu/api",
+    "web-url": "https://unicoverso.com/kimu",
     "base-path": "/dist/"
 }

@@ -1,6 +1,0 @@
-{
-    "environment": "custom",
-    "api-url": "https://api.myapp.com",
-    "web-url": "https://myapp.com",
-    "base-path": "/my-kimu-app/"
-}
