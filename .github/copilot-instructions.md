@@ -1,7 +1,6 @@
 # KIMU-Core Copilot & AI Agent Integration Guide
 
-> **Agent Training Note:**
-> To generate correct, robust, and maintainable code, you MUST read and follow not only the main guidelines below, but also all subchapters such as **Practical Examples**, **FAQ & Troubleshooting**, **Testing & Quality Assurance**, **Advanced Usage**, **Glossary**, and **Modules in KIMU-Core**. These sections contain essential rules, conventions, edge cases, and best practices. Always consult them when generating or modifying code.
+> **Agent Training Note:** To generate correct, robust, and maintainable code, you MUST read and follow not only the main guidelines below, but also all subchapters such as **Practical Examples**, **FAQ & Troubleshooting**, **Testing & Quality Assurance**, **Advanced Usage**, **Glossary**, and **Modules in KIMU-Core**. These sections contain essential rules, conventions, edge cases, and best practices. Always consult them when generating or modifying code.
 
 This document provides direct, actionable instructions for Copilot and AI agents to support development and extension of the kimu-core framework. All content is specific to kimu-core.
 
@@ -23,10 +22,17 @@ This document provides direct, actionable instructions for Copilot and AI agents
 - **Use concise, readable code** and clear documentation in all generated code.
 - **Prefer modularity and reusability** in all components and extensions.
 
+## Project Overview & Structure
+- KIMU-Core is a modular TypeScript framework. Organize your project as described below.
+- All documentation, code comments, and metadata must be in English.
+- Use the provided examples and templates for new components and extensions.
+- Follow coding conventions in `CODE_GUIDELINES.md` and `CONTRIBUTING.md`.
+
 ## Project Structure
 
 Organize your kimu-core project as follows:
 
+```
 project-root/
 │
 ├── src/                  # Main source code
@@ -37,16 +43,11 @@ project-root/
 │   └── ...               # Other domain-specific modules
 │
 ├── tests/                # Unit and integration tests
-│
 ├── scripts/              # Utility scripts and CLI tools
-│
 ├── docs/                 # Documentation and guides
-│
 ├── dist/                 # Production build output
-│
 ├── .github/              # GitHub workflows, Copilot instructions, etc.
 │   └── copilot-instructions.md   # This guide
-│
 ├── package.json          # NPM configuration and scripts
 ├── tsconfig.json         # TypeScript configuration
 ├── .env                  # Environment variables (if needed)
@@ -55,6 +56,9 @@ project-root/
 ├── CONTRIBUTING.md       # Contribution guidelines
 ├── SECURITY.md           # Security best practices
 └── ...                   # Other config or license files
+```
+
+---
 
 ## Development Guidelines
 
@@ -147,6 +151,44 @@ For details and advanced usage of component methods and APIs, refer to the Pract
 - Use `npm run build` for production builds.
 - Output is in `/dist/`.
 - Deploy static files as needed.
+
+## Build & Script Commands Reference
+> **Agent Reminder:** Use this section to understand and correctly use the available build, compile, and utility scripts in KIMU-Core projects.
+
+### Common NPM Scripts
+
+| Command            | Description                                                      | When to Use                                      |
+|--------------------|------------------------------------------------------------------|--------------------------------------------------|
+| `npm start`        | Starts the development server with hot reload.                   | During development for live preview and testing.  |
+| `npm run build`    | Builds the project for production (output in `/dist/`).          | Before deployment or to generate production files.|
+| `npm test`         | Runs all unit and integration tests.                             | To validate code before commit or release.        |
+| `npm run lint`     | Runs the linter to check code style and errors.                  | Before commit, after major changes, or regularly. |
+| `npm run format`   | Formats code using the configured formatter (if available).      | To ensure code style consistency.                 |
+| `npm run docs`     | Generates or serves documentation (if configured).               | When updating or reviewing project docs.          |
+| `npm run clean`    | Cleans build artifacts and temporary files.                      | Before a fresh build or troubleshooting issues.   |
+
+### How to Use Each Script
+- **Development (`npm start`)**: Use this to launch the local dev server. Supports hot reload for rapid iteration. Stop and restart if you change major config files.
+- **Build (`npm run build`)**: Generates optimized production files. Run before deploying to production or sharing a release build.
+- **Test (`npm test`)**: Validates all logic and integration. Run before pushing changes or merging PRs. Add new tests for new features.
+- **Lint (`npm run lint`)**: Ensures code quality and style. Run after major edits and before commits. Fix all reported issues.
+- **Format (`npm run format`)**: Applies code formatting rules. Use before commit or after resolving merge conflicts.
+- **Docs (`npm run docs`)**: Builds or serves documentation. Use when updating docs or reviewing API changes.
+- **Clean (`npm run clean`)**: Removes build output and temp files. Use before a new build or if you encounter build errors.
+
+### Best Practices
+- Always run `npm run lint` and `npm test` before committing or releasing.
+- Use `npm run build` only after tests and lint pass.
+- Clean the project (`npm run clean`) if you see unexpected build or runtime errors.
+- Document any new scripts in the README and this guide.
+- Prefer using scripts over manual commands for consistency and reproducibility.
+- For custom scripts, add clear comments and usage instructions in `package.json`.
+
+### Troubleshooting
+- If a script fails, check for missing dependencies (`npm install`) or outdated configs.
+- For build errors, try `npm run clean` then `npm run build`.
+- For test failures, review error logs and update tests as needed.
+- For linter issues, run `npm run format` and fix remaining problems manually.
 
 ## Security Best Practices (Condensed)
 - Validate all user input in extensions.
@@ -260,7 +302,7 @@ For agent training, always follow this checklist when creating a new extension:
    - `style.css`
    - `view.html`
 3. Extend `KimuComponentElement` in your main class.
-4. Use the `@KimuComponent` decorator with all required metadata (see guide above).
+4. Use the `@KimuComponent` decorator with all required metadata (see guide below).
 5. Register the extension in `extension-manifest.json` (manually or via automation script).
 6. Implement required logic, UI, and data binding.
 7. Document all public APIs in English.
@@ -279,14 +321,14 @@ import { KimuComponent } from '../core/kimu-component';
 import { KimuComponentElement } from '../core/kimu-component-element';
 
 @KimuComponent({
-  tag: 'hello-world',
-  name: 'Hello World',
+  tag: 'my-extension-tag',
+  name: 'My Extension Name',
   version: '1.0.0',
   description: 'Minimal example extension',
   author: 'YourName',
-  icon: '👋',
+  icon: '🧩',
   internal: false,
-  path: 'hello-world',
+  path: 'my-extension-path',
   dependencies: []
 })
 export class HelloWorldComponent extends KimuComponentElement {
@@ -369,8 +411,8 @@ A: Edit files in `/docs/` and add examples for new features.
 A: Run `npm run lint` and `npm run build` to check for issues. Fix according to `CODE_GUIDELINES.md`.
 
 ## Continuous Improvement
-- Update this file whenever you add new features, patterns, or best practices.
-- Encourage contributors to suggest improvements to this guide.
+- Update this file whenever you add new patterns, best practices, or solve edge cases.
+- Always invite contributors to propose improvements.
 
 ## Known Limitations
 - Some advanced Three.js or MediaPipe features may require manual integration or additional configuration.
@@ -489,6 +531,369 @@ For agent training, always follow this checklist when creating a new module:
 9. Run tests with `npm test`.
 10. Update this guide if you introduce new patterns or conventions for modules.
 
+#### Difference Between Module and Extension
+| Module | Extension |
+|--------|-----------|
+| Provides reusable logic/services | Implements user scenario/UI |
+| No UI | UI and manifest required |
+| In `/src/modules/` | In `/src/extensions/` |
+| Not registered in manifest | Registered in `extension-manifest.json` |
+| Used by extensions/modules | Used by the end user |
+
+---
+
+## Agent Training & Workflow
+### Copilot & AI Agent Guide
+> **Agent Training Note:** This document is your primary source for generating code, following conventions, and applying best practices in KIMU-Core. Read everything, always consult the following sections: Practical Examples, FAQ, Testing, Glossary, Modules, Router, i18n. Propose improvements if you identify missing patterns.
+
+- **Read the entire document** before generating or modifying code.
+- **Follow the conventions** in `CODE_GUIDELINES.md` and `CONTRIBUTING.md`.
+- **Use practical examples** as templates.
+- **Consult the FAQ** for common issues and edge cases.
+- **Propose improvements** if you identify missing patterns.
+- **Use the Glossary** for precise definitions.
+- **Follow the checklist** for modules and extensions.
+- **Always document** public APIs and workflows.
+
+### Recommended Workflow for AI Agents
+1. Read the creation checklist (module/extension).
+2. Follow practical examples.
+3. Consult cross-cutting best practices.
+4. Use modular patterns and document everything.
+5. Update the guide if you introduce new patterns.
+
+### Cross-cutting Best Practices
+- Modularity and reusability.
+- Clear documentation in English.
+- Unit and integration tests.
+- Consistent and semantic naming.
+- Secure dependency management.
+- Input validation and security.
+- Continuous guide updates.
+
+### Agent Reminder
+> Always insert “Agent Reminder” and “Agent Training Note” at the beginning of key sections (modules, extensions, router, i18n, testing, FAQ).
+
+---
+
+## Router Module Guide
+> **Agent Training Note:** This section provides comprehensive guidance for using and extending the KIMU Router Module. Always refer to this when implementing routing functionality in KIMU applications.
+
+### Overview
+The KIMU Router Module provides client-side routing capabilities for single-page applications (SPAs) built with the KIMU framework. It supports hash-based routing, dynamic route parameters, route guards, and programmatic navigation.
+
+### Features
+- **Hash-based routing** (`#/path`) for compatibility with static hosting
+- **Dynamic route parameters** (`:id`, `:slug`) with automatic parsing
+- **Route guards** for authentication and authorization
+- **Programmatic navigation** with history management
+- **Route transitions** with lifecycle hooks
+- **Nested routing** support for complex application structures
+- **Base path compatibility** for subdirectory deployments
+
+### API Overview
+
+#### KimuRouterService
+The main service class providing routing functionality:
+
+```typescript
+export class KimuRouterService {
+  // Navigation methods
+  navigate(path: string): void
+  back(): void
+  forward(): void
+  replace(path: string): void
+  
+  // Route management
+  addRoute(path: string, handler: RouteHandler): void
+  removeRoute(path: string): void
+  getCurrentRoute(): RouteInfo | null
+  
+  // Parameters and query
+  getParams(): Record<string, string>
+  getQuery(): Record<string, string>
+  
+  // Event handling
+  onRouteChange(callback: (route: RouteInfo) => void): void
+  offRouteChange(callback: (route: RouteInfo) => void): void
+}
+```
+
+#### KimuRouterModule
+The module class that integrates the router service:
+
+```typescript
+export default class RouterModule extends KimuModule {
+  constructor(name = 'router', version = '1.0.0', options?: RouterOptions) {
+    super(name, version, options);
+  }
+  
+  getService(): KimuRouterService {
+    return routerService;
+  }
+}
+```
+
+### Basic Usage Examples
+
+#### 1. Setting Up Routes in Main Application
+```typescript
+import { KimuModuleManager } from './core/kimu-module-manager';
+import RouterModule from './modules/router/module';
+
+// Initialize router module
+const moduleManager = KimuModuleManager.getInstance();
+const routerModule = new RouterModule();
+await moduleManager.loadModule(routerModule);
+
+// Get router service
+const router = moduleManager.getRouterService();
+
+// Define routes
+router.addRoute('/', () => {
+  console.log('Home page');
+  // Load home component
+});
+
+router.addRoute('/about', () => {
+  console.log('About page');
+  // Load about component
+});
+
+router.addRoute('/user/:id', (params) => {
+  console.log('User page:', params.id);
+  // Load user component with ID
+});
+```
+
+#### 2. Navigation in Components
+```typescript
+import { KimuComponentElement } from '../core/kimu-component-element';
+import { KimuModuleManager } from '../core/kimu-module-manager';
+
+export class NavigationComponent extends KimuComponentElement {
+  private router: KimuRouterService;
+
+  async onInit() {
+    // Get router service from module manager
+    this.router = KimuModuleManager.getInstance().getRouterService();
+  }
+
+  navigateToHome() {
+    this.router.navigate('/');
+  }
+
+  navigateToUser(userId: string) {
+    this.router.navigate(`/user/${userId}`);
+  }
+
+  navigateWithQuery() {
+    this.router.navigate('/search?q=kimu&category=framework');
+  }
+}
+```
+
+#### 3. Route Parameters and Query Strings
+```typescript
+// In a route handler
+router.addRoute('/product/:category/:id', () => {
+  const params = router.getParams();
+  const query = router.getQuery();
+  
+  console.log('Category:', params.category);
+  console.log('Product ID:', params.id);
+  console.log('Query params:', query);
+  
+  // Example: /product/electronics/123?color=red&size=large
+  // params: { category: 'electronics', id: '123' }
+  // query: { color: 'red', size: 'large' }
+});
+```
+
+#### 4. Route Guards and Authentication
+```typescript
+// Add route guard for protected routes
+router.addRoute('/dashboard', () => {
+  if (!isAuthenticated()) {
+    router.navigate('/login');
+    return;
+  }
+  
+  // Load dashboard component
+  loadDashboard();
+});
+
+router.addRoute('/admin/:section', () => {
+  if (!hasAdminRole()) {
+    router.navigate('/unauthorized');
+    return;
+  }
+  
+  const params = router.getParams();
+  loadAdminSection(params.section);
+});
+```
+
+### Advanced Usage
+
+#### 1. Route Change Listeners
+```typescript
+// Listen for route changes
+router.onRouteChange((route) => {
+  console.log('Route changed to:', route.path);
+  console.log('Parameters:', route.params);
+  console.log('Query:', route.query);
+  
+  // Update navigation UI
+  updateActiveNavigation(route.path);
+  
+  // Analytics tracking
+  trackPageView(route.path);
+});
+```
+
+#### 2. Programmatic Navigation with History
+```typescript
+// Navigate and add to history
+router.navigate('/new-page');
+
+// Navigate without adding to history
+router.replace('/login');
+
+// Browser back/forward
+router.back();
+router.forward();
+```
+
+#### 3. Integration with Extensions
+```typescript
+@KimuComponent({
+  tag: 'app-router',
+  name: 'App Router',
+  version: '1.0.0',
+  description: 'Main application router component',
+  author: 'KIMU Team',
+  icon: '🧭',
+  internal: false,
+  path: 'app-router',
+  dependencies: []
+})
+export class AppRouterComponent extends KimuComponentElement {
+  private router: KimuRouterService;
+
+  async onInit() {
+    this.router = KimuModuleManager.getInstance().getRouterService();
+    
+    // Setup application routes
+    this.setupRoutes();
+    
+    // Listen for route changes
+    this.router.onRouteChange(this.handleRouteChange.bind(this));
+  }
+
+  private setupRoutes() {
+    this.router.addRoute('/', this.renderHome.bind(this));
+    this.router.addRoute('/about', this.renderAbout.bind(this));
+    this.router.addRoute('/contact', this.renderContact.bind(this));
+  }
+
+  private handleRouteChange(route: RouteInfo) {
+    // Update component based on route
+    this.onRender();
+  }
+
+  private renderHome() {
+    this.innerHTML = '<kimu-home></kimu-home>';
+  }
+
+  private renderAbout() {
+    this.innerHTML = '<kimu-about></kimu-about>';
+  }
+
+  private renderContact() {
+    this.innerHTML = '<kimu-contact></kimu-contact>';
+  }
+}
+```
+
+### Best Practices
+
+#### 1. Route Organization
+- **Group related routes** by feature or module
+- **Use consistent naming** for route parameters
+- **Define route constants** to avoid hardcoded strings
+- **Document route structure** in application documentation
+
+```typescript
+// Route constants
+export const ROUTES = {
+  HOME: '/',
+  ABOUT: '/about',
+  USER_PROFILE: '/user/:id',
+  USER_SETTINGS: '/user/:id/settings',
+  ADMIN_DASHBOARD: '/admin/dashboard',
+  ADMIN_USERS: '/admin/users'
+} as const;
+
+// Use constants in route definition
+router.addRoute(ROUTES.USER_PROFILE, handleUserProfile);
+```
+
+#### 2. Error Handling
+- **Handle 404 routes** with a catch-all route
+- **Validate route parameters** before processing
+- **Provide fallback navigation** for invalid routes
+
+```typescript
+// 404 handler (should be added last)
+router.addRoute('*', () => {
+  console.warn('Route not found, redirecting to home');
+  router.replace('/');
+});
+
+// Parameter validation
+router.addRoute('/user/:id', () => {
+  const params = router.getParams();
+  const userId = parseInt(params.id);
+  
+  if (isNaN(userId) || userId <= 0) {
+    router.navigate('/users'); // Redirect to users list
+    return;
+  }
+  
+  loadUser(userId);
+});
+```
+
+#### 3. Performance Optimization
+- **Lazy load route components** when possible
+- **Cache route handlers** for frequently accessed routes
+- **Debounce rapid navigation** calls
+- **Clean up resources** when leaving routes
+
+```typescript
+// Lazy loading example
+router.addRoute('/heavy-component', async () => {
+  const { HeavyComponent } = await import('./components/heavy-component');
+  renderComponent(HeavyComponent);
+});
+```
+
+#### 4. Base Path Integration
+The router automatically works with KIMU's base path system:
+
+```typescript
+// Router respects base path configuration
+// If base path is "/dist/", routes become:
+// "/" -> "/dist/#/"
+// "/about" -> "/dist/#/about"
+// "/user/123" -> "/dist/#/user/123"
+
+// No additional configuration needed - works automatically
+```
+
+---
+
 ## Internationalization (i18n)
 > **Agent Reminder:** Always consider internationalization (i18n) when developing extensions or modules. This section explains how to support multiple languages and localization in kimu-core.
 
@@ -580,71 +985,136 @@ this.$('#langSelect').addEventListener('change', (e) => {
 
 > **Agent Reminder:** Always document i18n usage in your extension's README and code comments. Ensure all new features are localizable and provide English as the default language.
 
-
 ---
 
-## Router Module (Routing System)
+## Practical Examples
+> **Agent Reminder:** Use these examples as reference for implementation patterns, data binding, and extension structure.
 
-The `router` module provides a simple and extensible routing system for kimu-core. It allows you to map URL paths to extensions/components and handle navigation in a SPA-like fashion.
-
-### Features
-- Centralized route configuration (static paths)
-- Navigation via history API
-- Route change events (callback system)
-- API for dynamic route registration
-- Designed for integration with extension loading and dynamic UI
-
-### API Overview
-
-**KimuRouterService** (singleton):
-- `configure(routes: RouteConfig[])`: Set the list of available routes
-- `registerRoute(route: RouteConfig)`: Add a new route at runtime
-- `navigate(path: string)`: Change the current route (and URL)
-- `onRouteChange(cb: (route: RouteConfig) => void)`: Listen for route changes
-- `getCurrentRoute()`: Get the current route object
-
-**KimuRouterModule**:
-- Extends `KimuModule`, provides the router service via `getService()`
-- Accepts options with a `routes` array for initial configuration
-
-### Example: Route Configuration and Usage
-
+### Example: Minimal Extension
 ```typescript
-import KimuRouterModule from 'src/modules/router/module';
-import { HomeComponent } from 'src/extensions/home/component';
-import { ChatComponent } from 'src/extensions/chat/component';
+import { KimuComponent } from '../core/kimu-component';
+import { KimuComponentElement } from '../core/kimu-component-element';
 
-// Instantiate the router module and configure routes
-const routerModule = new KimuRouterModule('router', '1.0.0', {
-  routes: [
-    { path: '/', component: HomeComponent },
-    { path: '/chat', component: ChatComponent }
-  ]
-});
-const router = routerModule.getService();
-
-// Listen for route changes and mount the correct extension/component
-router.onRouteChange((route) => {
-  if (route && route.component) {
-    mountKimuComponent(route.component, '#main');
-  } else {
-    showNotFound();
+@KimuComponent({
+  tag: 'hello-world',
+  name: 'Hello World',
+  version: '1.0.0',
+  description: 'Minimal example extension',
+  author: 'YourName',
+  icon: '👋',
+  internal: false,
+  path: 'hello-world',
+  dependencies: []
+})
+export class HelloWorldComponent extends KimuComponentElement {
+  onInit() {
+    console.log('Hello World extension loaded!');
   }
-});
-
-// Navigate programmatically (e.g. from a menu)
-router.navigate('/chat');
-
-// Example mount function
-function mountKimuComponent(ComponentClass, selector) {
-  const container = document.querySelector(selector);
-  container.innerHTML = '';
-  const instance = new ComponentClass();
-  container.appendChild(instance);
 }
 ```
 
-### Best Practices
-- Register all main extensions/components as routes at startup.
-- Use the router to decouple navigation logic from UI rendering.
-- Extend the router for dynamic params, fallback, or nested routes as needed.
+### Example: Composite Extension with Child Dependencies
+```typescript
+import { KimuComponent } from '../core/kimu-component';
+import { KimuComponentElement } from '../core/kimu-component-element';
+
+@KimuComponent({
+  tag: 'user-dashboard',
+  name: 'User Dashboard',
+  version: '1.0.0',
+  description: 'Complete user dashboard with profile and statistics',
+  author: 'YourName',
+  icon: '📊',
+  internal: false,
+  path: 'user-dashboard',
+  dependencies: ['user-profile', 'stats-widget', 'activity-feed'] // Child extensions
+})
+export class UserDashboardComponent extends KimuComponentElement {
+  private userData: any;
+
+  onInit() {
+    console.log('User Dashboard extension loaded with dependencies!');
+    this.loadUserData();
+  }
+
+  private async loadUserData() {
+    // Load user data for child components
+    this.userData = await this.fetchUserData();
+    this.onRender();
+  }
+
+  // The view.html template can use:
+  // <user-profile user="${userData}"></user-profile>
+  // <stats-widget stats="${userData.stats}"></stats-widget>
+  // <activity-feed activities="${userData.activities}"></activity-feed>
+}
+```
+
+### Example: Data Binding
+```typescript
+export class MyExtensionComponent extends KimuComponentElement {
+  private counter = 0;
+  onRender() {
+    this.$('#counter').textContent = this.counter.toString();
+  }
+  increment() {
+    this.counter++;
+    this.onRender();
+  }
+}
+```
+
+---
+
+## FAQ & Troubleshooting
+> **Agent Reminder:** Consult this section for common issues, edge cases, and best practices for error handling and project conventions.
+
+**Q: How do I create composite extensions with child dependencies?**
+A: Use the `dependencies` metadata in `@KimuComponent` to specify child extension tags. These will be automatically loaded and available as HTML tags in your template. See the Extension Creation Guide section for detailed examples.
+
+**Q: What's the difference between dependencies and regular imports?**
+A: The `dependencies` field is for KIMU child extensions that become available as HTML tags in your template. Regular imports are for utility functions, types, or external libraries.
+
+**Q: Where do I put shared utilities?**
+A: Use `/src/utils/` for reusable functions.
+
+**Q: How do I add a new test?**
+A: Place test files in `/tests/` and follow the naming conventions.
+
+**Q: How do I update documentation?**
+A: Edit files in `/docs/` and add examples for new features.
+
+**Q: Lint or build errors?**
+A: Run `npm run lint` and `npm run build` to check for issues. Fix according to `CODE_GUIDELINES.md`.
+
+---
+
+## Glossary
+> **Agent Reminder:** Refer to the glossary for precise definitions of key concepts and terminology used throughout the project.
+
+- **Component**: A modular unit extending `KimuComponentElement`.
+- **Extension**: A custom scenario or feature added in `/src/extensions/`.
+- **Data Binding**: Linking UI elements to logic using reactive properties/methods.
+- **Copilot Agent**: AI assistant that reads this file to generate code and suggestions.
+- **Semantic Versioning**: Versioning system (MAJOR.MINOR.PATCH) for releases.
+- **KimuComponentElement**: Base class for all UI components in kimu-core.
+- **KimuComponent**: Decorator for defining components with metadata.
+- **UI Rendering**: Process of displaying components in the browser.
+- **Event Management**: Handling user interactions and system events in components.
+
+---
+
+## Continuous Improvement
+- Update this file whenever you add new patterns, best practices, or solve edge cases.
+- Always invite contributors to propose improvements.
+
+---
+
+## Known Limitations
+- Some advanced Three.js or MediaPipe features may require manual integration or additional configuration.
+- Not all browser APIs are supported; check compatibility before using new features.
+- Extensions should avoid direct DOM manipulation and always use provided APIs.
+- For large data models, consider performance and memory usage.
+
+---
+

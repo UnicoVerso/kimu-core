@@ -1,4 +1,5 @@
 import type { KimuGroupAsset, KimuExtensionMeta } from './kimu-types';
+import { KimuPathConfig } from './kimu-path-config';
 
 /**
  * The `KimuAssetManager` class provides utility methods for managing assets such as stylesheets,
@@ -26,7 +27,9 @@ export class KimuAssetManager {
 
         // console.log(`[KimuAssetManager::fetchFile] 🧾 Fetching file: ${path}`);
         const rawPath = path.includes('?raw') ? path : `${path}?raw`;
-        const finalPath = rawPath.startsWith('/') ? rawPath : `/${rawPath}`;
+        const finalPath = rawPath.startsWith('/') ? 
+            KimuPathConfig.resolvePath(rawPath) : 
+            KimuPathConfig.resolvePath(`/${rawPath}`);
         // console.log(`[KimuAssetManager::fetchFile] 🧾 Fetching file: ${finalPath}`);
         try {
             const response = await fetch(finalPath);

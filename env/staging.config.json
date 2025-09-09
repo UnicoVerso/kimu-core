@@ -1,5 +1,6 @@
 {
     "environment": "staging",
     "api-url": "https://staging.api.kimu.com",
-    "web-url": "https://staging.kimu.com"
+    "web-url": "https://staging.kimu.com",
+    "base-path": "/"
 }

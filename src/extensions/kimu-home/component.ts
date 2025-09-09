@@ -5,8 +5,7 @@
 
 import { KimuComponent } from '../../core/kimu-component';
 import { KimuComponentElement } from '../../core/kimu-component-element';
-import { KimuGlobalLang } from '../../modules/i18n/kimu-global-lang';
-import { KimuI18nService } from '../../modules/i18n/kimu-i18n-service';
+import { KimuGlobalLang, KimuI18nService } from '../../modules/i18n/module';
 
 @KimuComponent({
     tag: 'kimu-home',
@@ -50,7 +49,7 @@ export class KimuHomeComponent extends KimuComponentElement {
         this.kimuVersion = app.version;
         this.refresh();
         // React to global language changes
-        KimuGlobalLang.onChange(async (lang) => {
+        KimuGlobalLang.onChange(async (lang: string) => {
             await this.i18n.setLang(lang);
             this.selectedLang = KimuGlobalLang.get();
             this.refresh();

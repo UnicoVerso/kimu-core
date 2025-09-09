@@ -1,7 +1,11 @@
 import { KimuStore } from './kimu-store';
 import { KimuExtensionMeta } from './kimu-types';
+import { KimuPathConfig } from './kimu-path-config';
 
-const EXT_MANIFEST_PATH = '/extensions/extensions-manifest.json';
+/**
+ * Get the extension manifest path with proper base path resolution
+ */
+const getExtManifestPath = () => KimuPathConfig.resolvePath('/extensions/extensions-manifest.json');
 
 /**
  * The `KimuExtensionManager` class manages extensions in the Kimu framework.
@@ -114,7 +118,8 @@ export class KimuExtensionManager {
     // console.log('[KimuExtensionManager] Loading initial manifest...');
     // Load the extension manifest
     try {
-      const res = await fetch(EXT_MANIFEST_PATH);
+      const manifestPath = getExtManifestPath();
+      const res = await fetch(manifestPath);
       if (!res.ok) {
         throw new Error('File not found');
       }
@@ -223,7 +228,8 @@ export class KimuExtensionManager {
    */
   private async _loadExtension(tag: string, ext: KimuExtensionMeta): Promise<void> {
     try {
-      await import(/* @vite-ignore */ `/extensions/${ext.path}/component.js`);
+      const componentPath = KimuPathConfig.resolvePath(`/extensions/${ext.path}/component.js`);
+      await import(/* @vite-ignore */ componentPath);
       this._loaded.set(tag, true);
       // console.log(`[KimuExtensionManager] ✅ Extension loaded: ${tag}`);
     } catch (err) {

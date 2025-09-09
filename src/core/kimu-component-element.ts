@@ -1,6 +1,7 @@
-import { KimuEngine } from "./kimu-engine";
-import { KimuExtensionManager } from "./kimu-extension-manager";
-import { KimuExtensionMeta } from "./kimu-types";
+import { KimuEngine } from './kimu-engine';
+import { KimuExtensionManager } from './kimu-extension-manager';
+import { KimuExtensionMeta } from './kimu-types';
+import { KimuPathConfig } from './kimu-path-config';
 
 /**
  * The `KimuComponentElement` class serves as the base class for all components and extensions
@@ -167,13 +168,13 @@ export abstract class KimuComponentElement extends HTMLElement {
     // Inject external styles (if present, just once)
     if (meta.style) {
       let styleId = `kimu-style-ext-${meta.tag}`;
-      const cssPath = `/extensions/${meta.basePath}/${meta.style}`;
+      const cssPath = KimuPathConfig.resolvePath(`extensions/${meta.basePath}/${meta.style}`);
       await KimuEngine.injectStyle(this, cssPath, styleId);
     }
     
     // Compile the template on the first connection
     if (meta.template) {
-      const templatePath = `/extensions/${meta.basePath}/${meta.template}`
+      const templatePath = KimuPathConfig.resolvePath(`extensions/${meta.basePath}/${meta.template}`);
       // Use template caching based on global settings
       const useCache = KimuComponentElement._optimizationSettings.enableTemplateCache;
       this._renderFn = await KimuEngine.loadTemplate(templatePath, useCache);
@@ -281,12 +282,13 @@ export abstract class KimuComponentElement extends HTMLElement {
   loadResource(file: string): Promise<any> {
     const path = this.getMeta()?.path;
     if (!path) throw new Error('Extension without valid path');
-    return fetch(`/extensions/${path}/resources/${file}`).then(r => r.json());
+    const resourcePath = KimuPathConfig.resolvePath(`extensions/${path}/resources/${file}`);
+    return fetch(resourcePath).then(r => r.json());
   }
   
   /** Loads an asset from an external file */
   loadAssetUrl(file: string): string {
     const path = this.getMeta()?.path;
-    return `/extensions/${path}/assets/${file}`;
+    return KimuPathConfig.resolvePath(`extensions/${path}/assets/${file}`);
   }
 }

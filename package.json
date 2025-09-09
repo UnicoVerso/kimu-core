@@ -34,10 +34,10 @@
     "dev": "vite",
     "vite": "vite",
     "preview": "vite preview",
-    "build": "tsc && npm run generate-config:dev && vite build && npm run build:all-modules && npm run build:all-ext",
-    "build:dev": "tsc && npm run generate-config:dev && vite build && npm run build:all-modules && npm run build:all-ext",
-    "build:local": "tsc && npm run generate-config:local && vite build && npm run build:all-modules && npm run build:all-ext",
-    "build:prod": "tsc && npm run generate-config:prod && vite build && npm run build:all-modules && npm run build:all-ext",
+    "build": "tsc && npm run generate-config:dev && vite build && npm run build:all-config && npm run build:all-core && npm run build:all-modules && npm run build:all-ext",
+    "build:dev": "tsc && npm run generate-config:dev && vite build && npm run build:all-config && npm run build:all-core && npm run build:all-modules && npm run build:all-ext",
+    "build:local": "tsc && npm run generate-config:local && vite build && npm run build:all-config && npm run build:all-core && npm run build:all-modules && npm run build:all-ext",
+    "build:prod": "tsc && npm run generate-config:prod && vite build && npm run build:all-config && npm run build:all-core && npm run build:all-modules && npm run build:all-ext",
     "generate-config": "node scripts/generate-kimu-build-config.js dev",
     "generate-config:dev": "node scripts/generate-kimu-build-config.js dev",
     "generate-config:local": "node scripts/generate-kimu-build-config.js local",
@@ -45,6 +45,8 @@
     "clear:build": "node scripts/clear-kimu-build.js",
     "build:ext": "node scripts/build-extension.js",
     "build:all-ext": "node scripts/build-all-extensions.js",
+    "build:all-config": "node scripts/build-all-config.js",
+    "build:all-core": "node scripts/build-all-core.js",
     "build:all-modules": "node scripts/build-all-modules.js"
   },
   "engines": {

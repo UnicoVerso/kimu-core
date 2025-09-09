@@ -5,6 +5,7 @@ export const KimuBuildConfig = {
   "build": {
     "environment": "dev",
     "api-url": "http://localhost:3000",
-    "web-url": "http://localhost:5173"
+    "web-url": "http://localhost:5173",
+    "base-path": "/"
   }
 } as const;

@@ -47,6 +47,20 @@ if (!fs.existsSync(envConfigPath)) {
 const base = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
 const build = JSON.parse(fs.readFileSync(envConfigPath, 'utf-8'));
 
+// Override with environment variables if present
+if (process.env.KIMU_BASE_PATH) {
+  build['base-path'] = process.env.KIMU_BASE_PATH;
+  console.log(`[KIMU] 🔧 Base path overridden from env: ${process.env.KIMU_BASE_PATH}`);
+}
+if (process.env.KIMU_API_URL) {
+  build['api-url'] = process.env.KIMU_API_URL;
+  console.log(`[KIMU] 🔧 API URL overridden from env: ${process.env.KIMU_API_URL}`);
+}
+if (process.env.KIMU_WEB_URL) {
+  build['web-url'] = process.env.KIMU_WEB_URL;
+  console.log(`[KIMU] 🔧 Web URL overridden from env: ${process.env.KIMU_WEB_URL}`);
+}
+
 // Combine the configurations, version, and environment into the final object
 const finalConfig = {
   ...base,

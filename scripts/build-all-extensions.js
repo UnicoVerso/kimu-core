@@ -8,12 +8,14 @@
  * - Reads all subdirectories in "src/extensions".
  * - Checks for the presence of "component.ts" in each subdirectory.
  * - Compiles the TypeScript files into JavaScript (ESM format) with minification.
+ * - Automatically fixes import paths by adding .js extensions.
  * - Logs the success or failure of each compilation process.
  */
 
 import { build } from 'esbuild';
 import fs from 'fs';
 import path from 'path';
+import { fixImportsInFile } from './utils/fix-imports.js';
 
 // Starting paths
 const SRC_DIR = 'src/extensions';
@@ -49,7 +51,13 @@ for (const ext of extensions) {
       ]
     });
 
+    // Fix import paths in the compiled extension file
+    const fixed = fixImportsInFile(outFile);
+
     console.log(`✅ Extension compiled "${ext}" to ${outFile}`);
+    if (fixed) {
+      console.log(`🔧 Fixed imports for extension "${ext}"`);
+    }
   } catch (err) {
     console.error(`❌ Error compiling extension "${ext}":`, err.message);
   }

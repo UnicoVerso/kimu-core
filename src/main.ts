@@ -1,5 +1,6 @@
 import { KimuExtensionManager } from './core/kimu-extension-manager';
 import { KimuApp } from './core/kimu-app';
+import { KimuPathConfig } from './core/kimu-path-config';
 
 /**
  * This code initializes the Kimu framework and mounts the main application interface.
@@ -15,10 +16,17 @@ async function main() {
   try {
     console.log('[MAIN] Starting KIMU-App interface');
 
+    // Initialize path configuration FIRST (before any resource loading)
+    KimuPathConfig.initialize();
+
+    // Make KimuPathConfig globally available for testing
+    (window as any).KimuPathConfig = KimuPathConfig;
+
     // Initialize the Kimu system
     let kimuApp = await KimuApp.getInstance();
     console.log("[Kimu] version: ", kimuApp.version); 
     console.log("[Kimu] environment: ", kimuApp.environment);  
+    console.log("[Kimu] base-path: ", KimuPathConfig.getBasePath());
 
     // Initialize extension manager and the list of available extensions in /extensions
     const kimuExtensionManager = KimuExtensionManager.getInstance();

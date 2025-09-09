@@ -1,9 +1,36 @@
 import { defineConfig } from 'vite';
 import copy from 'rollup-plugin-copy';
+import fs from 'fs';
+import path from 'path';
+
+// Function to get base path from KIMU config or environment variable
+function getBasePath(): string {
+  try {
+    // Try to read from generated KIMU config first
+    const configPath = path.resolve('./src/config/kimu-build-config.ts');
+    if (fs.existsSync(configPath)) {
+      const configContent = fs.readFileSync(configPath, 'utf-8');
+      const match = configContent.match(/"base-path":\s*"([^"]+)"/);
+      if (match && match[1]) {
+        console.log(`[VITE] 🔧 Using base path from KIMU config: ${match[1]}`);
+        return match[1];
+      }
+    }
+  } catch (error) {
+    console.log('[VITE] ⚠️ Could not read KIMU config, falling back to environment variable');
+  }
+  
+  // Fallback to environment variable or default
+  const envBasePath = process.env.KIMU_BASE_PATH || '/';
+  console.log(`[VITE] 🔧 Using base path from environment: ${envBasePath}`);
+  return envBasePath;
+}
+
+const basePath = getBasePath();
 
 export default defineConfig({
   root: 'src', // main folder of the project
-  base: '/', // build base URL
+  base: basePath, // build base URL from environment or default to '/'
   publicDir: '../public', // public folder for static files
   build: {
     minify: true, // enforce code minification (ESBuild - fast)
@@ -41,6 +68,10 @@ export default defineConfig({
             { src: 'LICENSE', dest: 'dist', },
             // ✅ Copy all asset files to the final build
             { src: 'src/assets/*.*', dest: 'dist', },
+            // ✅ Copy core files to the final build (exclude .ts files)
+            { src: 'src/core/**/*.{js,json}', dest: 'dist' },
+            // ✅ Copy config files to the final build (exclude .ts files)
+            { src: 'src/config/**/*.{js,json}', dest: 'dist' },
             // ✅ Copy all JS and JSON files of modules to the final build
             { src: 'src/modules/**/*.{js,json}', dest: 'dist' },
             // ✅ Copy HTML, CSS, and JS files of extensions to the final build
