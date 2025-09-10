@@ -23,7 +23,16 @@ Questo pacchetto rappresenta il **motore runtime** del sistema, progettato per e
 👉 Questo repository è il **cuore del framework KIMU**.  
 Per scoprire la filosofia, docementazioni, esempi, gli altre estensioni,  moduli, demo e il playground, visita il progetto principale:  
 
+
 > 🔗 **KIMU framework** : **[https://github.com/unicoverso/kimu](https://github.com/unicoverso/kimu)**
+
+> 🔗 **KIMU-core** : **[https://github.com/unicoverso/kimu-core](https://github.com/unicoverso/kimu-core)**
+
+> 🔗 **KIMU docs** : **[https://unicoverso.com/kimu/docs](https://unicoverso.com/kimu/docs)**
+
+> 🔗 **KIMU-docs repository** : **[https://github.com/unicoverso/kimu-docs](https://github.com/unicoverso/kimu-docs)**
+
+> 🔗 **KIMU webpage** : **[https://unicoverso.com/kimu](https://unicoverso.com/kimu)**
 
 
 Creato da [UnicòVerso](https://unicoverso.com) (Marco Di Pasquale, alias *Hocram*), per realizzare interfacce web leggere, eleganti e reattive.
@@ -81,8 +90,11 @@ Basato sugli **standard del web**, privo di dipendenze esterne,
 👉 Il pacchetto `KIMU-CORE` sarà presto pubblicato su npm.  
 Nel frattempo, puoi clonare questo repository o includere i file JS direttamente nel tuo progetto.
 
-Documentazione ed esempi saranno presto disponibili su:  
-[https://unicoverso.com/kimu/docs/index.md](https://unicoverso.com/kimu/docs)
+Documentazione ed esempi saranno presto disponibili su: 
+
+> 🔗 **KIMU get started** : [Get Started](./docs/index.md)
+
+> 🔗 **KIMU docs online** : [https://unicoverso.com/kimu/docs](https://unicoverso.com/kimu/docs)
 
 
 ---

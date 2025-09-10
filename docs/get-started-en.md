@@ -164,6 +164,12 @@ See the full documentation in `docs/` for more.
 
 ---
 
+## 📖 Available Documentation
+
+- [📚 KIMU Online docs](https://unicoverso.com/kimu/docs) – Learn how to use the framework
+
+---
+
 ## 💌 Share your thoughts
 
 KIMU is a project built with care, shaped by intention, and carried forward with passion.
@@ -186,8 +192,11 @@ Created and maintained by:
 on behalf of the collective **[UnicòVerso](https://unicoverso.com)**
 
 - 🌍 Website: [https://unicoverso.com/kimu](https://unicoverso.com/kimu)  
+
 - 🐙 GitHub: [https://github.com/unicoverso/kimu-core](https://github.com/unicoverso/kimu-core)  
+
 - 🚀 Framework Reference: [https://github.com/unicoverso/kimu](https://github.com/unicoverso/kimu)  
+
 - 📩 Email: [info@unicoverso.com](mailto:info@unicoverso.com)
 
 ---

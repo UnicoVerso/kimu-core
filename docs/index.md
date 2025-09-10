@@ -24,17 +24,6 @@ Created by [UnicòVerso](https://unicoverso.com)
 
 ## 📖 Available Documentation
 
-- [🌱 Get Started (EN)](get-started.md) – Learn how to install and run the core framework
+- [🌱 Get Started (EN)](get-started.md) – Learn how start to install and run the core framework
 
----
-
-All other sections are **coming soon**. They will unfold as the framework evolves:
-
-- [🧩 How Extensions Work](extensions.md)
-- [🛠️ Building and Bundling](build.md)
-- [🎨 Theming and Design](theming.md)
-- [🧬 State and Context](state.md)
-- [📦 Asset Management](assets.md)
-- [📚 API Reference](api.md)
-- [⚙️ Modules and Shared Services](modules.md)
-- [🔐 Security Notes](security.md)
+- [📚 Online docs](https://unicoverso.com/kimu/docs) – Learn how to use the framework
