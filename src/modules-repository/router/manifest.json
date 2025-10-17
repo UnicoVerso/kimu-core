@@ -1,0 +1,21 @@
+{
+  "name": "router",
+  "version": "1.0.0",
+  "description": "Client-side routing module for KIMU applications with History API support",
+  "author": "KIMU Team",
+  "license": "MPL-2.0",
+  "dependencies": [],
+  "kimuCoreVersion": "^0.3.0",
+  "keywords": [
+    "router",
+    "routing",
+    "navigation",
+    "history-api",
+    "spa"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UnicoVerso/kimu-core",
+    "directory": "src/modules/router"
+  }
+}

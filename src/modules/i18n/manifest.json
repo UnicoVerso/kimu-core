@@ -1,0 +1,22 @@
+{
+  "name": "i18n",
+  "version": "1.0.0",
+  "description": "Internationalization module for KIMU applications with multi-language support and dynamic translation system",
+  "author": "KIMU Team",
+  "license": "MPL-2.0",
+  "dependencies": [],
+  "kimuCoreVersion": "^0.3.0",
+  "keywords": [
+    "i18n",
+    "internationalization",
+    "localization",
+    "translation",
+    "multilingual",
+    "language"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UnicoVerso/kimu-core",
+    "directory": "src/modules/i18n"
+  }
+}

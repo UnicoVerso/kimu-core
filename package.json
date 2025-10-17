@@ -47,7 +47,10 @@
     "build:all-ext": "node scripts/build-all-extensions.js",
     "build:all-config": "node scripts/build-all-config.js",
     "build:all-core": "node scripts/build-all-core.js",
-    "build:all-modules": "node scripts/build-all-modules.js"
+    "build:all-modules": "node scripts/build-all-modules.js",
+    "install:module": "node scripts/install-module.js",
+    "remove:module": "node scripts/remove-module.js",
+    "list:modules": "node scripts/list-modules.js"
   },
   "engines": {
     "node": ">=18.0.0",
