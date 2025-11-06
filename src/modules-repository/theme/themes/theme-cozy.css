@@ -1,0 +1,111 @@
+/**
+ * KIMU Cozy Theme
+ * Warm, feminine and cozy theme with soft colors
+ * 
+ * This file OVERRIDES the default CSS variables defined in style.css
+ * When this theme is loaded, these values take precedence.
+ */
+
+:root {
+  /* Primary colors - Soft pinks and purples */
+  --kimu-primary: #ec4899;
+  --kimu-primary-light: #f472b6;
+  --kimu-primary-dark: #db2777;
+  --kimu-text-on-primary: #ffffff;
+  
+  /* Accent colors - Warm coral/peach */
+  --kimu-accent: #fb923c;
+  --kimu-accent-light: #fdba74;
+  --kimu-accent-dark: #f97316;
+  --kimu-text-on-accent: #ffffff;
+  
+  /* Background colors - Soft creams and beiges */
+  --kimu-background: #fef3f2;
+  --kimu-background-alt: #fff1f0;
+  --kimu-surface: #ffffff;
+  
+  /* Text colors - Warm darks */
+  --kimu-text-primary: #431407;
+  --kimu-text-secondary: #78350f;
+  --kimu-text-disabled: #d97706;
+  
+  /* Semantic colors */
+  --kimu-success: #86efac;
+  --kimu-success-light: #bbf7d0;
+  --kimu-success-dark: #4ade80;
+  
+  --kimu-warning: #fbbf24;
+  --kimu-warning-light: #fde047;
+  --kimu-warning-dark: #f59e0b;
+  
+  --kimu-error: #f87171;
+  --kimu-error-light: #fca5a5;
+  --kimu-error-dark: #ef4444;
+  
+  --kimu-info: #93c5fd;
+  --kimu-info-light: #bfdbfe;
+  --kimu-info-dark: #60a5fa;
+  
+  /* Borders and dividers */
+  --kimu-border: #fed7d7;
+  --kimu-divider: #fecaca;
+  
+  /* Shadows - Soft pink tint */
+  --kimu-shadow: rgba(236, 72, 153, 0.1);
+  --kimu-shadow-light: rgba(236, 72, 153, 0.05);
+  --kimu-shadow-medium: rgba(236, 72, 153, 0.15);
+  --kimu-shadow-heavy: rgba(236, 72, 153, 0.25);
+  
+  /* Additional UI colors */
+  --kimu-card-bg: #fffbeb;
+  --kimu-card-border: #fed7aa;
+  --kimu-input-bg: #ffffff;
+  --kimu-input-border: #fecaca;
+  --kimu-input-focus: #ec4899;
+  
+  /* Navigation */
+  --kimu-nav-bg: #fef3c7;
+  --kimu-nav-text: #78350f;
+  --kimu-nav-active: #ec4899;
+  
+  /* Footer */
+  --kimu-footer-bg: #fff7ed;
+  --kimu-footer-text: #c2410c;
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Cozy gradient background */
+body {
+  background: linear-gradient(135deg, #fef3f2 0%, #fff1f0 50%, #fffbeb 100%);
+}
+
+/* Soft rounded corners for cozy feel */
+.kimu-card,
+.kimu-button,
+.kimu-input {
+  border-radius: 16px;
+}
+
+/* Subtle texture overlay (optional) */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 255, 255, 0.03) 10px,
+      rgba(255, 255, 255, 0.03) 20px
+    );
+  pointer-events: none;
+  z-index: -1;
+}

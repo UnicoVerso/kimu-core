@@ -2,6 +2,10 @@
 /TMP
 /_TMP
 
+# Building
+tsconfig.tsbuildinfo
+# /public/themes
+
 # Logs
 logs
 *.log

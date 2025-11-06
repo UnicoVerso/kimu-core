@@ -1,0 +1,84 @@
+/**
+ * KIMU Ocean Theme
+ * Ocean-inspired dark theme with blue-green tones
+ * 
+ * This file OVERRIDES the default CSS variables defined in style.css
+ * When this theme is loaded, these values take precedence.
+ */
+
+:root {
+  /* Primary colors - Ocean blues */
+  --kimu-primary: #0ea5e9;
+  --kimu-primary-light: #38bdf8;
+  --kimu-primary-dark: #0284c7;
+  --kimu-text-on-primary: #ffffff;
+  
+  /* Accent colors - Teal/Cyan */
+  --kimu-accent: #14b8a6;
+  --kimu-accent-light: #2dd4bf;
+  --kimu-accent-dark: #0d9488;
+  --kimu-text-on-accent: #ffffff;
+  
+  /* Background colors - Deep ocean */
+  --kimu-background: #0c1821;
+  --kimu-background-alt: #1b3a4b;
+  --kimu-surface: #1e3a52;
+  
+  /* Text colors */
+  --kimu-text-primary: #e0f2fe;
+  --kimu-text-secondary: #bae6fd;
+  --kimu-text-disabled: #67e8f9;
+  
+  /* Semantic colors */
+  --kimu-success: #10b981;
+  --kimu-success-light: #34d399;
+  --kimu-success-dark: #059669;
+  
+  --kimu-warning: #f59e0b;
+  --kimu-warning-light: #fbbf24;
+  --kimu-warning-dark: #d97706;
+  
+  --kimu-error: #f43f5e;
+  --kimu-error-light: #fb7185;
+  --kimu-error-dark: #e11d48;
+  
+  --kimu-info: #06b6d4;
+  --kimu-info-light: #22d3ee;
+  --kimu-info-dark: #0891b2;
+  
+  /* Borders and dividers */
+  --kimu-border: #155e75;
+  --kimu-divider: #0e7490;
+  
+  /* Shadows - Ocean themed */
+  --kimu-shadow: rgba(6, 182, 212, 0.15);
+  --kimu-shadow-light: rgba(6, 182, 212, 0.08);
+  --kimu-shadow-medium: rgba(6, 182, 212, 0.25);
+  --kimu-shadow-heavy: rgba(6, 182, 212, 0.35);
+  
+  /* Additional UI colors */
+  --kimu-card-bg: #164e63;
+  --kimu-card-border: #155e75;
+  --kimu-input-bg: #0e7490;
+  --kimu-input-border: #0891b2;
+  --kimu-input-focus: #06b6d4;
+  
+  /* Navigation */
+  --kimu-nav-bg: #083344;
+  --kimu-nav-text: #bae6fd;
+  --kimu-nav-active: #06b6d4;
+  
+  /* Footer */
+  --kimu-footer-bg: #082f49;
+  --kimu-footer-text: #7dd3fc;
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Ocean wave effect (optional) */
+body {
+  background: linear-gradient(180deg, var(--kimu-background) 0%, #164e63 100%);
+}

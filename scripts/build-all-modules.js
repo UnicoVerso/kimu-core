@@ -14,7 +14,12 @@
 import { build } from 'esbuild';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { fixImportsInFile } from './utils/fix-imports.js';
+
+// ES modules don't have __dirname, so we need to derive it
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const SRC_DIR = 'src/modules';
 const DIST_DIR = 'dist/modules';
@@ -24,6 +29,28 @@ const modules = fs.readdirSync(SRC_DIR, { withFileTypes: true })
   .filter(dirent => dirent.isDirectory())
   .map(dirent => dirent.name);
 
+// Run pre-build scripts first (before compilation)
+for (const mod of modules) {
+  const moduleDir = path.join(SRC_DIR, mod);
+  const preBuildScript = path.join(moduleDir, 'pre-build.js');
+  
+  if (fs.existsSync(preBuildScript)) {
+    try {
+      const preBuild = await import(pathToFileURL(preBuildScript).href);
+      if (preBuild.default && typeof preBuild.default === 'function') {
+        await preBuild.default({
+          moduleDir,
+          moduleName: mod,
+          rootDir: path.join(__dirname, '..')
+        });
+      }
+    } catch (err) {
+      console.warn(`⚠️  Pre-build script failed for "${mod}":`, err.message);
+    }
+  }
+}
+
+// Now compile all modules
 for (const mod of modules) {
   const moduleDir = path.join(SRC_DIR, mod);
   const outDir = path.join(DIST_DIR, mod);

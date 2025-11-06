@@ -1,0 +1,103 @@
+/**
+ * Matrix Theme - Green phosphorescent on black
+ * A hacker-style theme inspired by The Matrix
+ */
+
+:root {
+  /* Main colors */
+  --kimu-background: linear-gradient(135deg, #000000 0%, #0A0A0A 50%, #001100 100%);
+  --kimu-surface: rgba(0, 255, 65, 0.05);
+  --kimu-surface-elevated: rgba(0, 255, 65, 0.1);
+  
+  /* Text colors */
+  --kimu-text-primary: #00FF41;
+  --kimu-text-secondary: #00D936;
+  --kimu-text-tertiary: #00B32C;
+  --kimu-text-disabled: #008C23;
+  
+  /* Border colors */
+  --kimu-border: #00FF41;
+  --kimu-border-light: #33FF66;
+  --kimu-divider: rgba(0, 255, 65, 0.2);
+  
+  /* Accent colors */
+  --kimu-primary: #00FF41;
+  --kimu-primary-dark: #00D936;
+  --kimu-primary-light: #33FF66;
+  --kimu-secondary: #00E63B;
+  --kimu-accent: #66FF8C;
+  
+  /* State colors */
+  --kimu-success: #00FF41;
+  --kimu-warning: #FFFF00;
+  --kimu-error: #FF0000;
+  --kimu-info: #00FFFF;
+  
+  /* Shadow */
+  --kimu-shadow: rgba(0, 255, 65, 0.3);
+  --kimu-shadow-strong: rgba(0, 255, 65, 0.6);
+  
+  /* Component colors */
+  --kimu-input-bg: rgba(0, 17, 0, 0.8);
+  --kimu-input-border: #00FF41;
+  --kimu-button-bg: #00FF41;
+  --kimu-button-hover: #33FF66;
+  --kimu-card-bg: rgba(0, 17, 0, 0.9);
+  
+  /* Font */
+  --kimu-font: 'Courier New', 'Consolas', monospace;
+}
+
+/* Body background with gradient */
+body {
+  background: linear-gradient(135deg, #000000 0%, #0A0A0A 50%, #001100 100%);
+  background-attachment: fixed;
+  color: var(--kimu-text-primary);
+  font-family: var(--kimu-font);
+}
+
+/* Matrix rain effect */
+@keyframes matrix-rain {
+  0% {
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Digital glow effect */
+button:hover,
+a:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.8),
+              0 0 40px rgba(0, 255, 65, 0.4),
+              inset 0 0 10px rgba(0, 255, 65, 0.2);
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+}
+
+/* Text glow */
+body {
+  text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+}
+
+/* Scanline effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    transparent 1px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 3px
+  );
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.3;
+}

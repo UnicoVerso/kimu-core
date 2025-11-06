@@ -1,0 +1,90 @@
+/**
+ * Lavender Theme - Relaxing purple lavender colors
+ * A calming theme inspired by lavender fields
+ */
+
+:root {
+  /* Main colors */
+  --kimu-background: linear-gradient(135deg, #F4ECFA 0%, #E6D9F5 50%, #D8C6F0 100%);
+  --kimu-surface: rgba(216, 198, 240, 0.2);
+  --kimu-surface-elevated: rgba(216, 198, 240, 0.3);
+  
+  /* Text colors */
+  --kimu-text-primary: #4A2C5B;
+  --kimu-text-secondary: #6A4C7B;
+  --kimu-text-tertiary: #8A6C9B;
+  --kimu-text-disabled: #AA8CBB;
+  
+  /* Border colors */
+  --kimu-border: #C8B2E0;
+  --kimu-border-light: #DCC9EB;
+  --kimu-divider: rgba(200, 178, 224, 0.3);
+  
+  /* Accent colors */
+  --kimu-primary: #9B7EBD;
+  --kimu-primary-dark: #7B5E9D;
+  --kimu-primary-light: #B89ED4;
+  --kimu-secondary: #B5A2D4;
+  --kimu-accent: #D8C6F0;
+  
+  /* State colors */
+  --kimu-success: #81C784;
+  --kimu-warning: #FFB74D;
+  --kimu-error: #E57373;
+  --kimu-info: #64B5F6;
+  
+  /* Shadow */
+  --kimu-shadow: rgba(155, 126, 189, 0.3);
+  --kimu-shadow-strong: rgba(155, 126, 189, 0.5);
+  
+  /* Component colors */
+  --kimu-input-bg: #FFFFFF;
+  --kimu-input-border: #C8B2E0;
+  --kimu-button-bg: #9B7EBD;
+  --kimu-button-hover: #B89ED4;
+  --kimu-card-bg: rgba(255, 255, 255, 0.9);
+  
+  /* Font */
+  --kimu-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Body background with gradient */
+body {
+  background: linear-gradient(135deg, #F4ECFA 0%, #E6D9F5 50%, #D8C6F0 100%);
+  background-attachment: fixed;
+  color: var(--kimu-text-primary);
+}
+
+/* Lavender field effect */
+body::before {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(to top, 
+    rgba(155, 126, 189, 0.2) 0%,
+    rgba(155, 126, 189, 0.1) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Soft glow on hover */
+button:hover,
+a:hover {
+  box-shadow: 0 0 20px rgba(155, 126, 189, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* Relaxing pulse animation */
+@keyframes lavender-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(155, 126, 189, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(155, 126, 189, 0.5);
+  }
+}

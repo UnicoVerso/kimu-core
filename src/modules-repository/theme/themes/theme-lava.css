@@ -1,0 +1,101 @@
+/**
+ * Lava Theme - Intense red and orange fire colors
+ * A powerful theme inspired by molten lava
+ */
+
+:root {
+  /* Main colors */
+  --kimu-background: linear-gradient(135deg, #1A0000 0%, #330000 30%, #4D0000 60%, #660000 100%);
+  --kimu-surface: rgba(255, 69, 0, 0.1);
+  --kimu-surface-elevated: rgba(255, 69, 0, 0.2);
+  
+  /* Text colors */
+  --kimu-text-primary: #FFE5D9;
+  --kimu-text-secondary: #FFD4BF;
+  --kimu-text-tertiary: #FFC4A6;
+  --kimu-text-disabled: #CC9980;
+  
+  /* Border colors */
+  --kimu-border: #FF4500;
+  --kimu-border-light: #FF6347;
+  --kimu-divider: rgba(255, 69, 0, 0.3);
+  
+  /* Accent colors */
+  --kimu-primary: #FF4500;
+  --kimu-primary-dark: #CC3700;
+  --kimu-primary-light: #FF6347;
+  --kimu-secondary: #FF8C00;
+  --kimu-accent: #FFD700;
+  
+  /* State colors */
+  --kimu-success: #FFD700;
+  --kimu-warning: #FFA500;
+  --kimu-error: #B22222;
+  --kimu-info: #FF6347;
+  
+  /* Shadow */
+  --kimu-shadow: rgba(255, 69, 0, 0.5);
+  --kimu-shadow-strong: rgba(255, 69, 0, 0.8);
+  
+  /* Component colors */
+  --kimu-input-bg: rgba(51, 0, 0, 0.7);
+  --kimu-input-border: #FF4500;
+  --kimu-button-bg: #FF4500;
+  --kimu-button-hover: #FF6347;
+  --kimu-card-bg: rgba(51, 0, 0, 0.8);
+  
+  /* Font */
+  --kimu-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Body background with gradient */
+body {
+  background: linear-gradient(135deg, #1A0000 0%, #330000 30%, #4D0000 60%, #660000 100%);
+  background-attachment: fixed;
+  color: var(--kimu-text-primary);
+}
+
+/* Lava glow animation */
+@keyframes lava-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.5),
+                0 0 40px rgba(255, 69, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 140, 0, 0.7),
+                0 0 60px rgba(255, 140, 0, 0.5);
+  }
+}
+
+/* Fire effect on hover */
+button:hover,
+a:hover {
+  animation: lava-glow 2s infinite;
+}
+
+/* Ember particles effect */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(3px 3px at 10% 20%, rgba(255, 140, 0, 0.4), transparent),
+    radial-gradient(2px 2px at 80% 60%, rgba(255, 69, 0, 0.3), transparent),
+    radial-gradient(3px 3px at 40% 80%, rgba(255, 215, 0, 0.4), transparent);
+  background-size: 300px 300px;
+  animation: ember-rise 15s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes ember-rise {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}

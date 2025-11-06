@@ -1,0 +1,94 @@
+/**
+ * Nord Theme - Cold and relaxing Nordic theme
+ * Based on Nord color palette: https://www.nordtheme.com/
+ * 
+ * Color Palette:
+ * - Polar Night (dark backgrounds): #2E3440, #3B4252, #434C5E, #4C566A
+ * - Snow Storm (light foregrounds): #D8DEE9, #E5E9F0, #ECEFF4
+ * - Frost (blues): #8FBCBB, #88C0D0, #81A1C1, #5E81AC
+ * - Aurora (accents): #BF616A, #D08770, #EBCB8B, #A3BE8C, #B48EAD
+ */
+
+:root {
+  /* Primary Colors - Frost Blue */
+  --kimu-primary: #88C0D0;
+  --kimu-primary-hover: #8FBCBB;
+  --kimu-primary-active: #81A1C1;
+  --kimu-primary-light: rgba(136, 192, 208, 0.1);
+
+  /* Secondary Colors - Aurora Purple */
+  --kimu-secondary: #B48EAD;
+  --kimu-secondary-hover: #c4a3bb;
+  --kimu-secondary-active: #a47d9a;
+
+  /* Accent Colors - Aurora Green */
+  --kimu-accent: #A3BE8C;
+  --kimu-accent-hover: #b3ce9c;
+  --kimu-accent-active: #93ae7c;
+
+  /* Background Colors - Polar Night */
+  --kimu-bg-primary: #2E3440;
+  --kimu-bg-secondary: #3B4252;
+  --kimu-bg-tertiary: #434C5E;
+  --kimu-bg-hover: #4C566A;
+
+  /* Text Colors - Snow Storm */
+  --kimu-text-primary: #ECEFF4;
+  --kimu-text-secondary: #E5E9F0;
+  --kimu-text-tertiary: #D8DEE9;
+  --kimu-text-disabled: #4C566A;
+
+  /* Border Colors */
+  --kimu-border: #4C566A;
+  --kimu-border-light: #434C5E;
+  --kimu-border-strong: #5E81AC;
+
+  /* Status Colors - Aurora */
+  --kimu-success: #A3BE8C;
+  --kimu-warning: #EBCB8B;
+  --kimu-error: #BF616A;
+  --kimu-info: #81A1C1;
+
+  /* Shadows - Darker for depth */
+  --kimu-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --kimu-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --kimu-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+
+  /* Additional Component-specific Colors */
+  --kimu-card-bg: var(--kimu-bg-secondary);
+  --kimu-input-bg: var(--kimu-bg-tertiary);
+  --kimu-input-border: var(--kimu-border);
+  --kimu-input-focus: var(--kimu-primary);
+
+  /* Links */
+  --kimu-link: var(--kimu-primary);
+  --kimu-link-hover: var(--kimu-primary-hover);
+
+  /* Overlays */
+  --kimu-overlay: rgba(46, 52, 64, 0.8);
+}
+
+/* Optional: Add some Nord-specific styling */
+body {
+  color: var(--kimu-text-primary);
+  background: var(--kimu-bg-primary);
+}
+
+/* Scrollbar styling for Nord theme */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--kimu-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--kimu-border);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--kimu-primary);
+}

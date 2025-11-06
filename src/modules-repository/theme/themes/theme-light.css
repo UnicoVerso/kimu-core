@@ -1,0 +1,79 @@
+/**
+ * KIMU Light Theme
+ * Clean and bright theme for daytime use
+ * 
+ * This file OVERRIDES the default CSS variables defined in style.css
+ * When this theme is loaded, these values take precedence.
+ */
+
+:root {
+  /* Primary colors */
+  --kimu-primary: #667eea;
+  --kimu-primary-light: #818cf8;
+  --kimu-primary-dark: #5a67d8;
+  --kimu-text-on-primary: #ffffff;
+  
+  /* Accent colors */
+  --kimu-accent: #764ba2;
+  --kimu-accent-light: #9f7aea;
+  --kimu-accent-dark: #6b46c1;
+  --kimu-text-on-accent: #ffffff;
+  
+  /* Background colors */
+  --kimu-background: #ffffff;
+  --kimu-background-alt: #f7fafc;
+  --kimu-surface: #ffffff;
+  
+  /* Text colors */
+  --kimu-text-primary: #1a202c;
+  --kimu-text-secondary: #4a5568;
+  --kimu-text-disabled: #a0aec0;
+  
+  /* Semantic colors */
+  --kimu-success: #22c55e;
+  --kimu-success-light: #4ade80;
+  --kimu-success-dark: #16a34a;
+  
+  --kimu-warning: #f59e0b;
+  --kimu-warning-light: #fbbf24;
+  --kimu-warning-dark: #d97706;
+  
+  --kimu-error: #ef4444;
+  --kimu-error-light: #f87171;
+  --kimu-error-dark: #dc2626;
+  
+  --kimu-info: #3b82f6;
+  --kimu-info-light: #60a5fa;
+  --kimu-info-dark: #2563eb;
+  
+  /* Borders and dividers */
+  --kimu-border: #e2e8f0;
+  --kimu-divider: #cbd5e0;
+  
+  /* Shadows */
+  --kimu-shadow: rgba(0, 0, 0, 0.1);
+  --kimu-shadow-light: rgba(0, 0, 0, 0.05);
+  --kimu-shadow-medium: rgba(0, 0, 0, 0.15);
+  --kimu-shadow-heavy: rgba(0, 0, 0, 0.25);
+  
+  /* Additional UI colors */
+  --kimu-card-bg: #ffffff;
+  --kimu-card-border: #e2e8f0;
+  --kimu-input-bg: #ffffff;
+  --kimu-input-border: #cbd5e0;
+  --kimu-input-focus: #667eea;
+  
+  /* Navigation */
+  --kimu-nav-bg: #ffffff;
+  --kimu-nav-text: #4a5568;
+  --kimu-nav-active: #667eea;
+  
+  /* Footer */
+  --kimu-footer-bg: #f7fafc;
+  --kimu-footer-text: #718096;
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

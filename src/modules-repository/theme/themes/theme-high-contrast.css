@@ -1,0 +1,126 @@
+/**
+ * High Contrast Theme - For accessibility
+ * 
+ * Designed following WCAG AAA guidelines:
+ * - Contrast ratio ≥ 7:1 for normal text
+ * - Contrast ratio ≥ 4.5:1 for large text
+ * - Clear visual indicators for focus and active states
+ */
+
+:root {
+  /* Primary Colors - Pure Black on White */
+  --kimu-primary: #0000FF;
+  --kimu-primary-hover: #0000CC;
+  --kimu-primary-active: #000099;
+  --kimu-primary-light: rgba(0, 0, 255, 0.15);
+
+  /* Secondary Colors - Dark Green */
+  --kimu-secondary: #006600;
+  --kimu-secondary-hover: #008800;
+  --kimu-secondary-active: #004400;
+
+  /* Accent Colors - Dark Purple */
+  --kimu-accent: #660099;
+  --kimu-accent-hover: #7700AA;
+  --kimu-accent-active: #550088;
+
+  /* Background Colors - Pure White */
+  --kimu-bg-primary: #FFFFFF;
+  --kimu-bg-secondary: #F5F5F5;
+  --kimu-bg-tertiary: #EBEBEB;
+  --kimu-bg-hover: #E0E0E0;
+
+  /* Text Colors - Pure Black */
+  --kimu-text-primary: #000000;
+  --kimu-text-secondary: #1A1A1A;
+  --kimu-text-tertiary: #333333;
+  --kimu-text-disabled: #666666;
+
+  /* Border Colors - Strong Contrast */
+  --kimu-border: #000000;
+  --kimu-border-light: #333333;
+  --kimu-border-strong: #000000;
+
+  /* Status Colors - High Contrast */
+  --kimu-success: #006600;
+  --kimu-warning: #CC6600;
+  --kimu-error: #CC0000;
+  --kimu-info: #0000CC;
+
+  /* Shadows - Stronger for visibility */
+  --kimu-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --kimu-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.5);
+  --kimu-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+
+  /* Additional Component-specific Colors */
+  --kimu-card-bg: var(--kimu-bg-primary);
+  --kimu-input-bg: #FFFFFF;
+  --kimu-input-border: #000000;
+  --kimu-input-focus: #0000FF;
+
+  /* Links - Underlined by default for accessibility */
+  --kimu-link: #0000FF;
+  --kimu-link-hover: #0000CC;
+
+  /* Overlays */
+  --kimu-overlay: rgba(0, 0, 0, 0.85);
+}
+
+/* High Contrast specific enhancements */
+body {
+  color: var(--kimu-text-primary);
+  background: var(--kimu-bg-primary);
+}
+
+/* Ensure all links are underlined */
+a {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/* Strong focus indicators */
+:focus-visible {
+  outline: 3px solid var(--kimu-primary);
+  outline-offset: 2px;
+}
+
+/* Button styling with clear borders */
+button {
+  border: 2px solid var(--kimu-border) !important;
+  font-weight: bold;
+}
+
+/* Input styling with clear borders */
+input,
+textarea,
+select {
+  border: 2px solid var(--kimu-border) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--kimu-input-focus) !important;
+  outline: 2px solid var(--kimu-input-focus);
+  outline-offset: 1px;
+}
+
+/* Scrollbar - High contrast */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F0F0F0;
+  border: 1px solid #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #000000;
+  border: 2px solid #FFFFFF;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333333;
+}

@@ -1,0 +1,62 @@
+/**
+ * Sunset Theme - Warm orange and pink sunset colors
+ * A warm and energetic theme inspired by beautiful sunsets
+ */
+
+:root {
+  /* Main colors */
+  --kimu-background: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFA07A 100%);
+  --kimu-surface: rgba(255, 107, 53, 0.1);
+  --kimu-surface-elevated: rgba(255, 107, 53, 0.15);
+  
+  /* Text colors */
+  --kimu-text-primary: #2D1B00;
+  --kimu-text-secondary: #5D3A1A;
+  --kimu-text-tertiary: #8B5A2B;
+  --kimu-text-disabled: #A67C52;
+  
+  /* Border colors */
+  --kimu-border: #FF8C52;
+  --kimu-border-light: #FFB088;
+  --kimu-divider: rgba(255, 107, 53, 0.2);
+  
+  /* Accent colors */
+  --kimu-primary: #FF6B35;
+  --kimu-primary-dark: #E55B2B;
+  --kimu-primary-light: #FF8C52;
+  --kimu-secondary: #F7931E;
+  --kimu-accent: #FFA07A;
+  
+  /* State colors */
+  --kimu-success: #FFD700;
+  --kimu-warning: #FF8C00;
+  --kimu-error: #DC143C;
+  --kimu-info: #FF7F50;
+  
+  /* Shadow */
+  --kimu-shadow: rgba(255, 107, 53, 0.3);
+  --kimu-shadow-strong: rgba(255, 107, 53, 0.5);
+  
+  /* Component colors */
+  --kimu-input-bg: #FFF5EE;
+  --kimu-input-border: #FF8C52;
+  --kimu-button-bg: #FF6B35;
+  --kimu-button-hover: #E55B2B;
+  --kimu-card-bg: rgba(255, 255, 255, 0.95);
+  
+  /* Font */
+  --kimu-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Body background with gradient */
+body {
+  background: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFA07A 100%);
+  background-attachment: fixed;
+  color: var(--kimu-text-primary);
+}
+
+/* Glow effect for interactive elements */
+button:hover,
+a:hover {
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.6);
+}

@@ -1,0 +1,171 @@
+/**
+ * Forest Theme - Natural green theme
+ * 
+ * Inspired by nature with earthy greens, browns,
+ * and natural tones for a calming effect
+ */
+
+:root {
+  /* Primary Colors - Forest Green */
+  --kimu-primary: #2D5016;
+  --kimu-primary-hover: #3A6B1E;
+  --kimu-primary-active: #234012;
+  --kimu-primary-light: rgba(45, 80, 22, 0.1);
+
+  /* Secondary Colors - Moss Green */
+  --kimu-secondary: #5A7D3C;
+  --kimu-secondary-hover: #6B9147;
+  --kimu-secondary-active: #4A6B30;
+
+  /* Accent Colors - Earthy Brown */
+  --kimu-accent: #8B6F47;
+  --kimu-accent-hover: #A68658;
+  --kimu-accent-active: #755E3B;
+
+  /* Background Colors - Light Natural Tones */
+  --kimu-bg-primary: #F5F3EF;
+  --kimu-bg-secondary: #EAE7E0;
+  --kimu-bg-tertiary: #DDD9CF;
+  --kimu-bg-hover: #D0CCBF;
+
+  /* Text Colors - Dark Natural */
+  --kimu-text-primary: #2C2C2C;
+  --kimu-text-secondary: #4A4A4A;
+  --kimu-text-tertiary: #6A6A6A;
+  --kimu-text-disabled: #9A9A9A;
+
+  /* Border Colors - Subtle Earthy */
+  --kimu-border: #B8B3A7;
+  --kimu-border-light: #D0CCBF;
+  --kimu-border-strong: #8B6F47;
+
+  /* Status Colors - Natural Palette */
+  --kimu-success: #4A7C2E;
+  --kimu-warning: #D4A017;
+  --kimu-error: #A94442;
+  --kimu-info: #5A7D8C;
+
+  /* Shadows - Soft natural */
+  --kimu-shadow-sm: 0 2px 4px rgba(45, 80, 22, 0.1);
+  --kimu-shadow-md: 0 4px 8px rgba(45, 80, 22, 0.15);
+  --kimu-shadow-lg: 0 8px 16px rgba(45, 80, 22, 0.2);
+
+  /* Additional Component-specific Colors */
+  --kimu-card-bg: #FFFFFF;
+  --kimu-input-bg: #FFFFFF;
+  --kimu-input-border: var(--kimu-border);
+  --kimu-input-focus: var(--kimu-primary);
+
+  /* Links */
+  --kimu-link: var(--kimu-primary);
+  --kimu-link-hover: var(--kimu-secondary);
+
+  /* Overlays */
+  --kimu-overlay: rgba(45, 80, 22, 0.6);
+}
+
+/* Forest-specific styling */
+body {
+  color: var(--kimu-text-primary);
+  background: var(--kimu-bg-primary);
+}
+
+/* Add subtle texture */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(45, 80, 22, 0.02) 2px,
+      rgba(45, 80, 22, 0.02) 4px
+    );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Headers with natural feel */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--kimu-primary);
+  font-weight: 600;
+}
+
+/* Buttons with organic feel */
+button {
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--kimu-shadow-md);
+}
+
+/* Cards with paper-like appearance */
+.card,
+[class*="card"] {
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: var(--kimu-shadow-sm);
+}
+
+/* Inputs with natural borders */
+input,
+textarea,
+select {
+  border-radius: 6px;
+  border: 1.5px solid var(--kimu-border);
+  transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--kimu-primary);
+  box-shadow: 0 0 0 3px var(--kimu-primary-light);
+}
+
+/* Links with natural underline */
+a {
+  text-decoration: none;
+  border-bottom: 1px solid var(--kimu-border-light);
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  border-bottom-color: var(--kimu-primary);
+  color: var(--kimu-primary);
+}
+
+/* Scrollbar - Natural wood style */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--kimu-bg-secondary);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--kimu-secondary), var(--kimu-accent));
+  border-radius: 6px;
+  border: 2px solid var(--kimu-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--kimu-primary);
+}
+
+/* Selection with natural highlight */
+::selection {
+  background: var(--kimu-primary-light);
+  color: var(--kimu-text-primary);
+}

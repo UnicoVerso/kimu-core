@@ -1,0 +1,78 @@
+/**
+ * Cherry Blossom Theme - Delicate pink sakura colors
+ * A soft and elegant theme inspired by Japanese cherry blossoms
+ */
+
+:root {
+  /* Main colors */
+  --kimu-background: linear-gradient(135deg, #FFE5EC 0%, #FFD6E0 50%, #FFC2D4 100%);
+  --kimu-surface: rgba(255, 194, 212, 0.2);
+  --kimu-surface-elevated: rgba(255, 194, 212, 0.3);
+  
+  /* Text colors */
+  --kimu-text-primary: #6B2E4F;
+  --kimu-text-secondary: #8B4A6F;
+  --kimu-text-tertiary: #A86B8F;
+  --kimu-text-disabled: #C28BAF;
+  
+  /* Border colors */
+  --kimu-border: #FFB3C6;
+  --kimu-border-light: #FFCCD9;
+  --kimu-divider: rgba(255, 179, 198, 0.3);
+  
+  /* Accent colors */
+  --kimu-primary: #FF9EBB;
+  --kimu-primary-dark: #FF85AA;
+  --kimu-primary-light: #FFB3C6;
+  --kimu-secondary: #FFAAC2;
+  --kimu-accent: #FFC2D4;
+  
+  /* State colors */
+  --kimu-success: #98D8C8;
+  --kimu-warning: #FFD93D;
+  --kimu-error: #FF6B9D;
+  --kimu-info: #C8A2D0;
+  
+  /* Shadow */
+  --kimu-shadow: rgba(255, 158, 187, 0.3);
+  --kimu-shadow-strong: rgba(255, 158, 187, 0.5);
+  
+  /* Component colors */
+  --kimu-input-bg: #FFFFFF;
+  --kimu-input-border: #FFB3C6;
+  --kimu-button-bg: #FF9EBB;
+  --kimu-button-hover: #FF85AA;
+  --kimu-card-bg: rgba(255, 255, 255, 0.9);
+  
+  /* Font */
+  --kimu-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Body background with gradient */
+body {
+  background: linear-gradient(135deg, #FFE5EC 0%, #FFD6E0 50%, #FFC2D4 100%);
+  background-attachment: fixed;
+  color: var(--kimu-text-primary);
+}
+
+/* Petal animation effect */
+@keyframes petal-fall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Soft glow on hover */
+button:hover,
+a:hover {
+  box-shadow: 0 0 15px rgba(255, 158, 187, 0.6);
+  transition: all 0.3s ease;
+}

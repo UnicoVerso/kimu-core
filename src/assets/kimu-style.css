@@ -3,30 +3,27 @@ This file can be freely modified by developers.
 Changes made to this page are not subject to the publication requirement of the MPL framework license.
 */
 
-/* Base styles */
-:root {
-  /* Base KIMU Palette */
-  --kimu-bg: #f4f1ea;
-  --kimu-text: #3c3c3c;
-  --kimu-primary: #2b7cff;
-  --kimu-accent: #ffcc00;
-  --kimu-danger: #e63946;
+/**
+ * KIMU Component Styles
+ * 
+ * This file defines component styles using CSS custom properties (variables).
+ * The variables are defined in two places:
+ * 
+ * 1. style.css - provides DEFAULT values (fallback when theme module is not installed)
+ * 2. /themes/*.css - theme module CSS files that OVERRIDE defaults when a theme is active
+ * 
+ * This approach ensures the app has basic styling even without the theme module.
+ */
 
-  /* Font and dimensions */
-  --kimu-font: sans-serif;
-  --kimu-radius: 6px;
-}
-
-/* Base component style */
+/* Base component style - uses theme colors */
 .kimu-component {
   display: block;
-  color: var(--kimu-text, #3c3c3c);
+  color: var(--kimu-text-primary);
   background-color: transparent;
-  font-family: var(--kimu-font, sans-serif);
+  font-family: var(--kimu-font);
   font-optical-sizing: auto;
-  font-weight: 100;
+  font-weight: 400;
   font-style: normal;
-  font-variation-settings: "wdth" 100;
   text-align: center;
 }
 
@@ -34,10 +31,10 @@ Changes made to this page are not subject to the publication requirement of the 
   width: 100%;
   height: 100%;
   padding: 1.5rem;
-  /* margin: .5rem; */
-  border-radius: 12px;
-  background: #535353;
-  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.4);
+  border-radius: var(--kimu-radius);
+  background: var(--kimu-surface);
+  box-shadow: var(--kimu-shadow-lg);
+  border: 1px solid var(--kimu-border);
   box-sizing: border-box;
   overflow: auto;
   display: flex;
@@ -61,32 +58,27 @@ button {
   text-wrap-mode: nowrap;
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #c8d5b9;
-  color: #2f4f4f;
-  /* border: none; */
-  border: 1px solid #cccccc;
-  border-radius: var(--kimu-radius, 6px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(4px);
+  background-color: var(--kimu-primary);
+  color: var(--kimu-text-on-primary);
+  border: 1px solid var(--kimu-border);
+  border-radius: var(--kimu-radius);
+  box-shadow: var(--kimu-shadow);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  /* transition: background-color 0.2s ease, transform 0.1s ease; */
-  /* transition: background-color 0.2s ease-in-out; */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.25rem;
+  font-weight: 500;
 }
 
 button:hover {
-  background-color: #b3c7a4;
-  /* background-color: #f0f0f0; */
-  /* transform: scale(1.02); */
-  transform: translateY(-3px) scale(1.2);
-  /* background: linear-gradient(145deg, #ffffff, #f3f3f3); */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  background-color: var(--kimu-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--kimu-shadow-lg);
 }
 
 button:active {
   transform: scale(0.98);
+  box-shadow: var(--kimu-shadow);
 }

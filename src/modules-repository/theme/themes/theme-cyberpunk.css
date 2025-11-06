@@ -1,0 +1,150 @@
+/**
+ * Cyberpunk Theme - Futuristic neon aesthetic
+ * 
+ * Inspired by cyberpunk aesthetics with neon colors,
+ * dark backgrounds, and electric accents
+ */
+
+:root {
+  /* Primary Colors - Neon Cyan */
+  --kimu-primary: #00F0FF;
+  --kimu-primary-hover: #33F3FF;
+  --kimu-primary-active: #00D0E0;
+  --kimu-primary-light: rgba(0, 240, 255, 0.15);
+
+  /* Secondary Colors - Electric Pink */
+  --kimu-secondary: #FF006E;
+  --kimu-secondary-hover: #FF3388;
+  --kimu-secondary-active: #E0005E;
+
+  /* Accent Colors - Neon Purple */
+  --kimu-accent: #B100FF;
+  --kimu-accent-hover: #C433FF;
+  --kimu-accent-active: #9900E0;
+
+  /* Background Colors - Deep Dark */
+  --kimu-bg-primary: #0A0A0F;
+  --kimu-bg-secondary: #14141F;
+  --kimu-bg-tertiary: #1E1E2E;
+  --kimu-bg-hover: #28283D;
+
+  /* Text Colors - Bright Neon */
+  --kimu-text-primary: #F0F0FF;
+  --kimu-text-secondary: #C0C0E0;
+  --kimu-text-tertiary: #9090C0;
+  --kimu-text-disabled: #505070;
+
+  /* Border Colors - Glowing edges */
+  --kimu-border: #00F0FF;
+  --kimu-border-light: rgba(0, 240, 255, 0.3);
+  --kimu-border-strong: #FF006E;
+
+  /* Status Colors - Neon Palette */
+  --kimu-success: #00FF88;
+  --kimu-warning: #FFD700;
+  --kimu-error: #FF0055;
+  --kimu-info: #00CCFF;
+
+  /* Shadows - Glowing effects */
+  --kimu-shadow-sm: 0 0 10px rgba(0, 240, 255, 0.3);
+  --kimu-shadow-md: 0 0 20px rgba(0, 240, 255, 0.4);
+  --kimu-shadow-lg: 0 0 30px rgba(0, 240, 255, 0.5);
+
+  /* Additional Component-specific Colors */
+  --kimu-card-bg: var(--kimu-bg-secondary);
+  --kimu-input-bg: var(--kimu-bg-tertiary);
+  --kimu-input-border: var(--kimu-border-light);
+  --kimu-input-focus: var(--kimu-primary);
+
+  /* Links - Neon glow */
+  --kimu-link: var(--kimu-primary);
+  --kimu-link-hover: var(--kimu-secondary);
+
+  /* Overlays */
+  --kimu-overlay: rgba(10, 10, 15, 0.9);
+}
+
+/* Cyberpunk-specific styling */
+body {
+  color: var(--kimu-text-primary);
+  background: var(--kimu-bg-primary);
+  font-family: 'Courier New', 'Consolas', monospace;
+}
+
+/* Add subtle grid background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Glowing text effect for headers */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--kimu-primary);
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+/* Button glow effects */
+button {
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Input glow on focus */
+input:focus,
+textarea:focus,
+select:focus {
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+  border-color: var(--kimu-primary);
+}
+
+/* Link neon glow */
+a {
+  text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  text-shadow: 0 0 10px rgba(255, 0, 110, 0.8);
+}
+
+/* Scrollbar - Neon style */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--kimu-bg-secondary);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00F0FF, #B100FF);
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
+}
+
+/* Selection glow */
+::selection {
+  background: rgba(0, 240, 255, 0.3);
+  text-shadow: 0 0 5px rgba(0, 240, 255, 0.8);
+}

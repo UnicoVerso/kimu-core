@@ -2,6 +2,7 @@ import { KimuEngine } from './kimu-engine';
 import { KimuExtensionManager } from './kimu-extension-manager';
 import { KimuExtensionMeta } from './kimu-types';
 import { KimuPathConfig } from './kimu-path-config';
+import { KimuGlobalStyles } from './kimu-global-styles';
 
 /**
  * The `KimuComponentElement` class serves as the base class for all components and extensions
@@ -162,8 +163,11 @@ export abstract class KimuComponentElement extends HTMLElement {
       await Promise.all(meta.dependencies.map(dep => manager.load(dep)));
     }
 
-    // Inject default CSS for the component
-    await KimuEngine.injectStyle(this, 'assets/kimu-style.css', 'kimu-style-ext-default');
+    // Inject all registered global styles (kimu-style.css + theme CSS, etc.)
+    const globalStyles = KimuGlobalStyles.getGlobalStyles();
+    for (const style of globalStyles) {
+      await KimuEngine.injectStyle(this, style.path, style.id);
+    }
 
     // Inject external styles (if present, just once)
     if (meta.style) {

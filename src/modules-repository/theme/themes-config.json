@@ -1,0 +1,213 @@
+{
+  "themes": [
+    {
+      "name": "light",
+      "mode": "light",
+      "cssPath": "theme-light.css",
+      "description": "Clean and bright theme",
+      "icon": "☀️",
+      "colors": {
+        "background": "#ffffff",
+        "backgroundEnd": "#f7fafc",
+        "text": "#1a202c",
+        "border": "#e2e8f0"
+      }
+    },
+    {
+      "name": "dark",
+      "mode": "dark",
+      "cssPath": "theme-dark.css",
+      "description": "Dark theme for low-light environments",
+      "icon": "🌙",
+      "colors": {
+        "background": "#1a202c",
+        "backgroundEnd": "#2d3748",
+        "text": "#f7fafc",
+        "border": "#4a5568"
+      }
+    },
+    {
+      "name": "ocean",
+      "mode": "dark",
+      "cssPath": "theme-ocean.css",
+      "description": "Ocean-inspired dark theme",
+      "icon": "🌊",
+      "colors": {
+        "background": "#0c1821",
+        "backgroundEnd": "#1b3a4b",
+        "text": "#e0f2fe",
+        "border": "#155e75"
+      }
+    },
+    {
+      "name": "cozy",
+      "mode": "light",
+      "cssPath": "theme-cozy.css",
+      "description": "Warm and cozy feminine theme",
+      "icon": "🌸",
+      "colors": {
+        "background": "#fef3f2",
+        "backgroundEnd": "#fff1f0",
+        "text": "#431407",
+        "border": "#fed7d7"
+      }
+    },
+    {
+      "name": "nord",
+      "mode": "dark",
+      "cssPath": "theme-nord.css",
+      "description": "Cold and relaxing Nordic theme",
+      "icon": "❄️",
+      "colors": {
+        "background": "#2E3440",
+        "backgroundEnd": "#3B4252",
+        "text": "#88C0D0",
+        "border": "#4C566A"
+      }
+    },
+    {
+      "name": "forest",
+      "mode": "light",
+      "cssPath": "theme-forest.css",
+      "description": "Natural green theme",
+      "icon": "🌲",
+      "colors": {
+        "background": "#F5F3EF",
+        "backgroundEnd": "#EAE7E0",
+        "text": "#2D5016",
+        "border": "#B8B3A7"
+      }
+    },
+    {
+      "name": "high-contrast",
+      "mode": "light",
+      "cssPath": "theme-high-contrast.css",
+      "description": "High contrast theme for accessibility",
+      "icon": "⚡",
+      "colors": {
+        "background": "#FFFFFF",
+        "backgroundEnd": "#F5F5F5",
+        "text": "#000000",
+        "border": "#000000"
+      }
+    },
+    {
+      "name": "cyberpunk",
+      "mode": "dark",
+      "cssPath": "theme-cyberpunk.css",
+      "description": "Futuristic neon theme",
+      "icon": "🎮",
+      "colors": {
+        "background": "#0A0A0F",
+        "backgroundEnd": "#14141F",
+        "text": "#00F0FF",
+        "border": "#FF006E"
+      }
+    },
+    {
+      "name": "retro80s",
+      "mode": "dark",
+      "cssPath": "theme-retro80s.css",
+      "description": "Nostalgic 80s aesthetic with LED and laser effects",
+      "icon": "🕹️",
+      "colors": {
+        "background": "#0D0221",
+        "backgroundEnd": "#190F33",
+        "text": "#FF10F0",
+        "border": "#00FFFF"
+      }
+    },
+    {
+      "name": "sunset",
+      "mode": "light",
+      "cssPath": "theme-sunset.css",
+      "description": "Warm orange and pink sunset colors",
+      "icon": "🌅",
+      "colors": {
+        "background": "#FF6B35",
+        "backgroundEnd": "#FFA07A",
+        "text": "#2D1B00",
+        "border": "#FF8C52"
+      }
+    },
+    {
+      "name": "midnight",
+      "mode": "dark",
+      "cssPath": "theme-midnight.css",
+      "description": "Deep blue night colors with stars",
+      "icon": "🌃",
+      "colors": {
+        "background": "#0B1D3D",
+        "backgroundEnd": "#2A4A7C",
+        "text": "#E0E7FF",
+        "border": "#3D5A8C"
+      }
+    },
+    {
+      "name": "cherry-blossom",
+      "mode": "light",
+      "cssPath": "theme-cherry-blossom.css",
+      "description": "Delicate pink sakura colors",
+      "icon": "🌸",
+      "colors": {
+        "background": "#FFE5EC",
+        "backgroundEnd": "#FFC2D4",
+        "text": "#6B2E4F",
+        "border": "#FFB3C6"
+      }
+    },
+    {
+      "name": "lava",
+      "mode": "dark",
+      "cssPath": "theme-lava.css",
+      "description": "Intense red and orange fire colors",
+      "icon": "🌋",
+      "colors": {
+        "background": "#1A0000",
+        "backgroundEnd": "#660000",
+        "text": "#FFE5D9",
+        "border": "#FF4500"
+      }
+    },
+    {
+      "name": "matrix",
+      "mode": "dark",
+      "cssPath": "theme-matrix.css",
+      "description": "Green phosphorescent hacker theme",
+      "icon": "💚",
+      "colors": {
+        "background": "#000000",
+        "backgroundEnd": "#001100",
+        "text": "#00FF41",
+        "border": "#00FF41"
+      }
+    },
+    {
+      "name": "gold",
+      "mode": "dark",
+      "cssPath": "theme-gold.css",
+      "description": "Elegant gold and luxury colors",
+      "icon": "👑",
+      "colors": {
+        "background": "#1A1410",
+        "backgroundEnd": "#3A3020",
+        "text": "#FFD700",
+        "border": "#DAA520"
+      }
+    },
+    {
+      "name": "lavender",
+      "mode": "light",
+      "cssPath": "theme-lavender.css",
+      "description": "Relaxing purple lavender colors",
+      "icon": "💜",
+      "colors": {
+        "background": "#F4ECFA",
+        "backgroundEnd": "#D8C6F0",
+        "text": "#4A2C5B",
+        "border": "#C8B2E0"
+      }
+    }
+  ],
+  "defaultTheme": "light"
+}

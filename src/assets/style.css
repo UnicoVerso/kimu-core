@@ -3,48 +3,78 @@ This file can be freely modified by developers.
 Changes made to this page are not subject to the publication requirement of the MPL framework license.
 */
 
-/* Base styles */
+/* Base styles with fallback values */
 :root {
-  /* Palette base */
-  --kimu-bg: #f4f1ea;
-  --kimu-text: #3c3c3c;
-  --kimu-primary: #2b7cff;
-  --kimu-accent: #ffcc00;
-  --kimu-danger: #e63946;
-
-  /* Font e dimensioni */
-  --kimu-font: sans-serif;
-  --kimu-radius: 6px;
+  /* Default theme colors (overridden by theme module if installed) */
+  /* These provide basic styling when no theme module is active */
+  
+  /* Primary colors */
+  --kimu-primary: #667eea;
+  --kimu-primary-light: #818cf8;
+  --kimu-primary-dark: #5a67d8;
+  --kimu-text-on-primary: #ffffff;
+  
+  /* Accent colors */
+  --kimu-accent: #764ba2;
+  --kimu-accent-light: #9f7aea;
+  --kimu-accent-dark: #6b46c1;
+  --kimu-text-on-accent: #ffffff;
+  
+  /* Background colors */
+  --kimu-background: #ffffff;
+  --kimu-background-alt: #f7fafc;
+  --kimu-surface: #ffffff;
+  
+  /* Text colors */
+  --kimu-text-primary: #1a202c;
+  --kimu-text-secondary: #4a5568;
+  --kimu-text-disabled: #a0aec0;
+  
+  /* Borders and dividers */
+  --kimu-border: #e2e8f0;
+  --kimu-divider: #cbd5e0;
+  
+  /* Semantic colors */
+  --kimu-success: #22c55e;
+  --kimu-warning: #f59e0b;
+  --kimu-error: #ef4444;
+  --kimu-info: #3b82f6;
+  
+  /* Font and dimensions */
+  --kimu-font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --kimu-radius: 8px;
+  --kimu-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --kimu-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* Base styles */
+/* Base styles - use theme variables */
 html,
 body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: var(--kimu-bg);
-  color: var(--kimu-text);
+  background-color: var(--kimu-background, #ffffff);
+  color: var(--kimu-text-primary, #1a202c);
   font-family: var(--kimu-font);
-  font-family: var(--kimu-font, sans-serif);
   font-optical-sizing: auto;
-  font-weight: 100;
+  font-weight: 400;
   font-style: normal;
-  font-variation-settings: "wdth" 100;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Reset styles */
 :host {
   all: initial;
   display: block;
-  font-family: var(--kimu-font, sans-serif);
-  color: var(--kimu-text, #3c3c3c);
+  font-family: var(--kimu-font);
+  color: var(--kimu-text-primary, #1a202c);
   background-color: transparent;
 }
 
 * {
   box-sizing: border-box;
-  background-color: var(--kimu-bg);
 }
 
 /* Layout base */
@@ -55,18 +85,19 @@ body {
   gap: 1rem;
 }
 
-/* Tipografia */
+/* Tipografia - use theme colors */
 h1,
 h2,
 h3,
 h4 {
-  color: var(--kimu-text, #3c3c3c);
+  color: var(--kimu-text-primary);
   margin: 0;
+  font-weight: 600;
 }
 
 p {
   margin: 0.5rem 0;
-  color: var(--kimu-text, #cccccc);
+  color: var(--kimu-text-secondary);
 }
 
 /* headings */

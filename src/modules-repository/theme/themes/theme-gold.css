@@ -1,0 +1,100 @@
+/**
+ * Gold Theme - Elegant gold and luxury colors
+ * A premium theme with golden accents
+ */
+
+:root {
+  /* Main colors */
+  --kimu-background: linear-gradient(135deg, #1A1410 0%, #2A2218 50%, #3A3020 100%);
+  --kimu-surface: rgba(218, 165, 32, 0.1);
+  --kimu-surface-elevated: rgba(218, 165, 32, 0.15);
+  
+  /* Text colors */
+  --kimu-text-primary: #FFD700;
+  --kimu-text-secondary: #F0C85B;
+  --kimu-text-tertiary: #D4AF37;
+  --kimu-text-disabled: #B8941F;
+  
+  /* Border colors */
+  --kimu-border: #DAA520;
+  --kimu-border-light: #FFD700;
+  --kimu-divider: rgba(218, 165, 32, 0.3);
+  
+  /* Accent colors */
+  --kimu-primary: #FFD700;
+  --kimu-primary-dark: #DAA520;
+  --kimu-primary-light: #FFEC8B;
+  --kimu-secondary: #F0C85B;
+  --kimu-accent: #FFE55C;
+  
+  /* State colors */
+  --kimu-success: #90EE90;
+  --kimu-warning: #FFA500;
+  --kimu-error: #DC143C;
+  --kimu-info: #87CEEB;
+  
+  /* Shadow */
+  --kimu-shadow: rgba(218, 165, 32, 0.4);
+  --kimu-shadow-strong: rgba(218, 165, 32, 0.7);
+  
+  /* Component colors */
+  --kimu-input-bg: rgba(42, 34, 24, 0.7);
+  --kimu-input-border: #DAA520;
+  --kimu-button-bg: #FFD700;
+  --kimu-button-hover: #FFEC8B;
+  --kimu-card-bg: rgba(42, 34, 24, 0.9);
+  
+  /* Font */
+  --kimu-font: 'Georgia', 'Times New Roman', serif;
+}
+
+/* Body background with gradient */
+body {
+  background: linear-gradient(135deg, #1A1410 0%, #2A2218 50%, #3A3020 100%);
+  background-attachment: fixed;
+  color: var(--kimu-text-primary);
+  font-family: var(--kimu-font);
+}
+
+/* Gold shine animation */
+@keyframes gold-shine {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Luxury glow effect */
+button:hover,
+a:hover {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6),
+              0 0 40px rgba(255, 215, 0, 0.3),
+              0 8px 24px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+/* Elegant text shadow */
+h1, h2, h3, h4, h5, h6 {
+  text-shadow: 0 2px 10px rgba(255, 215, 0, 0.5),
+               0 0 20px rgba(218, 165, 32, 0.3);
+}
+
+/* Sparkle effect */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 15% 25%, rgba(255, 215, 0, 0.4), transparent),
+    radial-gradient(2px 2px at 75% 65%, rgba(255, 215, 0, 0.3), transparent),
+    radial-gradient(1px 1px at 45% 85%, rgba(255, 236, 139, 0.5), transparent),
+    radial-gradient(1px 1px at 85% 15%, rgba(218, 165, 32, 0.4), transparent);
+  background-size: 250px 250px, 300px 300px, 200px 200px, 280px 280px;
+  pointer-events: none;
+  z-index: 0;
+}
