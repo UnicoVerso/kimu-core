@@ -43,10 +43,20 @@ async function main() {
     // Load the main component of the Kimu application
     // The main component is the one that has the tag name 'kimu-home'
     console.log('[KIMU-MAIN] 🚀 Loading kimu-home extension...');
-    let mainAppExtensions = 'kimu-home';
-    await kimuExtensionManager.load(mainAppExtensions);
-    const app = document.createElement(mainAppExtensions);
-    root.appendChild(app);
+    const mainAppExtensions = 'kimu-home';
+    
+    try {
+      await kimuExtensionManager.load(mainAppExtensions);
+      
+      // Create and mount the main component
+      const mainComponent = document.createElement(mainAppExtensions);
+      root.appendChild(mainComponent);
+      
+      console.log('[KIMU-MAIN] ✅ Extension loaded and mounted successfully');
+    } catch (loadError) {
+      console.error('[KIMU-MAIN] ❌ Error loading extension:', loadError);
+      throw loadError;
+    }
 
     console.log('[KIMU-MAIN] ✅ KIMU APP initialized successfully');
   } catch (error) {

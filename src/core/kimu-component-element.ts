@@ -3,6 +3,11 @@ import { KimuExtensionManager } from './kimu-extension-manager';
 import { KimuExtensionMeta } from './kimu-types';
 import { KimuPathConfig } from './kimu-path-config';
 import { KimuGlobalStyles } from './kimu-global-styles';
+import { 
+  initReactiveProperties, 
+  getObservedAttributes, 
+  handleAttributeChange 
+} from './kimu-reactive';
 
 /**
  * The `KimuComponentElement` class serves as the base class for all components and extensions
@@ -18,6 +23,14 @@ import { KimuGlobalStyles } from './kimu-global-styles';
  * This class is designed to be extended by custom components and used with the `@KimuComponent` decorator.
  */
 export abstract class KimuComponentElement extends HTMLElement {
+
+  /**
+   * Static method to get observed attributes from reactive properties
+   * This enables automatic attribute reflection for @property decorated properties
+   */
+  static get observedAttributes(): string[] {
+    return getObservedAttributes(this);
+  }
 
   /** Global optimization settings - simplified */
   private static _optimizationSettings = {
@@ -129,7 +142,16 @@ export abstract class KimuComponentElement extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    //console.log("\n\n###### META DATA: ", this.getMeta());
+    //console.log("\n\n###### META DATA: ", this.getMeta());
+  }
+
+  /**
+   * Called when an observed attribute changes
+   * This is part of the Web Components lifecycle and enables attribute reflection
+   */
+  attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null): void {
+    // Handle reactive property attribute changes
+    handleAttributeChange(this, name, oldValue, newValue);
   }
 
   /** Shortcut for querying the DOM */
@@ -156,6 +178,9 @@ export abstract class KimuComponentElement extends HTMLElement {
 
     // Reset debouncing state on connect
     this._renderScheduled = false;
+
+    // Initialize reactive properties from HTML attributes
+    initReactiveProperties(this);
 
     // Load dependencies - use Promise.all for parallel loading
     if (meta.dependencies?.length) {
