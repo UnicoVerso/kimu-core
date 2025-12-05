@@ -82,10 +82,7 @@ export abstract class KimuComponentElement extends HTMLElement {
       return;
     }
     
-    // Reset debouncing state
-    this._renderScheduled = false;
-    
-    // Force render immediately
+    // Force render immediately without debouncing
     const currentData = this.getData();
     await KimuEngine.render(this, currentData, this._renderFn!);
     this.onRender();
@@ -103,9 +100,6 @@ export abstract class KimuComponentElement extends HTMLElement {
 
   /** Called every time after a render or refresh */
   onRender(): void { }
-
-  /** Debounce re-renders using requestAnimationFrame */
-  private _renderScheduled = false;
 
   /** Lifecycle: destruction */
   onDestroy(): void { }
@@ -176,9 +170,6 @@ export abstract class KimuComponentElement extends HTMLElement {
       return;
     }
 
-    // Reset debouncing state on connect
-    this._renderScheduled = false;
-
     // Initialize reactive properties from HTML attributes
     initReactiveProperties(this);
 
@@ -215,25 +206,30 @@ export abstract class KimuComponentElement extends HTMLElement {
     this.onInit();   // Call once, after DOM is fully rendered
   }
 
-  /** Forces a refresh of the interface component */
+  /** 
+   * Forces a refresh of the interface component
+   * Note: For @property decorated properties, this is called automatically.
+   * Manual calls are only needed for non-reactive state changes.
+   */
   async refresh(): Promise<void> {
     if (!this._renderFn) {
       console.warn('[KimuComponentElement] ⚠️ Template render function (_renderFn) not initialized for component:', this.tagName);
       return;
     }
 
-    // Skip debouncing if disabled
+    // Skip debouncing if disabled or call directly
     if (!KimuComponentElement._optimizationSettings.enableRenderDebouncing) {
       await this._doRender();
       return;
     }
 
-    // Debounce renders using requestAnimationFrame - return Promise for proper awaiting
-    if (this._renderScheduled) {
-      return;
+    // Use the same RAF batching mechanism as kimu-reactive
+    // This ensures consistent behavior across manual and reactive updates
+    if ((this as any).__kimu_render_pending__) {
+      return; // Already scheduled
     }
 
-    this._renderScheduled = true;
+    (this as any).__kimu_render_pending__ = true;
     
     return new Promise<void>((resolve) => {
       requestAnimationFrame(async () => {
@@ -244,7 +240,7 @@ export abstract class KimuComponentElement extends HTMLElement {
           console.error('[KimuComponentElement] Render error:', error);
           resolve(); // Resolve anyway to prevent hanging
         } finally {
-          this._renderScheduled = false;
+          (this as any).__kimu_render_pending__ = false;
         }
       });
     });
@@ -306,8 +302,8 @@ export abstract class KimuComponentElement extends HTMLElement {
    * Method automatically called on logout.
   */
   disconnectedCallback(): void {
-    // Clean up debouncing state
-    this._renderScheduled = false;
+    // Clean up RAF batching state
+    (this as any).__kimu_render_pending__ = false;
     
     // Call the destruction hook
     this._onDestroyInternal();

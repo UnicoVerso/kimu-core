@@ -25,12 +25,9 @@ export { KimuGlobalStyles } from './kimu-global-styles';
 export { KimuPathConfig } from './kimu-path-config';
 export { KimuStore } from './kimu-store';
 
-// Reactive system - NEW!
+// Reactive system - Optimized & Minimal
 export { 
   property,
-  reactive,
-  isReactive,
-  toRaw,
   initReactiveProperties,
   getObservedAttributes,
   handleAttributeChange
