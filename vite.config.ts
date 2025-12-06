@@ -66,8 +66,8 @@ export default defineConfig({
           targets: [
             // ✅ Copy LICENSE file to the final build
             { src: 'LICENSE', dest: 'dist', },
-            // ✅ Copy all asset files to the final build
-            { src: 'src/assets/*.*', dest: 'dist', },
+            // ✅ Copy static assets (images, fonts, etc.) - CSS files are processed by Vite via HTML links
+            { src: 'src/assets/*.{png,jpg,jpeg,svg,gif,webp,woff,woff2,ttf,eot,ico}', dest: 'dist', },
             // ✅ Copy core files to the final build (exclude .ts files)
             { src: 'src/core/**/*.{js,json}', dest: 'dist' },
             // ✅ Copy config files to the final build (exclude .ts files)

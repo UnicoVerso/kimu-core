@@ -2,6 +2,10 @@
 /TMP
 /_TMP
 
+# System files
+.DS_Store
+**/.DS_Store
+
 # Building
 tsconfig.tsbuildinfo
 # /public/themes
@@ -26,7 +30,6 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj

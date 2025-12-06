@@ -90,8 +90,10 @@ export function property(options: PropertyOptions = {}) {
     const ctor = target.constructor;
     if (!ctor.__kimu_reactive_props__) {
       ctor.__kimu_reactive_props__ = new Map();
+      ctor.__kimu_attr_to_prop__ = new Map(); // Inverse map for O(1) lookup
     }
     ctor.__kimu_reactive_props__.set(propertyKey, { type, reflect, attribute: attrName });
+    ctor.__kimu_attr_to_prop__.set(attrName, { propertyKey, type }); // Store inverse mapping
     
     // Define the reactive property with optimized getter/setter
     Object.defineProperty(target, propertyKey, {
@@ -117,12 +119,9 @@ export function property(options: PropertyOptions = {}) {
         }
         
         // Batched re-render using RAF (prevents multiple renders in same frame)
-        if (typeof this.refresh === 'function' && !this.__kimu_render_pending__) {
-          this.__kimu_render_pending__ = true;
-          requestAnimationFrame(() => {
-            this.__kimu_render_pending__ = false;
-            this.refresh();
-          });
+        // Call refresh directly - it already handles RAF batching internally
+        if (typeof this.refresh === 'function') {
+          this.refresh();
         }
       },
       enumerable: true,
@@ -183,17 +182,15 @@ export function handleAttributeChange(
   _oldValue: string | null,
   newValue: string | null
 ): void {
-  const props = component.constructor.__kimu_reactive_props__;
-  if (!props) return;
+  const attrMap = component.constructor.__kimu_attr_to_prop__;
+  if (!attrMap) return;
   
-  // Find the property that corresponds to this attribute
-  for (const [propertyKey, options] of props.entries()) {
-    if ((options as any).attribute === name) {
-      component[propertyKey] = newValue !== null 
-        ? convert(newValue, (options as any).type) 
-        : null;
-      break; // Exit early once found
-    }
+  // O(1) lookup using inverse map
+  const propInfo = attrMap.get(name);
+  if (propInfo) {
+    component[propInfo.propertyKey] = newValue !== null 
+      ? convert(newValue, propInfo.type) 
+      : null;
   }
 }
 
