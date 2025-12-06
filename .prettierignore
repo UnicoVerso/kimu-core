@@ -1,0 +1,44 @@
+# Build outputs
+dist/
+build/
+out/
+coverage/
+*.tsbuildinfo
+
+# Dependencies
+node_modules/
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+
+# Cache
+.eslintcache
+.parcel-cache
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Test outputs
+test-*/
+
+# Generated files
+*.generated.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

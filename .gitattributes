@@ -1,11 +1,81 @@
-# Ensure consistent line endings
-* text=auto
+# Git attributes for consistent line endings and file handling
+# https://git-scm.com/docs/gitattributes
 
-# Treat Markdown and code files as UTF-8
-*.md text eol=lf
-*.js text eol=lf
+# Auto detect text files and normalize line endings to LF
+* text=auto eol=lf
+
+# Explicitly declare text files
 *.ts text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.cjs text eol=lf
 *.json text eol=lf
-*.css text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.txt text eol=lf
+*.xml text eol=lf
 *.html text eol=lf
+*.css text eol=lf
 *.scss text eol=lf
+*.sass text eol=lf
+*.sh text eol=lf
+
+# Configuration files
+.editorconfig text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+.npmrc text eol=lf
+.eslintrc* text eol=lf
+.prettierrc* text eol=lf
+tsconfig*.json text eol=lf
+package.json text eol=lf
+package-lock.json text eol=lf
+
+# Scripts
+*.bash text eol=lf
+*.zsh text eol=lf
+
+# Windows specific files (use CRLF)
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary files (no text conversion)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.otf binary
+*.pdf binary
+*.zip binary
+*.tar binary
+*.gz binary
+*.tgz binary
+
+# Linguist vendored paths (exclude from language statistics)
+dist/** linguist-generated=true
+node_modules/** linguist-vendored
+
+# Git diff settings
+*.ts diff=typescript
+*.js diff=javascript
+*.json diff=json
+*.md diff=markdown
+
+# Git merge strategies
+package-lock.json merge=ours
+yarn.lock merge=ours
+pnpm-lock.yaml merge=ours
+
+# Mark files as documentation
+docs/** linguist-documentation
+*.md linguist-documentation
+LICENSE linguist-documentation
+CHANGELOG.md linguist-documentation

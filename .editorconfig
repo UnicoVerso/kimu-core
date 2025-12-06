@@ -1,30 +1,116 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
 root = true
 
+# Unix-style newlines with a newline ending every file
 [*]
+end_of_line = lf
+insert_final_newline = true
 charset = utf-8
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# TypeScript and JavaScript files
+[*.{ts,tsx,js,jsx,mjs,cjs}]
+indent_style = space
+indent_size = 2
+
+# JSON files
+[*.json]
+indent_style = space
+indent_size = 2
+
+# JSON5 and JSONC files
+[*.{json5,jsonc}]
+indent_style = space
+indent_size = 2
+
+# YAML files
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# CSS, SCSS, Sass, and Less files
+[*.{css,scss,sass,less}]
+indent_style = space
+indent_size = 2
+
+# HTML and template files
+[*.{html,htm}]
+indent_style = space
+indent_size = 2
+
+# XML and SVG files
+[*.{xml,svg}]
+indent_style = space
+indent_size = 2
+
+# Markdown files
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+# Text and documentation files
+[*.{txt,rst}]
+trim_trailing_whitespace = true
+
+# Log files
+[*.log]
+insert_final_newline = false
+
+# GraphQL files
+[*.{graphql,gql}]
+indent_style = space
+indent_size = 2
+
+# Makefiles
+[Makefile]
+indent_style = tab
+
+# Package files
+[package.json]
+indent_style = space
+indent_size = 2
+
+# Lock files (read-only, don't format)
+[{package-lock.json,yarn.lock,pnpm-lock.yaml}]
+indent_style = space
+indent_size = 2
+insert_final_newline = false
+
+# Configuration files
+[*.config.{js,ts,mjs,cjs}]
+indent_style = space
+indent_size = 2
+
+# RC files (dotfiles)
+[.{eslintrc,prettierrc,babelrc,stylelintrc}*]
+indent_style = space
+indent_size = 2
+
+# Docker files
+[{Dockerfile,*.dockerfile}]
+indent_style = space
+indent_size = 2
+
+[docker-compose*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# Shell scripts
+[*.{sh,bash,zsh}]
 indent_style = space
 indent_size = 2
 end_of_line = lf
-insert_final_newline = true
-trim_trailing_whitespace = true
 
-[*.md]
-trim_trailing_whitespace = false
+# Batch files (Windows)
+[*.{cmd,bat}]
+end_of_line = crlf
 
-[*.json]
+# PowerShell files
+[*.ps1]
+indent_style = space
 indent_size = 2
-
-[*.ts]
-indent_size = 2
-
-[*.js]
-indent_size = 2
-
-[*.css]
-indent_size = 2
-
-[*.scss]
-indent_size = 2
-
-[*.html]
-indent_size = 2
+end_of_line = crlf

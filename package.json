@@ -55,6 +55,9 @@
     "install:module": "node scripts/install-module.js",
     "remove:module": "node scripts/remove-module.js",
     "list:modules": "node scripts/list-modules.js",
+    "format": "prettier --write \"src/**/*.{ts,js,json,css,html,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,js,json,css,html,md}\"",
+    "lint": "echo 'Add ESLint configuration if needed'",
     "pack": "npm pack",
     "pack:dry": "npm pack --dry-run",
     "prepack": "npm run clear:build",
@@ -75,6 +78,7 @@
   "devDependencies": {
     "esbuild": "^0.25.2",
     "path": "^0.12.7",
+    "prettier": "^3.7.4",
     "rollup-plugin-copy": "^3.5.0",
     "typescript": "^5.8.3",
     "vite": "^6.2.0"
