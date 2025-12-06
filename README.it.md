@@ -14,6 +14,19 @@
 
 **`KIMU-CORE`** è il runtime leggero e modulare del framework [KIMU](https://github.com/unicoverso/kimu): un framework front-end ultra-minimale, interamente basato su **Web Components**, pensato per interfacce **poetiche**, **estensibili** e **viventi**.
 
+
+--- 
+
+
+# 🌐 Traduzioni disponibili
+
+- 🇬🇧 English – [README.md](./README.md)  
+- 🇮🇹 Italiano – [README.it.md](./README.it.md)
+
+
+--- 
+
+
 Questo pacchetto rappresenta il **motore runtime** del sistema, progettato per essere **piccolo, elegante e autosufficiente**.
 
 
@@ -36,15 +49,6 @@ Per scoprire la filosofia, docementazioni, esempi, gli altre estensioni,  moduli
 
 
 Creato da [UnicòVerso](https://unicoverso.com) (Marco Di Pasquale, alias *Hocram*), per realizzare interfacce web leggere, eleganti e reattive.
-
-
----
-
-
-# 🌐 Traduzioni disponibili
-
-- 🇬🇧 English – [README.md](./README.md)  
-- 🇮🇹 Italiano – [README.it.md](./README.it.md)
 
 
 ---
@@ -164,6 +168,24 @@ per conto del collettivo creativo **[UnicòVerso](https://unicoverso.com)**
 - 🐙 GitHub: [https://github.com/unicoverso/kimu-core](https://github.com/unicoverso/kimu-core)  
 - 🚀 Framework Reference: [https://github.com/unicoverso/kimu](https://github.com/unicoverso/kimu) 
 - 📩 Email: [info@unicoverso.com](mailto:info@unicoverso.com)
+
+
+---
+
+
+## 💖 Support / Donate
+
+🇮🇹 **Vuoi sostenere KIMU-Core?**
+Scopri tutte le modalità di supporto e donazione nel file [FUNDING.md](./FUNDING.md).
+
+Puoi contribuire tramite:
+- [GitHub Sponsors](https://github.com/sponsors/hocram)
+- [OpenCollective](https://opencollective.com/unicoverso)
+- [Patreon](https://www.patreon.com/UnicoVerso)
+- [Ko-fi](https://ko-fi.com/marcodipasquale)
+- [PayPal](https://paypal.me/marcodipasquale)
+- [BuyMeACoffee](https://www.buymeacoffee.com/hocram)
+- [unicoverso.com/dona](https://unicoverso.com/dona)
 
 
 ---
