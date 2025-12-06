@@ -54,7 +54,14 @@
     "build:all-modules": "node scripts/build-all-modules.js",
     "install:module": "node scripts/install-module.js",
     "remove:module": "node scripts/remove-module.js",
-    "list:modules": "node scripts/list-modules.js"
+    "list:modules": "node scripts/list-modules.js",
+    "pack": "npm pack",
+    "pack:dry": "npm pack --dry-run",
+    "prepack": "npm run clear:build",
+    "postpack": "echo 'Package created successfully! Check kimu-core-*.tgz'",
+    "publish:check": "npm run pack:dry && npm whoami && echo '\n✅ Ready to publish! Run: npm publish'",
+    "publish:dry": "npm publish --dry-run",
+    "prepublishOnly": "npm run pack:dry"
   },
   "engines": {
     "node": ">=18.0.0",

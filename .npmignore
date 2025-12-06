@@ -1,20 +1,37 @@
-# Ignore dev and test files in npm package
+# NPM Ignore - KIMU-Core Framework
+# Include everything needed for development (framework scaffold approach)
+
+# Temporary and log files
 *.log
+*.tmp
+*.temp
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Backup and archive files
 *.md~
 *.zip
-/tests/
+*.bak
+
+# Dependencies
+node_modules/
+
+# System and editor files
+.DS_Store
 .vscode/
 .idea/
-src/
-scripts/
-docs/
-LICENSE.it.txt
-NOTICE
-CHANGELOG.md
-.gitignore
-.editorconfig
-.gitattributes
+
+# Version control
 .git/
 
-# Build output is needed
-!dist/
+# Cache and build artifacts (temporary)
+.npm
+.eslintcache
+.cache/
+
+# Temporary project folders
+_TMP/
+
+# Build output (users will build themselves)
+dist/
