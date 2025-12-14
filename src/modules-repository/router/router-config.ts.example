@@ -1,0 +1,61 @@
+// Router Configuration Example File
+// Copy this file to: src/config/router/router-config.ts
+//
+// Commands:
+//   mkdir -p src/config/router
+//   cp src/modules/router/router-config.ts.example src/config/router/router-config.ts
+//
+// Then import in your main.ts:
+//   import { routes } from './config/router/router-config';
+//
+// This file defines all routes for your KIMU application.
+// Each route maps a URL path to a component (extension).
+
+import { RouteConfig } from '../../modules/router/router';
+
+/**
+ * Application routes configuration
+ * 
+ * Define your routes here following this pattern:
+ * {
+ *   path: '/url-path',        // The URL path to match
+ *   component: ComponentName, // The component/extension to render
+ *   name: 'route-name',       // Optional: friendly name for the route
+ *   meta: { ... }             // Optional: custom metadata
+ * }
+ */
+export const routes: RouteConfig[] = [
+  {
+    path: '/',
+    component: 'app-home', // or import and use: HomeComponent
+    name: 'home',
+    meta: { title: 'Home' }
+  },
+  {
+    path: '/about',
+    component: 'app-about',
+    name: 'about',
+    meta: { title: 'About Us' }
+  },
+  {
+    path: '/contact',
+    component: 'app-contact',
+    name: 'contact',
+    meta: { title: 'Contact' }
+  },
+  // Add more routes here...
+];
+
+/**
+ * Usage in main.ts:
+ * 
+ * import RouterModule from './modules/router/module';
+ * import { routes } from './router-config';
+ * 
+ * const routerModule = new RouterModule('router', '1.0.0', { routes });
+ * await moduleManager.loadModule(routerModule);
+ * 
+ * // Or configure after initialization:
+ * const router = moduleManager.getModule('router').getService();
+ * router.configure(routes);
+ */

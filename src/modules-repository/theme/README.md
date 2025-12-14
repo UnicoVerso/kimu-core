@@ -11,7 +11,7 @@ The theme module uses **KIMU Global Styles** system to inject theme CSS into all
 1. **KimuGlobalStyles** (core): Manages CSS files that should be injected in all extensions
 2. **ThemeService**: Registers the active theme CSS as a global style
 3. **KimuComponentElement**: Automatically injects all global styles into each extension's shadow root
-4. **themes-config.json**: Configuration file with all available themes
+4. **src/config/themes-config.json**: User configuration file with all available themes
 
 This architecture ensures:
 - ✅ Theme module is **optional** - framework works without it (fallback styles in `style.css`)
@@ -19,12 +19,13 @@ This architecture ensures:
 - ✅ Theme changes propagate to **existing extensions** dynamically
 - ✅ **No hardcoded dependencies** in core framework
 - ✅ **Easy theme management** via JSON configuration file
+- ✅ **Configuration survives module updates** - user config is separate from module files
 
 ## Module Structure
 
 ```
 src/modules/theme/
-├── themes/                    # Theme source CSS files
+├── themes/                         # Theme source CSS files
 │   ├── theme-light.css
 │   ├── theme-dark.css
 │   ├── theme-ocean.css
@@ -33,13 +34,56 @@ src/modules/theme/
 │   ├── theme-forest.css
 │   ├── theme-high-contrast.css
 │   └── theme-cyberpunk.css
-├── themes-config.json         # Theme configuration
-├── pre-build.js               # Pre-build script (copies themes to public/)
-├── theme-service.ts           # Main service
-└── README.md                  # This file
+├── themes-config.json.example      # Theme configuration example
+├── pre-build.js                    # Pre-build script (copies themes to public/)
+├── theme-service.ts                # Main service
+└── README.md                       # This file
+
+src/config/
+└── theme/
+    └── themes-config.json              # User configuration (copy from example)
 ```
 
 **Build Process**: The pre-build script automatically copies all CSS files from `themes/` to `public/themes/` before compilation.
+
+## Post-Installation Setup
+
+After installing the theme module, you need to create the themes configuration file:
+
+### 1. Create themes configuration file
+
+Copy the example file to your config folder:
+```bash
+mkdir -p src/config/theme
+cp src/modules/theme/themes-config.json.example src/config/theme/themes-config.json
+```
+
+Or create `src/config/theme/themes-config.json` manually using the example as template.
+
+### 2. Customize your themes
+
+Edit `src/config/theme/themes-config.json` to add, remove, or modify themes:
+
+```json
+{
+  "themes": [
+    {
+      "name": "light",
+      "mode": "light",
+      "cssPath": "theme-light.css",
+      "description": "Clean and bright theme",
+      "icon": "☀️"
+    },
+    {
+      "name": "dark",
+      "mode": "dark",
+      "cssPath": "theme-dark.css",
+      "description": "Dark theme for low-light",
+      "icon": "🌙"
+    }
+  ]
+}
+```
 
 ## Features
 

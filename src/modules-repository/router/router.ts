@@ -70,8 +70,26 @@ export class KimuRouterService {
   /**
    * Configure the router with a set of routes.
    * @param routes Array of RouteConfig
+   * @throws Error if routes array is empty or undefined
    */
   public configure(routes: RouteConfig[]): void {
+    if (!routes || routes.length === 0) {
+      console.error(
+        '\n⚠️  KIMU Router: No routes configured!\n\n' +
+        'The router requires a configuration file with your application routes.\n\n' +
+        'Expected location: src/config/router/router-config.ts\n\n' +
+        'To create the configuration file:\n' +
+        '1. Create config folder: mkdir -p src/config/router\n' +
+        '2. Copy the example: cp src/modules/router/router-config.ts.example src/config/router/router-config.ts\n' +
+        '3. Edit src/config/router/router-config.ts to define your routes\n' +
+        '4. Import and pass routes to the router in main.ts\n\n' +
+        'Example:\n' +
+        '  import { routes } from \'./config/router/router-config\';\n' +
+        '  router.configure(routes);\n\n' +
+        'See: src/modules/router/router-config.ts.example for a complete example.\n'
+      );
+      throw new Error('Router configuration missing. Please create src/config/router/router-config.ts');
+    }
     this.routes = routes;
   }
 

@@ -8,23 +8,74 @@ Questo modulo fornisce un servizio di routing per kimu-core, permettendo la gest
 - Callback sugli eventi di cambio rotta
 - API per registrare nuove rotte dinamicamente
 
-## Utilizzo
+## Configurazione Post-Installazione
+
+Dopo aver installato il modulo router, devi creare un file di configurazione delle rotte:
+
+### 1. Crea il file di configurazione routes
+
+Copia il file di esempio nella cartella config:
+```bash
+mkdir -p src/config/router
+cp src/modules/router/router-config.ts.example src/config/router/router-config.ts
+```
+
+Oppure crea `src/config/router/router-config.ts` manualmente:
 
 ```typescript
-import { KimuRouterService } from './src/modules/router/router';
+import { RouteConfig } from '../../modules/router/router';
 
-const router = KimuRouterService.getInstance();
-router.configure([
-  { path: '/', component: HomeComponent },
-  { path: '/about', component: AboutComponent },
-]);
+export const routes: RouteConfig[] = [
+  {
+    path: '/',
+    component: 'app-home',
+    name: 'home',
+    meta: { title: 'Home' }
+  },
+  {
+    path: '/about',
+    component: 'app-about',
+    name: 'about',
+    meta: { title: 'Chi Siamo' }
+  },
+  // Aggiungi le tue rotte qui...
+];
+```
 
+### 2. Inizializza il router in main.ts
+
+```typescript
+import { KimuModuleManager } from './core/kimu-module-manager';
+import RouterModule from './modules/router/module';
+import { routes } from './config/router/router-config';
+
+const moduleManager = KimuModuleManager.getInstance();
+
+// Opzione 1: Passa le rotte durante l'inizializzazione
+const routerModule = new RouterModule('router', '1.0.0', { routes });
+await moduleManager.loadModule(routerModule);
+
+// Opzione 2: Configura dopo l'inizializzazione
+const router = moduleManager.getModule('router').getService();
+router.configure(routes);
+```
+
+### 3. Naviga tra le rotte
+
+```typescript
+const router = moduleManager.getModule('router').getService();
+
+// Naviga verso una rotta
+router.navigate('/about');
+
+// Ascolta i cambiamenti di rotta
 router.onRouteChange((route) => {
-  // Logica per gestire il cambio rotta
+  console.log('Rotta cambiata:', route.path);
+  // Aggiorna UI, carica componenti, ecc.
 });
 
-// Per navigare
-router.navigate('/about');
+// Ottieni la rotta corrente
+const currentRoute = router.getCurrentRoute();
 ```
 
 ## Estensione

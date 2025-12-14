@@ -1,0 +1,19 @@
+{
+  "$comment": "Default fallback themes configuration - used when user config is not found",
+  "themes": [
+    {
+      "name": "light",
+      "mode": "light",
+      "cssPath": "theme-light.css",
+      "description": "Light theme (default)",
+      "icon": "☀️"
+    },
+    {
+      "name": "dark",
+      "mode": "dark",
+      "cssPath": "theme-dark.css",
+      "description": "Dark theme (default)",
+      "icon": "🌙"
+    }
+  ]
+}

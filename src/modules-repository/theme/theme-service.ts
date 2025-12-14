@@ -9,9 +9,31 @@
  */
 
 import { KimuGlobalStyles } from '../../core/kimu-global-styles';
-import themesConfig from './themes-config.json';
+import themesConfigDefault from './themes-config-default.json';
 
-export type ThemeMode = 'light' | 'dark' | 'ocean' | 'cozy' | 'auto' | string;
+// Try to load themes configuration from user's config folder
+// If not found, fallback to default configuration
+let themesConfig: any;
+try {
+  // User should copy themes-config.json.example to src/config/theme/themes-config.json
+  // This path is relative to the installed module location: src/modules/theme/
+  themesConfig = require('../../config/theme/themes-config.json');
+} catch (error) {
+  console.warn(
+    '\n⚠️  KIMU Theme Module: No custom themes configuration found!\n\n' +
+    'Expected location: src/config/theme/themes-config.json\n\n' +
+    'To create a custom configuration:\n' +
+    '1. Create config folder: mkdir -p src/config/theme\n' +
+    '2. Copy the example: cp src/modules/theme/themes-config.json.example src/config/theme/themes-config.json\n' +
+    '3. Edit src/config/theme/themes-config.json to customize your themes\n\n' +
+    'Using default themes (light, dark) as fallback.\n'
+  );
+  // Use default configuration as fallback
+  themesConfig = themesConfigDefault;
+}
+
+// ThemeMode can be any theme name loaded from config, plus 'auto' for system preference
+export type ThemeMode = 'auto' | string;
 
 export interface ThemeColors {
   background: string;
@@ -76,7 +98,7 @@ export class ThemeService {
   }
 
   /**
-   * Initialize default themes from configuration file
+   * Initialize themes from configuration file (user config or default fallback)
    */
   private initDefaultThemes(): void {
     // Theme CSS files are in public/themes/ folder
@@ -88,9 +110,9 @@ export class ThemeService {
       ? '/themes/'           // Development: public/themes/ → /themes/
       : `${basePath}themes/`; // Production: public/themes/ → /dist/themes/
     
-    // Load themes from configuration file
-    if (themesConfig && themesConfig.themes) {
-      themesConfig.themes.forEach(theme => {
+    // Load themes from configuration (either user config or default fallback)
+    if (themesConfig?.themes) {
+      themesConfig.themes.forEach((theme: any) => {
         this.cssThemes.set(theme.name, {
           name: theme.name,
           mode: theme.mode as 'light' | 'dark',
@@ -107,7 +129,7 @@ export class ThemeService {
         console.log('[Theme] Loaded themes:', Array.from(this.cssThemes.keys()));
       }
     } else {
-      console.warn('[Theme] No themes configuration found, using empty theme list');
+      console.error('[Theme] No themes configuration available - this should not happen!');
     }
   }
 

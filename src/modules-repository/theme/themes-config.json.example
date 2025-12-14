@@ -1,4 +1,14 @@
 {
+  "$schema": "./themes-config.d.ts",
+  "_comment": "Theme Configuration Example File",
+  "_instructions": [
+    "Copy this file to: src/config/theme/themes-config.json",
+    "Commands:",
+    "  mkdir -p src/config/theme",
+    "  cp src/modules/theme/themes-config.json.example src/config/theme/themes-config.json",
+    "",
+    "Then customize the themes array below with your application themes."
+  ],
   "themes": [
     {
       "name": "light",
