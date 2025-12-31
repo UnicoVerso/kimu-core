@@ -38,7 +38,7 @@
     "build:dev": "npm run generate-config:dev && npm run build:compile && npm run build:bundle && npm run build:post",
     "build:local": "npm run generate-config:local && npm run build:compile && npm run build:bundle && npm run build:post",
     "build:prod": "npm run generate-config:prod && npm run build:compile && npm run build:bundle && npm run build:post",
-    "build:compile": "tsc && npm run generate-config:dev",
+    "build:compile": "npm run generate-config:dev && tsc",
     "build:bundle": "vite build && npm run minify:css",
     "build:post": "npm run build:all-config && npm run build:all-core && npm run build:all-modules && npm run build:all-ext",
     "generate-config": "node scripts/generate-kimu-build-config.js dev",
