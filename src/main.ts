@@ -41,9 +41,9 @@ async function main() {
 
     // Mount the extensions
     // Load the main component of the Kimu application
-    // The main component is the one that has the tag name 'kimu-home'
-    console.log('[KIMU-MAIN] 🚀 Loading kimu-home extension...');
-    const mainAppExtensions = 'kimu-home';
+    // The main component is the one that has the tag name 'app-root'
+    console.log('[KIMU-MAIN] 🚀 Loading app-root extension...');
+    const mainAppExtensions = 'app-root';
     
     try {
       await kimuExtensionManager.load(mainAppExtensions);

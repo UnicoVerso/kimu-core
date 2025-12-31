@@ -1,10 +1,10 @@
 [
   {
-    "tag": "kimu-home",
-    "path": "kimu-home",
+    "tag": "app-root",
+    "path": "app-root",
     "internal": true,
-    "name": "KIMU Home",
-    "description": "Main interface container",
+    "name": "Application Root",
+    "description": "Main application root component",
     "version": "1.0.0",
     "author": "UnicòVerso",
     "icon": "🏠",

@@ -8,11 +8,11 @@ import { KimuComponentElement } from '../../core/kimu-component-element';
 import { KimuGlobalLang, KimuI18nService } from '../../modules/i18n/module';
 
 @KimuComponent({
-    tag: 'kimu-home',
-    path: 'kimu-home',
-    name: 'KIMU Home',
+    tag: 'app-root',
+    path: 'app-root',
+    name: 'Application Root',
     version: '1.0.0',
-    description: 'Main interface container',
+    description: 'Main application root component',
     icon: '🏠',
     author: 'UnicòVerso',
     kimuVersion: '1.0.0',
@@ -24,7 +24,7 @@ import { KimuGlobalLang, KimuI18nService } from '../../modules/i18n/module';
         }
     }
 })
-export class KimuHomeComponent extends KimuComponentElement {
+export class AppRootComponent extends KimuComponentElement {
 
     /** I18n service instance for translations */
     private i18n = new KimuI18nService(
