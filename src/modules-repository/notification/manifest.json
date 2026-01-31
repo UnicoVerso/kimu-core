@@ -1,0 +1,22 @@
+{
+  "name": "notification",
+  "version": "1.0.0",
+  "description": "Notification module for KIMU applications with support for toast messages, alerts and customizable notification types",
+  "author": "KIMU Team",
+  "license": "MPL-2.0",
+  "dependencies": [],
+  "kimuCoreVersion": "^0.3.0",
+  "keywords": [
+    "notification",
+    "toast",
+    "alert",
+    "messages",
+    "user-feedback",
+    "ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UnicoVerso/kimu-core",
+    "directory": "src/modules/notification"
+  }
+}

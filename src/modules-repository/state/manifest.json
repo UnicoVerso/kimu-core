@@ -1,0 +1,22 @@
+{
+  "name": "state",
+  "version": "1.0.0",
+  "description": "State management module for KIMU applications providing centralized reactive state with subscription support",
+  "author": "KIMU Team",
+  "license": "MPL-2.0",
+  "dependencies": [],
+  "kimuCoreVersion": "^0.3.0",
+  "keywords": [
+    "state",
+    "state-management",
+    "reactive",
+    "store",
+    "data-flow",
+    "centralized-state"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UnicoVerso/kimu-core",
+    "directory": "src/modules/state"
+  }
+}

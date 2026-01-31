@@ -1,0 +1,25 @@
+{
+  "name": "api-axios",
+  "version": "1.0.0",
+  "description": "Axios-based API module for KIMU applications with advanced features including interceptors, cancellation and request/response transformations",
+  "author": "KIMU Team",
+  "license": "MPL-2.0",
+  "dependencies": [
+    "axios"
+  ],
+  "kimuCoreVersion": "^0.3.0",
+  "keywords": [
+    "api",
+    "axios",
+    "http",
+    "rest",
+    "client",
+    "ajax",
+    "request"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UnicoVerso/kimu-core",
+    "directory": "src/modules/api-axios"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "event-bus",
+  "version": "1.0.0",
+  "description": "Event bus module for KIMU applications enabling decoupled component communication through publish-subscribe pattern",
+  "author": "KIMU Team",
+  "license": "MPL-2.0",
+  "dependencies": [],
+  "kimuCoreVersion": "^0.3.0",
+  "keywords": [
+    "event-bus",
+    "events",
+    "pub-sub",
+    "messaging",
+    "communication",
+    "decoupling"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UnicoVerso/kimu-core",
+    "directory": "src/modules/event-bus"
+  }
+}

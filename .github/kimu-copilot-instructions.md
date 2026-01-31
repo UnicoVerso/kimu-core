@@ -1571,11 +1571,10 @@ import RouterModule from './modules/router/module';
 
 // Initialize router module
 const moduleManager = KimuModuleManager.getInstance();
-const routerModule = new RouterModule();
-await moduleManager.loadModule(routerModule);
+await moduleManager.loadModule('router');
 
 // Get router service
-const router = moduleManager.getRouterService();
+const router = moduleManager.getService('router');
 
 // Define routes
 router.addRoute('/', () => {
@@ -1604,7 +1603,8 @@ export class NavigationComponent extends KimuComponentElement {
 
   async onInit() {
     // Get router service from module manager
-    this.router = KimuModuleManager.getInstance().getRouterService();
+    const moduleManager = KimuModuleManager.getInstance();
+    this.router = moduleManager.getService('router');
   }
 
   navigateToHome() {
@@ -1710,7 +1710,8 @@ export class AppRouterComponent extends KimuComponentElement {
   private router: KimuRouterService;
 
   async onInit() {
-    this.router = KimuModuleManager.getInstance().getRouterService();
+    const moduleManager = KimuModuleManager.getInstance();
+    this.router = moduleManager.getService('router');
     
     // Setup application routes
     this.setupRoutes();
@@ -2511,10 +2512,9 @@ import { KimuModuleManager } from '@kimu/core';
 import RouterModule from './modules/router/module';
 
 const moduleManager = KimuModuleManager.getInstance();
-const routerModule = new RouterModule();
-await moduleManager.loadModule(routerModule);
+await moduleManager.loadModule('router');
 
-const router = moduleManager.getRouterService();
+const router = moduleManager.getService('router');
 ```
 
 #### 2. Define Routes
@@ -2631,7 +2631,8 @@ export class NavigationComponent extends KimuComponentElement {
   
   async onInit() {
     // Get router service
-    this.router = KimuModuleManager.getInstance().getRouterService();
+    const moduleManager = KimuModuleManager.getInstance();
+    this.router = moduleManager.getService('router');
     
     // Listen for route changes
     this.router.onRouteChange(this.handleRouteChange.bind(this));
@@ -2771,14 +2772,13 @@ import { KimuModuleManager } from '@kimu/core';
 import I18nModule from './modules/i18n/module';
 
 const moduleManager = KimuModuleManager.getInstance();
-const i18nModule = new I18nModule('i18n', '1.0.0', {
+await moduleManager.loadModule('i18n', {
   defaultLanguage: 'en',
   fallbackLanguage: 'en',
   supportedLanguages: ['en', 'it', 'fr']
 });
-await moduleManager.loadModule(i18nModule);
 
-const i18n = moduleManager.getI18nService();
+const i18n = moduleManager.getService('i18n');
 ```
 
 #### 3. Use Translations in Components
@@ -2788,7 +2788,8 @@ export class MyComponent extends KimuComponentElement {
   private i18n: any;
   
   onInit() {
-    this.i18n = KimuModuleManager.getInstance().getI18nService();
+    const moduleManager = KimuModuleManager.getInstance();
+    this.i18n = moduleManager.getService('i18n');
   }
   
   getData() {

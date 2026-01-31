@@ -1,0 +1,22 @@
+{
+  "name": "theme",
+  "version": "1.0.0",
+  "description": "Theme management module for KIMU applications with dark/light mode support and customizable theme configurations",
+  "author": "KIMU Team",
+  "license": "MPL-2.0",
+  "dependencies": [],
+  "kimuCoreVersion": "^0.3.0",
+  "keywords": [
+    "theme",
+    "dark-mode",
+    "light-mode",
+    "styling",
+    "customization",
+    "ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UnicoVerso/kimu-core",
+    "directory": "src/modules/theme"
+  }
+}

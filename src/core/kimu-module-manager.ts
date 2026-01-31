@@ -32,6 +32,17 @@ export class KimuModuleManager {
     return instance;
   }
 
+  /**
+   * Register an already instantiated module
+   * Useful for manually created module instances
+   */
+  registerModule(name: string, instance: KimuModule): void {
+    if (this.modules.has(name)) {
+      console.warn(`[KimuModuleManager] Module '${name}' already registered, replacing...`);
+    }
+    this.modules.set(name, instance);
+  }
+
   getModule(name: string): KimuModule | undefined {
     return this.modules.get(name);
   }
@@ -45,25 +56,5 @@ export class KimuModuleManager {
   getService(name: string): any {
     const mod = this.modules.get(name);
     return mod ? mod.getService() : undefined;
-  }
-
-  // Convenience methods for commonly used modules
-  async getI18nService(options?: KimuModuleOptions): Promise<any> {
-    const module = await this.loadModule('i18n', options);
-    return module.getService();
-  }
-
-  async getRouterService(options?: KimuModuleOptions): Promise<any> {
-    const module = await this.loadModule('router', options);
-    return module.getService();
-  }
-
-  // Static convenience methods for global access
-  static async getI18nService(options?: KimuModuleOptions): Promise<any> {
-    return KimuModuleManager.getInstance().getI18nService(options);
-  }
-
-  static async getRouterService(options?: KimuModuleOptions): Promise<any> {
-    return KimuModuleManager.getInstance().getRouterService(options);
   }
 }
